@@ -2,6 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * @author Pavan Poudel
+ * Date - 2018/08/03
+ */
 public class Main {
 
     private static int total_objs = 100;
@@ -80,14 +84,17 @@ public class Main {
         List<objects> rw = new ArrayList<objects>();
         int rw_size = rw_set_size/8;
         int sum = 0;
-        //Random rand = new Random();
+        Random rand = new Random();
+        ArrayList<Integer> randList = new ArrayList<Integer>();
+
         while (sum<rw_size) {
-            Random rand = new Random();
             int x = rand.nextInt(total_objs);
-            //if((sum + objs.get(x).getObj_size())<rs_size){
-            rw.add(objs.get(x));
-            sum = sum + objs.get(x).getObj_size();
-            //}
+            if (!randList.contains(x)) {
+                randList.add(x);
+                randList.add(x);
+                rw.add(objs.get(x));
+                sum = sum + objs.get(x).getObj_size();
+            }
         }
         return rw;
     }

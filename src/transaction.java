@@ -1,5 +1,9 @@
 import java.util.List;
 
+/**
+ * @author Pavan Poudel
+ * Date - 2018/08/03
+ */
 public class transaction {
     private int tx_id;
     private int rw_set_size;
