@@ -2,11 +2,11 @@
  * @author Pavan Poudel
  * Date - 2018/08/03
  */
-public class objects {
+public class Objects {
     private int obj_id;
     private int obj_size;
 
-    public objects(int obj_id, int obj_size) {
+    public Objects(int obj_id, int obj_size) {
         this.obj_id = obj_id;
         this.obj_size = obj_size;
     }

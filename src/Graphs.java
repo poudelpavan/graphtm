@@ -1,11 +1,15 @@
+import java.util.LinkedList;
+
 /**
  * @author Pavan Poudel
  * Date - 2018/08/03
  */
-public class graphs {
+public class Graphs {
     private int node_id;
+    private int value;
+    LinkedList<Node> neighbors;
 
-    public graphs(int node_id) {
+    public Graphs(int node_id) {
         this.node_id = node_id;
     }
 
