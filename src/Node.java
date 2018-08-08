@@ -7,14 +7,18 @@ import java.util.LinkedList;
 public class Node {
     private int node_id;
     private int value;
-    LinkedList<Node> neighbors;
+    private int x;
+    private int y;
+    private LinkedList<Node> neighbors;
 
     public Node() {
     }
 
-    public Node(int node_id, int value, LinkedList<Node> neighbors) {
+    public Node(int node_id, int value, int x, int y, LinkedList<Node> neighbors) {
         this.node_id = node_id;
         this.value = value;
+        this.x = x;
+        this.y = y;
         this.neighbors = neighbors;
     }
 
@@ -32,6 +36,22 @@ public class Node {
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
     public LinkedList<Node> getNeighbors() {

@@ -5,19 +5,40 @@ import java.util.LinkedList;
  * Date - 2018/08/03
  */
 public class Graphs {
-    private int node_id;
-    private int value;
-    LinkedList<Node> neighbors;
+    private int graph_id;
+    private int numNodes;
+    private int numEdges;
 
-    public Graphs(int node_id) {
-        this.node_id = node_id;
+    public Graphs() {
     }
 
-    public int getNode_id() {
-        return node_id;
+    public Graphs(int graph_id, int numNodes, int numEdges) {
+        this.graph_id = graph_id;
+        this.numNodes = numNodes;
+        this.numEdges = numEdges;
     }
 
-    public void setNode_id(int node_id) {
-        this.node_id = node_id;
+    public int getGraph_id() {
+        return graph_id;
+    }
+
+    public void setGraph_id(int graph_id) {
+        this.graph_id = graph_id;
+    }
+
+    public int getNumNodes() {
+        return numNodes;
+    }
+
+    public void setNumNodes(int numNodes) {
+        this.numNodes = numNodes;
+    }
+
+    public int getNumEdges() {
+        return numEdges;
+    }
+
+    public void setNumEdges(int numEdges) {
+        this.numEdges = numEdges;
     }
 }
