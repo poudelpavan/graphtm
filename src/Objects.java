@@ -5,6 +5,7 @@
 public class Objects {
     private int obj_id;
     private int obj_size;
+    public Node node;
 
     public Objects(int obj_id, int obj_size) {
         this.obj_id = obj_id;

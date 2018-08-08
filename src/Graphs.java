@@ -1,28 +1,30 @@
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 /**
  * @author Pavan Poudel
  * Date - 2018/08/03
  */
 public class Graphs {
-    private int graph_id;
+    private String graph_id;
     private int numNodes;
     private int numEdges;
+    private ArrayList<Node> nodes;
 
     public Graphs() {
     }
 
-    public Graphs(int graph_id, int numNodes, int numEdges) {
+    public Graphs(String graph_id, int numNodes, int numEdges, ArrayList<Node> nodes) {
         this.graph_id = graph_id;
         this.numNodes = numNodes;
         this.numEdges = numEdges;
+        this.nodes = nodes;
     }
 
-    public int getGraph_id() {
+    public String getGraph_id() {
         return graph_id;
     }
 
-    public void setGraph_id(int graph_id) {
+    public void setGraph_id(String graph_id) {
         this.graph_id = graph_id;
     }
 
@@ -40,5 +42,13 @@ public class Graphs {
 
     public void setNumEdges(int numEdges) {
         this.numEdges = numEdges;
+    }
+
+    public ArrayList<Node> getNodes() {
+        return nodes;
+    }
+
+    public void setNodes(ArrayList<Node> nodes) {
+        this.nodes = nodes;
     }
 }

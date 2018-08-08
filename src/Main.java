@@ -3,20 +3,88 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import static java.lang.Math.abs;
+
 /**
  * @author Pavan Poudel
  * Date - 2018/08/03
  */
 public class Main {
+    private static int total_nodes = 100;
+    private static int grid_size = 10;
 
     private static int total_objs = 128;
     private static int total_txs = 100;
     private static int update_rate = 20;
     private static int rwset_size = 16;
+
     private static ArrayList<Objects> objs = new ArrayList<Objects>(total_objs);
     private static ArrayList<Transaction> txs = new ArrayList<Transaction>(total_txs);
+    private static ArrayList<ArrayList<Transaction>> nodal_txs = new ArrayList<ArrayList<Transaction>>(total_nodes);
 
-    /* Read-Write set for a transaction is randomly calculated */
+    /*
+     * Generate a grid graph
+     */
+    public static Graphs generateGridGraph(int gridsize){
+        Graphs grid = new Graphs();
+        grid.setGraph_id("grid"+gridsize);
+        grid.setNumNodes(gridsize*gridsize);
+        grid.setNumEdges((gridsize*gridsize) - gridsize);
+        ArrayList<Node> nodes = generateNodes(gridsize);
+        grid.setNodes(nodes);
+        return grid;
+    }
+
+    /*
+     * Get neighbors of a node in grid graph
+     */
+    public static ArrayList<Integer> getNeighbors(int r, int c, int rows, int cols){
+        ArrayList<Integer> neighbors = new ArrayList<Integer>();
+        if(r>0){
+            neighbors.add(((r-1)*cols)+c);
+        }
+        if(r<rows-1){
+            neighbors.add(((r+1)*cols)+c);
+        }
+        if(c>0){
+            neighbors.add((r*cols)+(c-1));
+        }
+        if(c<cols-1){
+            neighbors.add((r*cols)+(c+1));
+        }
+        return neighbors;
+    }
+
+    /*
+     * Generate nodes for grid graph
+     */
+    public static ArrayList<Node> generateNodes(int gridsize){
+        ArrayList<Node> nodes = new ArrayList<Node>();
+        for(int r=0;r<gridsize;r++){
+            for(int c=0;c<gridsize;c++){
+                Node nd = new Node();
+                nd.setNode_id(r*gridsize + c);
+                nd.setValue(r*gridsize + c);
+                nd.setX(r);
+                nd.setY(c);
+                ArrayList<Integer> neighbors = getNeighbors(r,c,gridsize,gridsize);
+                nd.setNeighbors(neighbors);
+                nodes.add(nd);
+            }
+        }
+        return nodes;
+    }
+
+    /*
+     * Calculate distance (communication cost) between two nodes in grid graph
+     */
+    public static int getCommCost(Node a, Node b){
+        return (abs(a.getX() - b.getX()) + abs(a.getY() - b.getY()));
+    }
+
+    /*
+     * Read-Write set for a transaction is randomly calculated
+     */
     public static ArrayList<Transaction> generateTransactions(int tot_obj, int tot_tx, int updt_rate){
         ArrayList<Transaction> txs = new ArrayList<Transaction>(tot_tx);
 
@@ -32,12 +100,6 @@ public class Main {
 
             List<Objects> rwset = setRWSet(rws_size, tot_obj);
             ArrayList<Integer> randList = getRandList(rws_size, 0, rwset.size()-1);
-            /*while (randList.size() < rwset.size()) {
-                int a = rand.nextInt(rwset.size());
-                if (!randList.contains(a)) {
-                    randList.add(a);
-                }
-            }*/
 
             while (n < randList.size()) {
                 if (sum < ws_size) {
@@ -55,11 +117,12 @@ public class Main {
 
             txs.add(tx);
         }
-
         return txs;
     }
 
-    /* Read-Write set for a transaction is fixed */
+    /*
+     * Read-Write set for a transaction is fixed
+     */
     public static ArrayList<Transaction> generateTransactions(int tot_obj, int tot_tx, int updt_rate, int rws_size){
         ArrayList<Transaction> txs = new ArrayList<Transaction>(tot_tx);
 
@@ -67,8 +130,6 @@ public class Main {
             List<Objects> ws = new ArrayList<Objects>();
             List<Objects> rs = new ArrayList<Objects>();
 
-            Random rand = new Random();
-//            int rws_size = rand.nextInt(tot_obj);
             int ws_size = rws_size * updt_rate / 100;
             int rs_size = rws_size - ws_size;
             int n = 0, sum = 0;
@@ -92,7 +153,6 @@ public class Main {
 
             txs.add(tx);
         }
-
         return txs;
     }
 
@@ -116,7 +176,6 @@ public class Main {
 
         for(int i=0;i<total_objs;i++){
             Objects obj = new Objects(i+1, 1);
-
             objs.add(obj);
         }
 
@@ -127,10 +186,16 @@ public class Main {
         int option = reader.nextInt();
 
         if(option == 1){
-            txs = generateTransactions(total_objs, total_txs, update_rate,rwset_size);
+            for(int x=0;x<total_nodes;x++) {
+                txs = generateTransactions(total_objs, total_txs, update_rate, rwset_size);
+                nodal_txs.add(txs);
+            }
         }
         else if(option == 2){
-            txs = generateTransactions(total_objs,total_txs,update_rate);
+            for(int x=0;x<total_nodes;x++) {
+                txs = generateTransactions(total_objs,total_txs,update_rate);
+                nodal_txs.add(txs);
+            }
         }
         else{
             System.out.println("Invalid choice!");
@@ -142,7 +207,6 @@ public class Main {
             List<Objects> rs = new ArrayList<Objects>();
             int ws_size = rwset_size * update_rate/800;
             int rs_size = (rwset_size/8) - ws_size;
-//            System.out.println("ws = "+ws_size+" rs = "+rs_size);
             List<Objects> rwset = setRWSet(rwset_size,total_objs);
             int n = 0, sum = 0;
             Random rand = new Random();
@@ -179,11 +243,37 @@ public class Main {
             System.out.print("T"+txs.get(i).getTx_id()+"   \t"+txs.get(i).getRw_set_size()+"\t\t"+txs.get(i).getUpdate_rate()+"\t\tRead Set(Objects) ==> (");
             for(int j=0;j<txs.get(i).getRset().size();j++){
 //                System.out.print("o"+txs.get(i).getRset().get(j).getObj_id()+":"+txs.get(i).getRset().get(j).getObj_size()+" ");
-                System.out.print(txs.get(i).getRset().get(j).getObj_id()+", ");
+                System.out.print(txs.get(i).getRset().get(j).getObj_id());
+                if(j<txs.get(i).getRset().size()-1){
+                    System.out.print(", ");
+                }
             }
             System.out.print(")\n\t\t\t\t\t\tWrite Set(Objects) ==> (");
             for(int j=0;j<txs.get(i).getWset().size();j++){
-                System.out.print(txs.get(i).getWset().get(j).getObj_id()+", ");
+                System.out.print(txs.get(i).getWset().get(j).getObj_id());
+                if(j<txs.get(i).getWset().size()-1){
+                    System.out.print(", ");
+                }
+            }
+            System.out.print(")\n");
+        }
+
+        System.out.println("---------------------------------");
+        for(int i=0;i<total_nodes;i++){
+            System.out.print("N"+(i+1)+"  \tT"+nodal_txs.get(i).get(0).getTx_id()+"   \t"+nodal_txs.get(i).get(0).getRw_set_size()+"\t\t"+nodal_txs.get(i).get(0).getUpdate_rate()+"\t\tRead Set(Objects) ==> (");
+            for(int j=0;j<nodal_txs.get(i).get(0).getRset().size();j++){
+//                System.out.print("o"+txs.get(i).getRset().get(j).getObj_id()+":"+txs.get(i).getRset().get(j).getObj_size()+" ");
+                System.out.print(nodal_txs.get(i).get(0).getRset().get(j).getObj_id());
+                if(j<nodal_txs.get(i).get(0).getRset().size()-1){
+                    System.out.print(", ");
+                }
+            }
+            System.out.print(")\n\t\t\t\t\t\t\t\tWrite Set(Objects) ==> (");
+            for(int j=0;j<nodal_txs.get(i).get(0).getWset().size();j++){
+                System.out.print(nodal_txs.get(i).get(0).getWset().get(j).getObj_id());
+                if(j<nodal_txs.get(i).get(0).getWset().size()-1){
+                    System.out.print(", ");
+                }
             }
             System.out.print(")\n");
         }
@@ -191,7 +281,6 @@ public class Main {
 
     private static List<Objects> setRWSet(int rw_size, int total_objs){
         List<Objects> rw = new ArrayList<Objects>();
-        //int rw_size = rw_set_size/8;
         int sum = 0;
         Random rand = new Random();
         ArrayList<Integer> randList = new ArrayList<Integer>();

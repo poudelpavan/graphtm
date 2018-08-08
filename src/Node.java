@@ -1,4 +1,4 @@
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 /**
  * @author Pavan Poudel
@@ -9,17 +9,19 @@ public class Node {
     private int value;
     private int x;
     private int y;
-    private LinkedList<Node> neighbors;
+    public ArrayList<Integer> neighbors;
+    public ArrayList<Objects> objects;
 
     public Node() {
     }
 
-    public Node(int node_id, int value, int x, int y, LinkedList<Node> neighbors) {
+    public Node(int node_id, int value, int x, int y, ArrayList<Integer> neighbors, ArrayList<Objects> objects) {
         this.node_id = node_id;
         this.value = value;
         this.x = x;
         this.y = y;
         this.neighbors = neighbors;
+        this.objects = objects;
     }
 
     public int getNode_id() {
@@ -54,11 +56,19 @@ public class Node {
         this.y = y;
     }
 
-    public LinkedList<Node> getNeighbors() {
+    public ArrayList<Integer> getNeighbors() {
         return neighbors;
     }
 
-    public void setNeighbors(LinkedList<Node> neighbors) {
+    public void setNeighbors(ArrayList<Integer> neighbors) {
         this.neighbors = neighbors;
+    }
+
+    public ArrayList<Objects> getObjects() {
+        return objects;
+    }
+
+    public void setObjects(ArrayList<Objects> objects) {
+        this.objects = objects;
     }
 }
