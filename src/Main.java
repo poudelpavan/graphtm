@@ -10,8 +10,8 @@ import static java.lang.Math.abs;
  * Date - 2018/08/03
  */
 public class Main {
-    private static int total_nodes = 100;
-    private static int grid_size = 10;
+    private static int total_nodes = 144;
+    private static int grid_size = 12;
 
     private static int total_objs = 128;
     private static int total_txs = 100;
@@ -64,7 +64,7 @@ public class Main {
             for(int c=0;c<gridsize;c++){
                 Node nd = new Node();
                 nd.setNode_id(r*gridsize + c);
-                nd.setValue(r*gridsize + c);
+                nd.setValue(r*gridsize + c+1);
                 nd.setX(r);
                 nd.setY(c);
                 ArrayList<Integer> neighbors = getNeighbors(r,c,gridsize,gridsize);
@@ -259,7 +259,7 @@ public class Main {
             txs.add(tx);
         }
 
-        System.out.println("\n*** ----------------------------- ***\n");
+        System.out.println("---------------------------------");
         System.out.println("Tx\trw-set-size\tupdate-rate");
         System.out.println("---------------------------------");
         for(int i=0;i<total_txs;i++){
@@ -281,7 +281,7 @@ public class Main {
             System.out.print(")\n");
         }
 
-        System.out.println("---------------------------------");
+        System.out.println("\n---------------------------------\nNodes vs. Transactions\n---------------------------------");
         for(int i=0;i<total_nodes;i++){
             System.out.print("N"+(i+1)+"  \tT"+nodal_txs.get(i).get(0).getTx_id()+"   \t"+nodal_txs.get(i).get(0).getRw_set_size()+"\t\t"+nodal_txs.get(i).get(0).getUpdate_rate()+"\t\tRead Set(Objects) ==> (");
             for(int j=0;j<nodal_txs.get(i).get(0).getRset().size();j++){
@@ -299,6 +299,14 @@ public class Main {
                 }
             }
             System.out.print(")\n");
+        }
+        Graphs grid = generateGridGraph(grid_size);
+        System.out.println("\n-----------------------------------------------\n\t  Grid graph of grid size ("+grid_size+" x "+grid_size+")\n-----------------------------------------------");
+        for(int i=0;i<grid_size;i++){
+            for(int j=0;j<grid_size;j++){
+                System.out.print(grid.getNodes().get(i*grid_size +j).getValue()+"\t");
+            }
+            System.out.println("\n");
         }
     }
 }
