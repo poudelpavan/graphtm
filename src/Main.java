@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -176,10 +177,10 @@ public class Main {
      * Generate a random Read-Write set.
      */
     private static List<Objects> setRWSet(int rw_size, int total_objs){
-        List<Objects> rw = new ArrayList<Objects>();
+        List<Objects> rw = new ArrayList<>();
         int sum = 0;
         Random rand = new Random();
-        ArrayList<Integer> randList = new ArrayList<Integer>();
+        ArrayList<Integer> randList = new ArrayList<>();
 
         while (sum<rw_size) {
             int x = rand.nextInt(total_objs);
@@ -193,12 +194,90 @@ public class Main {
         return rw;
     }
 
+    private static ArrayList<ArrayList<Integer>> generateDependencyGraph(ArrayList<ArrayList<Transaction>> txs, int total_nodes, int tx_num){
+        ArrayList<ArrayList<Integer>> adjMatrix = new ArrayList<>();
+
+        for(int i = 0;i<total_nodes;i++){
+            List<Objects> rs = txs.get(i).get(tx_num).getRset();
+            List<Objects> ws = txs.get(i).get(tx_num).getWset();
+
+            ArrayList<Integer> dependent = new ArrayList<>();
+            for(int j=0;j<total_nodes;j++){
+                dependent.add(0);
+            }
+
+            if(ws.size() > 0){
+                for(int j=0;j<ws.size();j++){
+                    Objects obj = ws.get(j);
+                    int homenode = obj.getNode();
+
+                    if(homenode !=i){
+                        dependent.set(homenode,1);
+                    }
+                }
+            }
+            adjMatrix.add(dependent);
+        }
+        return adjMatrix;
+    }
+
+    private static ArrayList<ArrayList<Integer>> generateConflictGraph(ArrayList<ArrayList<Transaction>> txs, int total_nodes, int tx_num){
+        ArrayList<ArrayList<Integer>> adjMatrix = new ArrayList<>();
+
+        for(int i = 0;i<total_nodes;i++){
+            List<Objects> rs = txs.get(i).get(tx_num).getRset();
+            List<Objects> ws = txs.get(i).get(tx_num).getWset();
+
+            ArrayList<Integer> dependent = new ArrayList<>();
+            for(int j=0;j<total_nodes;j++){
+                boolean depends = false;
+                if(j!= i) {
+                    List<Objects> ws1 = txs.get(j).get(tx_num).getWset();
+                    for(int k=0;k<ws.size();k++){
+                        Objects obj = ws.get(k);
+                        int obj_id = obj.getObj_id();
+                        for(int l=0;l<ws1.size();l++){
+                            Objects obj1 = ws1.get(k);
+                            int obj_id1 = obj1.getObj_id();
+                            if(obj_id == obj_id1){
+                                depends = true;
+                            }
+                        }
+                    }
+                    if(depends == true){
+                        dependent.add(1);
+                    }
+                    else {
+                        dependent.add(0);
+                    }
+                }
+                else {
+                    dependent.add(0);
+                }
+            }
+
+            if(ws.size() > 0){
+                for(int j=0;j<ws.size();j++){
+                    Objects obj = ws.get(j);
+                    int homenode = obj.getNode();
+
+                    if(homenode !=i){
+                        dependent.set(homenode,1);
+                    }
+                }
+            }
+            adjMatrix.add(dependent);
+        }
+        return adjMatrix;
+    }
+
     public static void main(String[] args) {
 //        System.out.println("Hello World!");
         Scanner reader = new Scanner(System.in);
 
+        ArrayList<Integer> obj_home = getRandList(total_objs,1,total_nodes);
         for(int i=0;i<total_objs;i++){
-            Objects obj = new Objects(i+1, 1);
+            Objects obj = new Objects(i+1, 1, obj_home.get(i));
             objs.add(obj);
         }
 
@@ -228,8 +307,8 @@ public class Main {
         for(int i=0;i<total_txs;i++){
             List<Objects> ws = new ArrayList<Objects>();
             List<Objects> rs = new ArrayList<Objects>();
-            int ws_size = rwset_size * update_rate/800;
-            int rs_size = (rwset_size/8) - ws_size;
+            int ws_size = rwset_size * update_rate/100;
+            int rs_size = (rwset_size) - ws_size;
             List<Objects> rwset = setRWSet(rwset_size,total_objs);
             int n = 0, sum = 0;
             Random rand = new Random();
@@ -305,6 +384,45 @@ public class Main {
         for(int i=0;i<grid_size;i++){
             for(int j=0;j<grid_size;j++){
                 System.out.print(grid.getNodes().get(i*grid_size +j).getValue()+"\t");
+            }
+            System.out.println("\n");
+        }
+
+        System.out.println("\n-----------------------------------------------\n\t  Initial distribution of objects in grid\n-----------------------------------------------");
+        for(int i=0;i<grid_size;i++){
+            for(int j=0;j<grid_size;j++){
+                int home = 0;
+                for(int k=0;k<total_objs;k++){
+                    int nd = objs.get(k).getNode();
+                    if(nd == i*grid_size+j){
+                        home = objs.get(k).getObj_id();
+                    }
+                }
+                System.out.print(home+"\t");
+            }
+            System.out.println("\n");
+        }
+
+        System.out.println("\n-----------------------------------------------\n\t  Dependency Graph (Adjancency matrix)\n-----------------------------------------------");
+        ArrayList<ArrayList<Integer>> depend = new ArrayList<>();
+        for(int i=0;i<total_nodes;i++) {
+            depend = generateDependencyGraph(nodal_txs,total_nodes,0);
+        }
+        for(int i=0;i<total_nodes;i++){
+            for(int j=0;j<total_nodes;j++){
+                System.out.print(depend.get(i).get(j) + " ");
+            }
+            System.out.println("\n");
+        }
+
+        System.out.println("\n-----------------------------------------------\nTransaction Dependency Graph (conflits)\n-----------------------------------------------");
+        ArrayList<ArrayList<Integer>> dependtx = new ArrayList<>();
+        for(int i=0;i<total_nodes;i++) {
+            depend = generateConflictGraph(nodal_txs,total_nodes,0);
+        }
+        for(int i=0;i<total_nodes;i++){
+            for(int j=0;j<total_nodes;j++){
+                System.out.print(depend.get(i).get(j) + " ");
             }
             System.out.println("\n");
         }

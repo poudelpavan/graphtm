@@ -5,11 +5,12 @@
 public class Objects {
     private int obj_id;
     private int obj_size;
-    public Node node;
+    public int node;
 
-    public Objects(int obj_id, int obj_size) {
+    public Objects(int obj_id, int obj_size, int node) {
         this.obj_id = obj_id;
         this.obj_size = obj_size;
+        this.node = node;
     }
 
     public int getObj_id() {
@@ -26,5 +27,13 @@ public class Objects {
 
     public void setObj_size(int obj_size) {
         this.obj_size = obj_size;
+    }
+
+    public int getNode() {
+        return node;
+    }
+
+    public void setNode(int node) {
+        this.node = node;
     }
 }
