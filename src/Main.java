@@ -11,13 +11,13 @@ import static java.lang.Math.abs;
  * Date - 2018/08/03
  */
 public class Main {
-    private static int total_nodes = 144;
-    private static int grid_size = 12;
+    private static int total_nodes = 25;
+    private static int grid_size = 5;
 
-    private static int total_objs = 128;
-    private static int total_txs = 100;
+    private static int total_objs = 16;
+    private static int total_txs = 10;
     private static int update_rate = 20;
-    private static int rwset_size = 16;
+    private static int rwset_size = 10;
 
     private static ArrayList<Objects> objs = new ArrayList<Objects>(total_objs);
     private static ArrayList<Transaction> txs = new ArrayList<Transaction>(total_txs);
@@ -114,7 +114,7 @@ public class Main {
 
             List<Objects> rset = rs;
             List<Objects> wset = ws;
-            Transaction tx = new Transaction(i + 1, rws_size, updt_rate, rset, wset);
+            Transaction tx = new Transaction(i + 1, rws_size, updt_rate, rset, wset,"IDLE",0);
 
             txs.add(tx);
         }
@@ -150,7 +150,7 @@ public class Main {
 
             List<Objects> rset = rs;
             List<Objects> wset = ws;
-            Transaction tx = new Transaction(i + 1, rws_size, updt_rate, rset, wset);
+            Transaction tx = new Transaction(i + 1, rws_size, updt_rate, rset, wset,"IDLE",0);
 
             txs.add(tx);
         }
@@ -194,6 +194,9 @@ public class Main {
         return rw;
     }
 
+    /*
+     * Generate a transaction dependency graph based on objects positioned on the node.
+     */
     private static ArrayList<ArrayList<Integer>> generateDependencyGraph(ArrayList<ArrayList<Transaction>> txs, int total_nodes, int tx_num){
         ArrayList<ArrayList<Integer>> adjMatrix = new ArrayList<>();
 
@@ -221,6 +224,10 @@ public class Main {
         return adjMatrix;
     }
 
+    /*
+     * Generate a transaction conflict graph based on read set and write sets of transactions with priority.
+     * Transaction at upper node has higher priority than the transaction at lower node.
+     */
     private static ArrayList<ArrayList<Integer>> generateConflictGraph(ArrayList<ArrayList<Transaction>> txs, int total_nodes, int tx_num){
         ArrayList<ArrayList<Integer>> adjMatrix = new ArrayList<>();
 
@@ -228,47 +235,93 @@ public class Main {
             List<Objects> rs = txs.get(i).get(tx_num).getRset();
             List<Objects> ws = txs.get(i).get(tx_num).getWset();
 
-            ArrayList<Integer> dependent = new ArrayList<>();
+            ArrayList<Integer> dependent = new ArrayList<>(total_nodes);
             for(int j=0;j<total_nodes;j++){
+                dependent.add(0);
+            }
+            for(int j=0;j<i;j++){
                 boolean depends = false;
-                if(j!= i) {
-                    List<Objects> ws1 = txs.get(j).get(tx_num).getWset();
-                    for(int k=0;k<ws.size();k++){
-                        Objects obj = ws.get(k);
-                        int obj_id = obj.getObj_id();
-                        for(int l=0;l<ws1.size();l++){
-                            Objects obj1 = ws1.get(k);
-                            int obj_id1 = obj1.getObj_id();
-                            if(obj_id == obj_id1){
-                                depends = true;
-                            }
+                List<Objects> rs1 = txs.get(j).get(tx_num).getRset();
+                List<Objects> ws1 = txs.get(j).get(tx_num).getWset();
+                for(int k=0;k<ws.size();k++) {
+                    Objects obj = ws.get(k);
+                    int obj_id = obj.getObj_id();
+                    for (int l = 0; l < ws1.size(); l++) {
+                        Objects obj1 = ws1.get(l);
+                        int obj_id1 = obj1.getObj_id();
+                        if (obj_id == obj_id1) {
+                            depends = true;
                         }
                     }
-                    if(depends == true){
-                        dependent.add(1);
-                    }
-                    else {
-                        dependent.add(0);
+                    for (int l = 0; l < rs1.size(); l++) {
+                        Objects obj1 = rs1.get(l);
+                        int obj_id1 = obj1.getObj_id();
+                        if (obj_id == obj_id1) {
+                            depends = true;
+                        }
                     }
                 }
-                else {
-                    dependent.add(0);
-                }
-            }
-
-            if(ws.size() > 0){
-                for(int j=0;j<ws.size();j++){
-                    Objects obj = ws.get(j);
-                    int homenode = obj.getNode();
-
-                    if(homenode !=i){
-                        dependent.set(homenode,1);
+                for(int k=0;k<rs.size();k++) {
+                    Objects obj = rs.get(k);
+                    int obj_id = obj.getObj_id();
+                    for (int l = 0; l < ws1.size(); l++) {
+                        Objects obj1 = ws1.get(l);
+                        int obj_id1 = obj1.getObj_id();
+                        if (obj_id == obj_id1) {
+                            depends = true;
+                        }
                     }
+                }
+                if(depends == true) {
+                    dependent.set(j,1);
                 }
             }
             adjMatrix.add(dependent);
         }
         return adjMatrix;
+    }
+
+    /*
+     * Retrieve node of a grid with node_id.
+     */
+    private static Node getNode(int n_id, Graphs g){
+        int j=0;
+        Node nd = g.getNodes().get(j);
+        while(nd.getNode_id() != n_id)
+        {
+            j++;
+            nd = g.getNodes().get(j);
+        }
+        return nd;
+    }
+
+    /*
+     * Execute transaction and return execution time based on the objects in read set and write set and its position on grid.
+     */
+    private static int executeTx(Transaction t, Node n, Graphs g){
+        int total_time = 0;
+        List<Objects> rs = t.getRset();
+        List<Objects> ws = t.getWset();
+        for(int i = 0;i<rs.size();i++){
+            int node_id = rs.get(i).getNode();
+            Node nd = getNode(node_id,g);
+            int access_cost = getCommCost(n, nd);
+            if(total_time < access_cost){
+                total_time = access_cost;
+            }
+        }
+        for(int i = 0;i<ws.size();i++){
+            int node_id = ws.get(i).getNode();
+            Node nd =getNode(node_id,g);
+            int access_cost = getCommCost(n, nd);
+            if(total_time < access_cost){
+                total_time = access_cost;
+            }
+            Objects obj = ws.get(i);
+            obj.setNode(n.getNode_id());
+            objs.set(obj.getObj_id()-1,obj);
+        }
+        return total_time;
     }
 
     public static void main(String[] args) {
@@ -333,7 +386,7 @@ public class Main {
 
             List<Objects> rset = rs;
             List<Objects> wset = ws;
-            Transaction tx = new Transaction(i+1, rwset_size, update_rate,rset,wset);
+            Transaction tx = new Transaction(i+1, rwset_size, update_rate,rset,wset,"IDLE",0);
 
             txs.add(tx);
         }
@@ -391,7 +444,7 @@ public class Main {
         System.out.println("\n-----------------------------------------------\n\t  Initial distribution of objects in grid\n-----------------------------------------------");
         for(int i=0;i<grid_size;i++){
             for(int j=0;j<grid_size;j++){
-                int home = 0;
+                int home = -1;
                 for(int k=0;k<total_objs;k++){
                     int nd = objs.get(k).getNode();
                     if(nd == i*grid_size+j){
@@ -418,13 +471,67 @@ public class Main {
         System.out.println("\n-----------------------------------------------\nTransaction Dependency Graph (conflits)\n-----------------------------------------------");
         ArrayList<ArrayList<Integer>> dependtx = new ArrayList<>();
         for(int i=0;i<total_nodes;i++) {
-            depend = generateConflictGraph(nodal_txs,total_nodes,0);
+            dependtx = generateConflictGraph(nodal_txs,total_nodes,0);
         }
         for(int i=0;i<total_nodes;i++){
             for(int j=0;j<total_nodes;j++){
-                System.out.print(depend.get(i).get(j) + " ");
+                System.out.print(dependtx.get(i).get(j) + " ");
             }
             System.out.println("\n");
+        }
+
+        System.out.println("\n-----------------------------------------------\nTransaction execution\n-----------------------------------------------");
+        boolean noconflict = false;
+        int obj_node[] = new int[total_objs];
+        int round=0;
+        while(!noconflict) {
+            round++;
+            System.out.println("Round "+ round);
+            for (int i = 0; i < total_objs; i++) {
+                obj_node[i] = objs.get(i).getNode();
+            }
+            boolean conflictstatus = false;
+            int j=0;
+            ArrayList<ArrayList<Transaction>> all_txs = nodal_txs;
+
+            for(int i=0;i<total_nodes;i++){
+                dependtx = generateConflictGraph(all_txs,total_nodes,j);
+                Transaction t = all_txs.get(i).get(j);
+                ArrayList<Integer> conflictlist = dependtx.get(i);
+                for(int k=0;k<conflictlist.size();k++){
+                    int conflict = conflictlist.get(k);
+                    //System.out.println("Conflict = "+conflict);
+                    if(conflict == 1){
+                        System.out.println("Conflict, status = "+all_txs.get(k).get(j).getStatus());
+                        if(all_txs.get(k).get(j).getStatus()=="COMMITTED"){
+                            if(all_txs.get(k).get(j).getExecution_time() > all_txs.get(i).get(j).getExecution_time()){
+                                ArrayList<Transaction> arr = all_txs.get(i);
+                                Transaction t1 = all_txs.get(i).get(j);
+                                t1.setExecution_time(all_txs.get(k).get(j).getExecution_time());
+                                arr.set(j,t1);
+                                nodal_txs.set(i,arr);
+                            }
+                        }
+                        else{
+                            conflictstatus = true;
+
+                        }
+                    }
+                }
+                if(conflictstatus == false){
+                    Transaction t1 = nodal_txs.get(i).get(j);
+                    int exec_time = t1.getExecution_time() + executeTx(t1,getNode(i,grid),grid);
+                    ArrayList<Transaction> arr = all_txs.get(i);
+                    t1.setExecution_time(exec_time);
+                    t1.setStatus("COMMITTED");
+                    arr.set(j,t1);
+                    nodal_txs.set(i,arr);
+                    System.out.println("T("+i+","+j+") = "+exec_time);
+                }
+            }
+            if(conflictstatus == false){
+                noconflict = true;
+            }
         }
     }
 }

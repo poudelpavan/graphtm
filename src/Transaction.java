@@ -10,13 +10,17 @@ public class Transaction {
     private int update_rate;
     private List<Objects> rset;
     private List<Objects> wset;
+    private String status;
+    private int execution_time;
 
-    public Transaction(int tx_id, int rw_set_size, int update_rate, List<Objects> rset, List<Objects> wset) {
+    public Transaction(int tx_id, int rw_set_size, int update_rate, List<Objects> rset, List<Objects> wset, String status, int execution_time) {
         this.tx_id = tx_id;
         this.rw_set_size = rw_set_size;
         this.update_rate = update_rate;
         this.rset = rset;
         this.wset = wset;
+        this.status = status;
+        this.execution_time = execution_time;
     }
 
     public int getTx_id() {
@@ -57,5 +61,21 @@ public class Transaction {
 
     public void setWset(List<Objects> wset) {
         this.wset = wset;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getExecution_time() {
+        return execution_time;
+    }
+
+    public void setExecution_time(int execution_time) {
+        this.execution_time = execution_time;
     }
 }
