@@ -496,6 +496,7 @@ public class Main {
             all_txs = nodal_txs;
 
             for(int i=0;i<total_nodes;i++){
+                int count = 0;
                 dependtx = generateConflictGraph(all_txs,total_nodes,j);
                 Transaction t = all_txs.get(i).get(j);
                 ArrayList<Integer> conflictlist = dependtx.get(i);
@@ -503,6 +504,7 @@ public class Main {
                     int conflict = conflictlist.get(k);
                     //System.out.println("Conflict = "+conflict);
                     if(conflict == 1){
+                        count++;
                         //System.out.println("Conflict, status = "+all_txs.get(k).get(j).getStatus());
                         if(all_txs.get(k).get(j).getStatus()=="COMMITTED"){
                             int movecost = getCommCost(getNode(i,grid), getNode(k, grid));
@@ -533,7 +535,11 @@ public class Main {
                     t1.setStatus("COMMITTED");
                     arr.set(j,t1);
                     nodal_txs.set(i,arr);
-                    System.out.println("T("+i+","+j+") = "+exec_time);
+                    System.out.print("T("+i+","+j+")\t=> ");
+                    for(int x=0;x<count;x++) {
+                        System.out.print("| wait |");
+                    }
+                    System.out.print("   "+ exec_time + "\n");
                 }
             }
             if(conflictstatus == false){
