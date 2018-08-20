@@ -492,7 +492,8 @@ public class Main {
             }
             boolean conflictstatus = false;
             int j=0;
-            ArrayList<ArrayList<Transaction>> all_txs = nodal_txs;
+            ArrayList<ArrayList<Transaction>> all_txs = new ArrayList<>();
+            all_txs = nodal_txs;
 
             for(int i=0;i<total_nodes;i++){
                 dependtx = generateConflictGraph(all_txs,total_nodes,j);
@@ -502,12 +503,13 @@ public class Main {
                     int conflict = conflictlist.get(k);
                     //System.out.println("Conflict = "+conflict);
                     if(conflict == 1){
-                        System.out.println("Conflict, status = "+all_txs.get(k).get(j).getStatus());
+                        //System.out.println("Conflict, status = "+all_txs.get(k).get(j).getStatus());
                         if(all_txs.get(k).get(j).getStatus()=="COMMITTED"){
-                            if(all_txs.get(k).get(j).getExecution_time() > all_txs.get(i).get(j).getExecution_time()){
+                            int movecost = getCommCost(getNode(i,grid), getNode(k, grid));
+                            if(all_txs.get(k).get(j).getExecution_time() + movecost > all_txs.get(i).get(j).getExecution_time()){
                                 ArrayList<Transaction> arr = all_txs.get(i);
                                 Transaction t1 = all_txs.get(i).get(j);
-                                t1.setExecution_time(all_txs.get(k).get(j).getExecution_time());
+                                t1.setExecution_time(all_txs.get(k).get(j).getExecution_time() + movecost);
                                 arr.set(j,t1);
                                 nodal_txs.set(i,arr);
                             }
@@ -520,9 +522,14 @@ public class Main {
                 }
                 if(conflictstatus == false){
                     Transaction t1 = nodal_txs.get(i).get(j);
-                    int exec_time = t1.getExecution_time() + executeTx(t1,getNode(i,grid),grid);
-                    ArrayList<Transaction> arr = all_txs.get(i);
-                    t1.setExecution_time(exec_time);
+                    int exec_time = executeTx(t1,getNode(i,grid),grid);
+                    ArrayList<Transaction> arr = nodal_txs.get(i);
+                    if(exec_time > t1.getExecution_time()) {
+                        t1.setExecution_time(exec_time);
+                    }
+                    else{
+                        exec_time = t1.getExecution_time();
+                    }
                     t1.setStatus("COMMITTED");
                     arr.set(j,t1);
                     nodal_txs.set(i,arr);
