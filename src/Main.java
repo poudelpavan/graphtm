@@ -482,14 +482,10 @@ public class Main {
 
         System.out.println("\n-----------------------------------------------\nTransaction execution\n-----------------------------------------------");
         boolean noconflict = false;
-        int obj_node[] = new int[total_objs];
-        int round=0;
-        while(!noconflict) {
-            round++;
-            //System.out.println("Round "+ round);
-            for (int i = 0; i < total_objs; i++) {
-                obj_node[i] = objs.get(i).getNode();
-            }
+
+        int round=0, cumulative_rt=0;
+        while(round < total_txs) {
+            System.out.println("Round "+round);
             boolean conflictstatus = false;
             int j=0;
             ArrayList<ArrayList<Transaction>> all_txs = new ArrayList<>();
@@ -497,22 +493,21 @@ public class Main {
 
             for(int i=0;i<total_nodes;i++){
                 int count = 0;
-                dependtx = generateConflictGraph(all_txs,total_nodes,j);
-                Transaction t = all_txs.get(i).get(j);
+                dependtx = generateConflictGraph(all_txs,total_nodes,round);
+                Transaction t = all_txs.get(i).get(round);
                 ArrayList<Integer> conflictlist = dependtx.get(i);
                 for(int k=0;k<conflictlist.size();k++){
                     int conflict = conflictlist.get(k);
-                    //System.out.println("Conflict = "+conflict);
                     if(conflict == 1){
                         count++;
                         //System.out.println("Conflict, status = "+all_txs.get(k).get(j).getStatus());
-                        if(all_txs.get(k).get(j).getStatus()=="COMMITTED"){
+                        if(all_txs.get(k).get(round).getStatus()=="COMMITTED"){
                             int movecost = getCommCost(getNode(i,grid), getNode(k, grid));
-                            if(all_txs.get(k).get(j).getExecution_time() + movecost > all_txs.get(i).get(j).getExecution_time()){
+                            if(all_txs.get(k).get(round).getExecution_time() + movecost > all_txs.get(i).get(round).getExecution_time()){
                                 ArrayList<Transaction> arr = all_txs.get(i);
-                                Transaction t1 = all_txs.get(i).get(j);
-                                t1.setExecution_time(all_txs.get(k).get(j).getExecution_time() + movecost);
-                                arr.set(j,t1);
+                                Transaction t1 = all_txs.get(i).get(round);
+                                t1.setExecution_time(all_txs.get(k).get(round).getExecution_time() + movecost);
+                                arr.set(round,t1);
                                 nodal_txs.set(i,arr);
                             }
                         }
@@ -523,7 +518,7 @@ public class Main {
                     }
                 }
                 if(conflictstatus == false){
-                    Transaction t1 = nodal_txs.get(i).get(j);
+                    Transaction t1 = nodal_txs.get(i).get(round);
                     int exec_time = executeTx(t1,getNode(i,grid),grid);
                     ArrayList<Transaction> arr = nodal_txs.get(i);
                     if(exec_time > t1.getExecution_time()) {
@@ -533,9 +528,9 @@ public class Main {
                         exec_time = t1.getExecution_time();
                     }
                     t1.setStatus("COMMITTED");
-                    arr.set(j,t1);
+                    arr.set(round,t1);
                     nodal_txs.set(i,arr);
-                    System.out.print("T("+i+","+j+")\t=> ");
+                    System.out.print("T("+i+","+round+")\t=> ");
                     for(int x=0;x<count;x++) {
                         if(x==0) {
                             System.out.print("|----|");
@@ -545,16 +540,15 @@ public class Main {
                         }
                     }
                     if(exec_time < 10) {
-                        System.out.print("  " + exec_time + "\n");
+                        System.out.print("  " +(cumulative_rt + exec_time) + "\n");
                     }
                     else{
-                        System.out.print(" " + exec_time + "\n");
+                        System.out.print(" " + (cumulative_rt + exec_time) + "\n");
                     }
                 }
             }
-            if(conflictstatus == false){
-                noconflict = true;
-            }
+            cumulative_rt += nodal_txs.get(total_nodes-1).get(round).getExecution_time();
+            round++;
         }
     }
 }
