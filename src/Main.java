@@ -486,7 +486,7 @@ public class Main {
         int round=0;
         while(!noconflict) {
             round++;
-            System.out.println("Round "+ round);
+            //System.out.println("Round "+ round);
             for (int i = 0; i < total_objs; i++) {
                 obj_node[i] = objs.get(i).getNode();
             }
@@ -537,9 +537,19 @@ public class Main {
                     nodal_txs.set(i,arr);
                     System.out.print("T("+i+","+j+")\t=> ");
                     for(int x=0;x<count;x++) {
-                        System.out.print("| wait |");
+                        if(x==0) {
+                            System.out.print("|----|");
+                        }
+                        else{
+                            System.out.print("----|");
+                        }
                     }
-                    System.out.print("   "+ exec_time + "\n");
+                    if(exec_time < 10) {
+                        System.out.print("  " + exec_time + "\n");
+                    }
+                    else{
+                        System.out.print(" " + exec_time + "\n");
+                    }
                 }
             }
             if(conflictstatus == false){
