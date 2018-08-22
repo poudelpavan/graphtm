@@ -12,8 +12,9 @@ public class Transaction {
     private List<Objects> wset;
     private String status;
     private int execution_time;
+    private int waited_for;
 
-    public Transaction(int tx_id, int rw_set_size, int update_rate, List<Objects> rset, List<Objects> wset, String status, int execution_time) {
+    public Transaction(int tx_id, int rw_set_size, int update_rate, List<Objects> rset, List<Objects> wset, String status, int execution_time, int waited_for) {
         this.tx_id = tx_id;
         this.rw_set_size = rw_set_size;
         this.update_rate = update_rate;
@@ -21,6 +22,15 @@ public class Transaction {
         this.wset = wset;
         this.status = status;
         this.execution_time = execution_time;
+        this.waited_for = waited_for;
+    }
+
+    public int getWaited_for() {
+        return waited_for;
+    }
+
+    public void setWaited_for(int waited_for) {
+        this.waited_for = waited_for;
     }
 
     public int getTx_id() {

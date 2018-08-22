@@ -114,7 +114,7 @@ public class Main {
 
             List<Objects> rset = rs;
             List<Objects> wset = ws;
-            Transaction tx = new Transaction(i + 1, rws_size, updt_rate, rset, wset,"IDLE",0);
+            Transaction tx = new Transaction(i + 1, rws_size, updt_rate, rset, wset,"IDLE",0,0);
 
             txs.add(tx);
         }
@@ -150,7 +150,7 @@ public class Main {
 
             List<Objects> rset = rs;
             List<Objects> wset = ws;
-            Transaction tx = new Transaction(i + 1, rws_size, updt_rate, rset, wset,"IDLE",0);
+            Transaction tx = new Transaction(i + 1, rws_size, updt_rate, rset, wset,"IDLE",0,0);
 
             txs.add(tx);
         }
@@ -386,7 +386,7 @@ public class Main {
 
             List<Objects> rset = rs;
             List<Objects> wset = ws;
-            Transaction tx = new Transaction(i+1, rwset_size, update_rate,rset,wset,"IDLE",0);
+            Transaction tx = new Transaction(i+1, rwset_size, update_rate,rset,wset,"IDLE",0,0);
 
             txs.add(tx);
         }
@@ -499,7 +499,7 @@ public class Main {
                 for(int k=0;k<conflictlist.size();k++){
                     int conflict = conflictlist.get(k);
                     if(conflict == 1){
-                        count++;
+                        count=k+1;
                         //System.out.println("Conflict, status = "+all_txs.get(k).get(j).getStatus());
                         if(all_txs.get(k).get(round).getStatus()=="COMMITTED"){
                             int movecost = getCommCost(getNode(i,grid), getNode(k, grid));
@@ -510,6 +510,7 @@ public class Main {
                                 arr.set(round,t1);
                                 nodal_txs.set(i,arr);
                             }
+                            count = all_txs.get(k).get(round).getWaited_for()+1;
                         }
                         else{
                             conflictstatus = true;
@@ -528,6 +529,7 @@ public class Main {
                         exec_time = t1.getExecution_time();
                     }
                     t1.setStatus("COMMITTED");
+                    t1.setWaited_for(count);
                     arr.set(round,t1);
                     nodal_txs.set(i,arr);
                     System.out.print("T("+i+","+round+")\t=> ");
@@ -539,7 +541,7 @@ public class Main {
                             System.out.print("----|");
                         }
                     }
-                    if(exec_time < 10) {
+                    if((cumulative_rt + exec_time) < 10) {
                         System.out.print("  " +(cumulative_rt + exec_time) + "\n");
                     }
                     else{
