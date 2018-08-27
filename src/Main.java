@@ -11,8 +11,9 @@ import static java.lang.Math.abs;
  * Date - 2018/08/03
  */
 public class Main {
-    private static int total_nodes = 25;
-    private static int grid_size = 5;
+    private static int total_nodes = 36;
+    private static int grid_size = 6;
+    private static int sub_grid = 3;
 
     private static int total_objs = 16;
     private static int total_txs = 10;
@@ -22,6 +23,7 @@ public class Main {
     private static ArrayList<Objects> objs = new ArrayList<Objects>(total_objs);
     private static ArrayList<Transaction> txs = new ArrayList<Transaction>(total_txs);
     private static ArrayList<ArrayList<Transaction>> nodal_txs = new ArrayList<ArrayList<Transaction>>(total_nodes);
+    private static int[] priority_queue = new int[total_nodes];
 
     /*
      * Generate a grid graph.
@@ -81,6 +83,64 @@ public class Main {
      */
     public static int getCommCost(Node a, Node b){
         return (abs(a.getX() - b.getX()) + abs(a.getY() - b.getY()));
+    }
+
+    /*
+     * Generate a priority queue for transaction execution.
+     */
+    public static void generatePriorityQueue(int gridsize, int subgrid){
+        int subgridsize = gridsize/subgrid;
+        int count=0,i=0,j=0,k=0,l=0,m=0,n=0;
+        int hor=0, ver=0;
+        while(count<total_nodes) {
+            if(ver == 0) {
+                for (i = 0; i < gridsize; i++) {
+                    if (hor == 0) {
+                        for (j = 0; j < subgridsize; j++) {
+                            priority_queue[k] = i * gridsize + j + l;
+                            k++;
+                            count++;
+                        }
+                        hor = 1;
+                    } else if (hor == 1) {
+                        for (j = subgridsize - 1; j >= 0; j--) {
+                            priority_queue[k] = i * gridsize + j + l;
+                            k++;
+                            count++;
+                        }
+                        hor = 0;
+                    }
+                }
+                n++;
+                m = n*subgridsize;
+                hor = 0;
+                ver = 1;
+            }
+            else{
+                for(i = gridsize-1; i >= 0; i--) {
+                    if (hor == 0) {
+                        for (j = 0; j < subgridsize; j++) {
+                            priority_queue[k] = i * gridsize + j + m;
+                            k++;
+                            count++;
+                        }
+                        hor = 1;
+                    } else if (hor == 1) {
+                        for (j = subgridsize - 1; j >= 0; j--) {
+                            priority_queue[k] = i * gridsize + j + m;
+                            k++;
+                            count++;
+                        }
+                        hor = 0;
+                    }
+                }
+                n++;
+                l=n*subgridsize;
+                ver = 0;
+                hor = 0;
+            }
+        }
+
     }
 
     /*
@@ -232,8 +292,8 @@ public class Main {
         ArrayList<ArrayList<Integer>> adjMatrix = new ArrayList<>();
 
         for(int i = 0;i<total_nodes;i++){
-            List<Objects> rs = txs.get(i).get(tx_num).getRset();
-            List<Objects> ws = txs.get(i).get(tx_num).getWset();
+            List<Objects> rs = txs.get(priority_queue[i]).get(tx_num).getRset();
+            List<Objects> ws = txs.get(priority_queue[i]).get(tx_num).getWset();
 
             ArrayList<Integer> dependent = new ArrayList<>(total_nodes);
             for(int j=0;j<total_nodes;j++){
@@ -241,8 +301,8 @@ public class Main {
             }
             for(int j=0;j<i;j++){
                 boolean depends = false;
-                List<Objects> rs1 = txs.get(j).get(tx_num).getRset();
-                List<Objects> ws1 = txs.get(j).get(tx_num).getWset();
+                List<Objects> rs1 = txs.get(priority_queue[j]).get(tx_num).getRset();
+                List<Objects> ws1 = txs.get(priority_queue[j]).get(tx_num).getWset();
                 for(int k=0;k<ws.size();k++) {
                     Objects obj = ws.get(k);
                     int obj_id = obj.getObj_id();
@@ -273,7 +333,7 @@ public class Main {
                     }
                 }
                 if(depends == true) {
-                    dependent.set(j,1);
+                    dependent.set(priority_queue[j],1);
                 }
             }
             adjMatrix.add(dependent);
@@ -335,7 +395,11 @@ public class Main {
         }
 
         System.out.println("\n*** ----------------------------- ***\n");
-        System.out.println("Case 1: Read-Write set size for a tx is fixed.");
+        System.out.println("Provide Grid Size (N*N), N = ");
+        grid_size = reader.nextInt();
+        System.out.println("\nProvide Sub-grid size (n*n; n = N/k), k = ");
+        sub_grid = reader.nextInt();
+        System.out.println("\nCase 1: Read-Write set size for a tx is fixed.");
         System.out.println("Case 2: Read-Write set size for a tx is random.");
         System.out.print("Choose your option (1/2): ");
         int option = reader.nextInt();
@@ -456,6 +520,8 @@ public class Main {
             System.out.println("\n");
         }
 
+        generatePriorityQueue(grid_size,sub_grid);
+
         System.out.println("\n-----------------------------------------------\n\t  Dependency Graph (Adjancency matrix)\n-----------------------------------------------");
         ArrayList<ArrayList<Integer>> depend = new ArrayList<>();
         for(int i=0;i<total_nodes;i++) {
@@ -495,20 +561,20 @@ public class Main {
                 int count = 0;
                 dependtx = generateConflictGraph(all_txs,total_nodes,round);
                 Transaction t = all_txs.get(i).get(round);
-                ArrayList<Integer> conflictlist = dependtx.get(i);
+                ArrayList<Integer> conflictlist = dependtx.get(priority_queue[i]);
                 for(int k=0;k<conflictlist.size();k++){
                     int conflict = conflictlist.get(k);
                     if(conflict == 1){
                         count=k+1;
                         //System.out.println("Conflict, status = "+all_txs.get(k).get(j).getStatus());
                         if(all_txs.get(k).get(round).getStatus()=="COMMITTED"){
-                            int movecost = getCommCost(getNode(i,grid), getNode(k, grid));
-                            if(all_txs.get(k).get(round).getExecution_time() + movecost > all_txs.get(i).get(round).getExecution_time()){
-                                ArrayList<Transaction> arr = all_txs.get(i);
-                                Transaction t1 = all_txs.get(i).get(round);
+                            int movecost = getCommCost(getNode(priority_queue[i],grid), getNode(k, grid));
+                            if(all_txs.get(k).get(round).getExecution_time() + movecost > all_txs.get(priority_queue[i]).get(round).getExecution_time()){
+                                ArrayList<Transaction> arr = all_txs.get(priority_queue[i]);
+                                Transaction t1 = all_txs.get(priority_queue[i]).get(round);
                                 t1.setExecution_time(all_txs.get(k).get(round).getExecution_time() + movecost);
                                 arr.set(round,t1);
-                                nodal_txs.set(i,arr);
+                                nodal_txs.set(priority_queue[i],arr);
                             }
                             count = all_txs.get(k).get(round).getWaited_for()+1;
                         }
@@ -519,9 +585,9 @@ public class Main {
                     }
                 }
                 if(conflictstatus == false){
-                    Transaction t1 = nodal_txs.get(i).get(round);
-                    int exec_time = executeTx(t1,getNode(i,grid),grid);
-                    ArrayList<Transaction> arr = nodal_txs.get(i);
+                    Transaction t1 = nodal_txs.get(priority_queue[i]).get(round);
+                    int exec_time = executeTx(t1,getNode(priority_queue[i],grid),grid);
+                    ArrayList<Transaction> arr = nodal_txs.get(priority_queue[i]);
                     if(exec_time > t1.getExecution_time()) {
                         t1.setExecution_time(exec_time);
                     }
@@ -531,8 +597,8 @@ public class Main {
                     t1.setStatus("COMMITTED");
                     t1.setWaited_for(count);
                     arr.set(round,t1);
-                    nodal_txs.set(i,arr);
-                    System.out.print("T("+i+","+round+")\t=> ");
+                    nodal_txs.set(priority_queue[i],arr);
+                    System.out.print("T("+priority_queue[i]+","+round+")\t=> ");
                     for(int x=0;x<count;x++) {
                         if(x==0) {
                             System.out.print("|----|");
@@ -549,8 +615,13 @@ public class Main {
                     }
                 }
             }
-            cumulative_rt += nodal_txs.get(total_nodes-1).get(round).getExecution_time();
+            cumulative_rt += nodal_txs.get(priority_queue[total_nodes-1]).get(round).getExecution_time();
             round++;
+        }
+
+        System.out.println("Priority queue:");
+        for(int i = 0;i<total_nodes;i++){
+            System.out.print(priority_queue[i]+" ");
         }
     }
 }
