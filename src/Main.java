@@ -333,7 +333,7 @@ public class Main {
                     }
                 }
                 if(depends == true) {
-                    dependent.set(priority_queue[j],1);
+                    dependent.set(j,1);
                 }
             }
             adjMatrix.add(dependent);
@@ -521,8 +521,12 @@ public class Main {
         }
 
         generatePriorityQueue(grid_size,sub_grid);
+        System.out.println("Priority queue:");
+        for(int i = 0;i<total_nodes;i++){
+            System.out.print(priority_queue[i]+" ");
+        }
 
-        System.out.println("\n-----------------------------------------------\n\t  Dependency Graph (Adjancency matrix)\n-----------------------------------------------");
+        /*System.out.println("\n-----------------------------------------------\n\t  Dependency Graph (Adjancency matrix)\n-----------------------------------------------");
         ArrayList<ArrayList<Integer>> depend = new ArrayList<>();
         for(int i=0;i<total_nodes;i++) {
             depend = generateDependencyGraph(nodal_txs,total_nodes,0);
@@ -532,9 +536,9 @@ public class Main {
                 System.out.print(depend.get(i).get(j) + " ");
             }
             System.out.println("\n");
-        }
+        }*/
 
-        System.out.println("\n-----------------------------------------------\nTransaction Dependency Graph (conflits)\n-----------------------------------------------");
+        System.out.println("\n-----------------------------------------------\nTransaction Conflict Graph\n-----------------------------------------------");
         ArrayList<ArrayList<Integer>> dependtx = new ArrayList<>();
         for(int i=0;i<total_nodes;i++) {
             dependtx = generateConflictGraph(nodal_txs,total_nodes,0);
@@ -617,11 +621,6 @@ public class Main {
             }
             cumulative_rt += nodal_txs.get(priority_queue[total_nodes-1]).get(round).getExecution_time();
             round++;
-        }
-
-        System.out.println("Priority queue:");
-        for(int i = 0;i<total_nodes;i++){
-            System.out.print(priority_queue[i]+" ");
         }
     }
 }
