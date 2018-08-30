@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import static java.lang.Math.abs;
+import static java.lang.Math.cos;
 
 /**
  * @author Pavan Poudel
@@ -291,6 +292,14 @@ public class Main {
     private static ArrayList<ArrayList<Integer>> generateConflictGraph(ArrayList<ArrayList<Transaction>> txs, int total_nodes, int tx_num){
         ArrayList<ArrayList<Integer>> adjMatrix = new ArrayList<>();
 
+        for(int i = 0;i<total_nodes;i++) {
+            ArrayList<Integer> dependent = new ArrayList<>(total_nodes);
+            for (int j = 0; j < total_nodes; j++) {
+                dependent.add(0);
+            }
+            adjMatrix.add(dependent);
+        }
+
         for(int i = 0;i<total_nodes;i++){
             List<Objects> rs = txs.get(priority_queue[i]).get(tx_num).getRset();
             List<Objects> ws = txs.get(priority_queue[i]).get(tx_num).getWset();
@@ -333,10 +342,10 @@ public class Main {
                     }
                 }
                 if(depends == true) {
-                    dependent.set(j,1);
+                    dependent.set(priority_queue[j],1);
                 }
             }
-            adjMatrix.add(dependent);
+            adjMatrix.set(priority_queue[i],dependent);
         }
         return adjMatrix;
     }
@@ -562,6 +571,15 @@ public class Main {
             all_txs = nodal_txs;
 
             for(int i=0;i<total_nodes;i++){
+                int initcost = 0;
+                if(i==0){
+                    for(int x=0;x<total_objs;x++){
+                        int cost = getCommCost(getNode(priority_queue[i], grid),getNode(objs.get(x).getNode(),grid));
+                        if(cost > initcost){
+                            initcost = cost;
+                        }
+                    }
+                }
                 int count = 0;
                 dependtx = generateConflictGraph(all_txs,total_nodes,round);
                 Transaction t = all_txs.get(i).get(round);
