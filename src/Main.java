@@ -14,7 +14,7 @@ import static java.lang.Math.cos;
 public class Main {
     private static int total_nodes = 36;
     private static int grid_size = 6;
-    private static int sub_grid = 3;
+    private static int sub_grid = 2;
 
     private static int total_objs = 16;
     private static int total_txs = 10;
@@ -639,6 +639,26 @@ public class Main {
             }
             cumulative_rt += nodal_txs.get(priority_queue[total_nodes-1]).get(round).getExecution_time();
             round++;
+        }
+
+        System.out.println("Total execution time for each node\nNode\tRW Set size\t\tExecution time\tExec. time per object");
+        for(int i = 0;i<total_nodes;i++){
+            int exec_time = 0,rwsetsize=0;
+            for(int j =0;j<total_txs;j++){
+                exec_time += nodal_txs.get(i).get(j).getExecution_time();
+                rwsetsize += nodal_txs.get(i).get(j).getRw_set_size();
+            }
+            System.out.println("N"+i+"\t: \t  "+rwsetsize+"\t\t\t\t  "+exec_time+"\t\t\t "+(float)exec_time/rwsetsize);
+        }
+
+        System.out.println("Based on priority:");
+        for(int i = 0;i<total_nodes;i++){
+            int exec_time = 0,rwsetsize=0;
+            for(int j =0;j<total_txs;j++){
+                exec_time += nodal_txs.get(priority_queue[i]).get(j).getExecution_time();
+                rwsetsize += nodal_txs.get(priority_queue[i]).get(j).getRw_set_size();
+            }
+            System.out.println("N"+priority_queue[i]+"\t: \t  "+rwsetsize+"\t\t\t\t  "+exec_time+"\t\t\t "+(float)exec_time/rwsetsize);
         }
     }
 }
