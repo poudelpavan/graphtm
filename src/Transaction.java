@@ -13,8 +13,9 @@ public class Transaction {
     private String status;
     private int execution_time;
     private int waited_for;
+    private int conflicts;
 
-    public Transaction(int tx_id, int rw_set_size, int update_rate, List<Objects> rset, List<Objects> wset, String status, int execution_time, int waited_for) {
+    public Transaction(int tx_id, int rw_set_size, int update_rate, List<Objects> rset, List<Objects> wset, String status, int execution_time, int waited_for, int conflicts) {
         this.tx_id = tx_id;
         this.rw_set_size = rw_set_size;
         this.update_rate = update_rate;
@@ -23,6 +24,15 @@ public class Transaction {
         this.status = status;
         this.execution_time = execution_time;
         this.waited_for = waited_for;
+        this.conflicts = conflicts;
+    }
+
+    public int getConflicts() {
+        return conflicts;
+    }
+
+    public void setConflicts(int conflicts) {
+        this.conflicts = conflicts;
     }
 
     public int getWaited_for() {

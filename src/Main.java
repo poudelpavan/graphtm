@@ -1,11 +1,10 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 import static java.lang.Math.abs;
-import static java.lang.Math.cos;
+import static java.lang.Math.sqrt;
 
 /**
  * @author Pavan Poudel
@@ -82,14 +81,32 @@ public class Main {
     /*
      * Calculate distance (communication cost) between two nodes in grid graph.
      */
-    public static int getCommCost(Node a, Node b){
+    public static int getCommCostGrid(Node a, Node b){
         return (abs(a.getX() - b.getX()) + abs(a.getY() - b.getY()));
     }
 
     /*
+
+    /*
+     * Calculate distance (communication cost) between two nodes in clique.
+     */
+    public static int getCommCostClique(Node a, Node b){
+        return 1;
+    }
+    /*
+
+    /*
+     * Calculate distance (communication cost) between two nodes in line graph.
+     */
+    public static int getCommCostLine(Node a, Node b){
+        return a.getX() - b.getX();
+    }
+    /*
+
      * Generate a priority queue for transaction execution.
      */
     public static void generatePriorityQueue(int gridsize, int subgrid){
+        priority_queue = new int[total_nodes];
         int subgridsize = gridsize/subgrid;
         int count=0,i=0,j=0,k=0,l=0,m=0,n=0;
         int hor=0, ver=0;
@@ -175,7 +192,7 @@ public class Main {
 
             List<Objects> rset = rs;
             List<Objects> wset = ws;
-            Transaction tx = new Transaction(i + 1, rws_size, updt_rate, rset, wset,"IDLE",0,0);
+            Transaction tx = new Transaction(i + 1, rws_size, updt_rate, rset, wset,"IDLE",0,0,0);
 
             txs.add(tx);
         }
@@ -211,7 +228,7 @@ public class Main {
 
             List<Objects> rset = rs;
             List<Objects> wset = ws;
-            Transaction tx = new Transaction(i + 1, rws_size, updt_rate, rset, wset,"IDLE",0,0);
+            Transaction tx = new Transaction(i + 1, rws_size, updt_rate, rset, wset,"IDLE",0,0,0);
 
             txs.add(tx);
         }
@@ -374,7 +391,7 @@ public class Main {
         for(int i = 0;i<rs.size();i++){
             int node_id = rs.get(i).getNode();
             Node nd = getNode(node_id,g);
-            int access_cost = getCommCost(n, nd);
+            int access_cost = getCommCostGrid(n, nd);
             if(total_time < access_cost){
                 total_time = access_cost;
             }
@@ -382,7 +399,7 @@ public class Main {
         for(int i = 0;i<ws.size();i++){
             int node_id = ws.get(i).getNode();
             Node nd =getNode(node_id,g);
-            int access_cost = getCommCost(n, nd);
+            int access_cost = getCommCostGrid(n, nd);
             if(total_time < access_cost){
                 total_time = access_cost;
             }
@@ -397,37 +414,49 @@ public class Main {
 //        System.out.println("Hello World!");
         Scanner reader = new Scanner(System.in);
 
-        ArrayList<Integer> obj_home = getRandList(total_objs,1,total_nodes);
-        for(int i=0;i<total_objs;i++){
-            Objects obj = new Objects(i+1, 1, obj_home.get(i));
-            objs.add(obj);
-        }
-
         System.out.println("\n*** ----------------------------- ***\n");
-        System.out.println("Provide Grid Size (N*N), N = ");
-        grid_size = reader.nextInt();
-        System.out.println("\nProvide Sub-grid size (n*n; n = N/k), k = ");
-        sub_grid = reader.nextInt();
-        System.out.println("\nCase 1: Read-Write set size for a tx is fixed.");
-        System.out.println("Case 2: Read-Write set size for a tx is random.");
-        System.out.print("Choose your option (1/2): ");
-        int option = reader.nextInt();
 
-        if(option == 1){
-            for(int x=0;x<total_nodes;x++) {
-                txs = generateTransactions(total_objs, total_txs, update_rate, rwset_size);
-                nodal_txs.add(txs);
+        System.out.print("Choose Graph type: \n1->Line, 2->Clique, 3->Grid, 4->CLuster, 5->Hypercube, 6->Butterfly: ");
+        int graph_type = reader.nextInt();
+
+        if(graph_type == 3) {
+            System.out.print("Provide total number of nodes (N*N)= ");
+            grid_size = (int)Math.sqrt(reader.nextInt());
+            System.out.print("\nProvide Sub-grid size (n*n; n = N/k), k = ");
+            sub_grid = reader.nextInt();
+            System.out.println("\nCase 1: Read-Write set size for a tx is fixed.");
+            System.out.println("Case 2: Read-Write set size for a tx is random.");
+            System.out.print("Choose your option (1/2): ");
+            int option = reader.nextInt();
+
+
+            total_nodes = grid_size * grid_size;
+
+            ArrayList<Integer> obj_home = getRandList(total_objs, 1, total_nodes);
+            for (int i = 0; i < total_objs; i++) {
+                Objects obj = new Objects(i + 1, 1, obj_home.get(i));
+                objs.add(obj);
             }
-        }
-        else if(option == 2){
-            for(int x=0;x<total_nodes;x++) {
-                txs = generateTransactions(total_objs,total_txs,update_rate);
-                nodal_txs.add(txs);
+
+
+            if (option == 1) {
+                for (int x = 0; x < total_nodes; x++) {
+                    txs = generateTransactions(total_objs, total_txs, update_rate, rwset_size);
+                    nodal_txs.add(txs);
+                }
+            } else if (option == 2) {
+                for (int x = 0; x < total_nodes; x++) {
+                    txs = generateTransactions(total_objs, total_txs, update_rate);
+                    nodal_txs.add(txs);
+                }
+            } else {
+                System.out.println("Invalid choice!");
+                System.exit(0);
             }
         }
         else{
-            System.out.println("Invalid choice!");
-            System.exit(0);
+            System.out.println("not complete...");
+            System.exit(1);
         }
 
         for(int i=0;i<total_txs;i++){
@@ -459,7 +488,7 @@ public class Main {
 
             List<Objects> rset = rs;
             List<Objects> wset = ws;
-            Transaction tx = new Transaction(i+1, rwset_size, update_rate,rset,wset,"IDLE",0,0);
+            Transaction tx = new Transaction(i+1, rwset_size, update_rate,rset,wset,"IDLE",0,0,0);
 
             txs.add(tx);
         }
@@ -562,19 +591,21 @@ public class Main {
         System.out.println("\n-----------------------------------------------\nTransaction execution\n-----------------------------------------------");
         boolean noconflict = false;
 
-        int round=0, cumulative_rt=0;
+        int round=0, cumulative_rt=0,wait_time = 0;
         while(round < total_txs) {
             System.out.println("Round "+round);
             boolean conflictstatus = false;
             int j=0;
             ArrayList<ArrayList<Transaction>> all_txs = new ArrayList<>();
             all_txs = nodal_txs;
+            wait_time = 0;
+            int new_cum_time = 0;
 
             for(int i=0;i<total_nodes;i++){
                 int initcost = 0;
                 if(i==0){
                     for(int x=0;x<total_objs;x++){
-                        int cost = getCommCost(getNode(priority_queue[i], grid),getNode(objs.get(x).getNode(),grid));
+                        int cost = getCommCostGrid(getNode(priority_queue[i], grid),getNode(objs.get(x).getNode(),grid));
                         if(cost > initcost){
                             initcost = cost;
                         }
@@ -590,7 +621,7 @@ public class Main {
                         count=k+1;
                         //System.out.println("Conflict, status = "+all_txs.get(k).get(j).getStatus());
                         if(all_txs.get(k).get(round).getStatus()=="COMMITTED"){
-                            int movecost = getCommCost(getNode(priority_queue[i],grid), getNode(k, grid));
+                            int movecost = getCommCostGrid(getNode(priority_queue[i],grid), getNode(k, grid));
                             if(all_txs.get(k).get(round).getExecution_time() + movecost > all_txs.get(priority_queue[i]).get(round).getExecution_time()){
                                 ArrayList<Transaction> arr = all_txs.get(priority_queue[i]);
                                 Transaction t1 = all_txs.get(priority_queue[i]).get(round);
@@ -618,6 +649,7 @@ public class Main {
                     }
                     t1.setStatus("COMMITTED");
                     t1.setWaited_for(count);
+                    t1.setConflicts(count);
                     arr.set(round,t1);
                     nodal_txs.set(priority_queue[i],arr);
                     System.out.print("T("+priority_queue[i]+","+round+")\t=> ");
@@ -635,30 +667,41 @@ public class Main {
                     else{
                         System.out.print(" " + (cumulative_rt + exec_time) + "\n");
                     }
+
+                    if((cumulative_rt + exec_time)>new_cum_time){
+                        new_cum_time = cumulative_rt + exec_time;
+                    }
                 }
             }
-            cumulative_rt += nodal_txs.get(priority_queue[total_nodes-1]).get(round).getExecution_time();
+//            cumulative_rt += nodal_txs.get(priority_queue[total_nodes-1]).get(round).getExecution_time();
+            cumulative_rt = new_cum_time;
             round++;
         }
 
-        System.out.println("Total execution time for each node\nNode\tRW Set size\t\tExecution time\tExec. time per object");
+        System.out.println("Total execution time for each node\nNode\tRW Set\tRSET\tWSET\tCONFLICTS\tExec time\tExec time per TX");
         for(int i = 0;i<total_nodes;i++){
-            int exec_time = 0,rwsetsize=0;
+            int exec_time = 0,rwsetsize=0,rset = 0, wset = 0,conflict = 0;
             for(int j =0;j<total_txs;j++){
                 exec_time += nodal_txs.get(i).get(j).getExecution_time();
                 rwsetsize += nodal_txs.get(i).get(j).getRw_set_size();
+                rset += nodal_txs.get(i).get(j).getRset().size();
+                wset += nodal_txs.get(i).get(j).getWset().size();
+                conflict += nodal_txs.get(i).get(j).getConflicts();
             }
-            System.out.println("N"+i+"\t: \t  "+rwsetsize+"\t\t\t\t  "+exec_time+"\t\t\t "+(float)exec_time/rwsetsize);
+            System.out.println("N"+i+"\t: \t  "+rwsetsize+"\t"+rset+"\t\t"+wset+"\t\t\t"+conflict+"\t\t  "+exec_time+"\t\t\t "+(float)exec_time/total_txs);
         }
 
         System.out.println("Based on priority:");
         for(int i = 0;i<total_nodes;i++){
-            int exec_time = 0,rwsetsize=0;
+            int exec_time = 0,rwsetsize=0, rset = 0, wset = 0,conflict = 0;
             for(int j =0;j<total_txs;j++){
                 exec_time += nodal_txs.get(priority_queue[i]).get(j).getExecution_time();
                 rwsetsize += nodal_txs.get(priority_queue[i]).get(j).getRw_set_size();
+                rset += nodal_txs.get(priority_queue[i]).get(j).getRset().size();
+                wset += nodal_txs.get(priority_queue[i]).get(j).getWset().size();
+                conflict += nodal_txs.get(priority_queue[i]).get(j).getConflicts();
             }
-            System.out.println("N"+priority_queue[i]+"\t: \t  "+rwsetsize+"\t\t\t\t  "+exec_time+"\t\t\t "+(float)exec_time/rwsetsize);
+            System.out.println("N"+priority_queue[i]+"\t: \t  "+rwsetsize+"\t"+rset+"\t\t"+wset+"\t\t\t"+conflict+"\t\t  "+exec_time+"\t\t\t "+(float)exec_time/total_txs);
         }
     }
 }
