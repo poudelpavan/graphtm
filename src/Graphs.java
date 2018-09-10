@@ -51,4 +51,31 @@ public class Graphs {
     public void setNodes(ArrayList<Node> nodes) {
         this.nodes = nodes;
     }
+
+
+    /*
+     * Generate a grid graph.
+     */
+    public static Graphs generateGridGraph(int gridsize){
+        Graphs grid = new Graphs();
+        grid.setGraph_id("grid"+gridsize);
+        grid.setNumNodes(gridsize*gridsize);
+        grid.setNumEdges((gridsize*gridsize) - gridsize);
+        ArrayList<Node> nodes = Node.generateNodesGrid(gridsize);
+        grid.setNodes(nodes);
+        return grid;
+    }
+
+    /*
+     * Generate a clique graph.
+     */
+    public static Graphs generateCliqueGraph(int cliquesize){
+        Graphs clique = new Graphs();
+        clique.setGraph_id("grid"+cliquesize);
+        clique.setNumNodes(cliquesize);
+        clique.setNumEdges((cliquesize*(cliquesize-1))/2);
+        ArrayList<Node> nodes = Node.generateNodesClique(cliquesize);
+        clique.setNodes(nodes);
+        return clique;
+    }
 }
