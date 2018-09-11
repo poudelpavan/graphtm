@@ -8,7 +8,7 @@ public class Node {
     private int node_id;
     private int value;
     private int x;
-    private int y;
+    private int y=-1;
     public ArrayList<Integer> neighbors;
     public ArrayList<Objects> objects;
 
@@ -105,6 +105,23 @@ public class Node {
         return neighbors;
     }
 
+    /*
+     * Get neighbors of a node in line graph.
+     */
+    public static ArrayList<Integer> getNeighborsLine(int r, int n){
+        ArrayList<Integer> neighbors = new ArrayList<Integer>();
+        if(r == 0){
+            neighbors.add(1);
+        }
+        else if(r == n-1){
+            neighbors.add(n-2);
+        }
+        else{
+            neighbors.add(r-1);
+            neighbors.add(r+1);
+        }
+        return neighbors;
+    }
 
     /*
      * Generate nodes for grid graph.
@@ -137,6 +154,23 @@ public class Node {
             nd.setValue(r + 1);
             nd.setX(r);
             ArrayList<Integer> neighbors = getNeighborsClique(r, cliquesize);
+            nd.setNeighbors(neighbors);
+            nodes.add(nd);
+        }
+        return nodes;
+    }
+
+    /*
+     * Generate nodes for line graph.
+     */
+    public static ArrayList<Node> generateNodesLine(int linesize){
+        ArrayList<Node> nodes = new ArrayList<Node>();
+        for(int r=0;r<linesize;r++) {
+            Node nd = new Node();
+            nd.setNode_id(r);
+            nd.setValue(r + 1);
+            nd.setX(r);
+            ArrayList<Integer> neighbors = getNeighborsLine(r, linesize);
             nd.setNeighbors(neighbors);
             nodes.add(nd);
         }

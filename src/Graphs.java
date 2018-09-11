@@ -71,11 +71,24 @@ public class Graphs {
      */
     public static Graphs generateCliqueGraph(int cliquesize){
         Graphs clique = new Graphs();
-        clique.setGraph_id("grid"+cliquesize);
+        clique.setGraph_id("clique"+cliquesize);
         clique.setNumNodes(cliquesize);
         clique.setNumEdges((cliquesize*(cliquesize-1))/2);
         ArrayList<Node> nodes = Node.generateNodesClique(cliquesize);
         clique.setNodes(nodes);
         return clique;
+    }
+
+    /*
+     * Generate a line graph.
+     */
+    public static Graphs generateLineGraph(int linesize){
+        Graphs line = new Graphs();
+        line.setGraph_id("line"+linesize);
+        line.setNumNodes(linesize);
+        line.setNumEdges(linesize-1);
+        ArrayList<Node> nodes = Node.generateNodesLine(linesize);
+        line.setNodes(nodes);
+        return line;
     }
 }

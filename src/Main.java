@@ -4,7 +4,6 @@ import java.util.Random;
 import java.util.Scanner;
 
 import static java.lang.Math.abs;
-import static java.lang.Math.sqrt;
 
 /**
  * @author Pavan Poudel
@@ -47,14 +46,18 @@ public class Main {
     }
 
     /*
-     * Generate a priority queue for transaction execution.
+     * Generate a priority queue for transaction execution in Grid graph.
      */
-    public static void generatePriorityQueue(int gridsize, int subgrid){
+    public static void generatePriorityQueueGrid(int gridsize, int subgrid){
         priority_queue = new int[total_nodes];
         int subgridsize = gridsize/subgrid;
         int count=0,i=0,j=0,k=0,l=0,m=0,n=0;
-        int hor=0, ver=0;
+        int hor=0, ver=0,totalgrid=0;
         while(count<total_nodes) {
+            totalgrid +=subgridsize;
+            if(totalgrid > gridsize){
+                subgridsize = subgridsize - (totalgrid - gridsize);
+            }
             if(ver == 0) {
                 for (i = 0; i < gridsize; i++) {
                     if (hor == 0) {
@@ -103,6 +106,17 @@ public class Main {
             }
         }
 
+    }
+
+    /*
+     * Generate a priority queue for transaction execution in Grid graph.
+     */
+    public static void generatePriorityQueueClique(int cliquesize){
+        priority_queue = new int[total_nodes];
+        ArrayList<Integer> lst = getRandList(cliquesize,0,total_nodes-1);
+        for(int i=0;i<total_nodes;i++){
+            priority_queue[i] = lst.get(i);
+        }
     }
 
     /*
@@ -328,7 +342,7 @@ public class Main {
     /*
      * Execute transaction and return execution time based on the objects in read set and write set and its position on grid.
      */
-    private static int[] executeTx(Transaction t, Node n, Graphs g){
+    private static int[] executeTxGrid(Transaction t, Node n, Graphs g){
         int total_time = 0,commcost =0;
         List<Objects> rs = t.getRset();
         List<Objects> ws = t.getWset();
@@ -357,6 +371,38 @@ public class Main {
         return exec;
     }
 
+
+    /*
+     * Execute transaction and return execution time based on the objects in read set and write set and its position on clique.
+     */
+    private static int[] executeTxClique(Transaction t, Node n, Graphs g){
+        int total_time = 0,commcost =0;
+        List<Objects> rs = t.getRset();
+        List<Objects> ws = t.getWset();
+        for(int i = 0;i<rs.size();i++){
+            int node_id = rs.get(i).getNode();
+            Node nd = getNode(node_id,g);
+            int access_cost = getCommCostClique(n, nd);
+            if(total_time < access_cost){
+                total_time = access_cost;
+            }
+            commcost += access_cost;
+        }
+        for(int i = 0;i<ws.size();i++){
+            int node_id = ws.get(i).getNode();
+            Node nd =getNode(node_id,g);
+            int access_cost = getCommCostClique(n, nd);
+            if(total_time < access_cost){
+                total_time = access_cost;
+            }
+            commcost += access_cost;
+            Objects obj = ws.get(i);
+            obj.setNode(n.getNode_id());
+            objs.set(obj.getObj_id()-1,obj);
+        }
+        int[] exec = {total_time,commcost};
+        return exec;
+    }
     /*
      * Execute transaction for grid grpah
      */
@@ -413,7 +459,106 @@ public class Main {
                 }
                 if(conflictstatus == false){
                     Transaction t1 = nodal_txs.get(priority_queue[i]).get(round);
-                    int[] exec = executeTx(t1,getNode(priority_queue[i],grid),grid);
+                    int[] exec = executeTxGrid(t1,getNode(priority_queue[i],grid),grid);
+                    int exec_time = exec[0];
+                    int comm_cost = exec[1];
+                    ArrayList<Transaction> arr = nodal_txs.get(priority_queue[i]);
+                    if(exec_time > t1.getExecution_time()) {
+                        t1.setExecution_time(exec_time);
+                    }
+                    else{
+                        exec_time = t1.getExecution_time();
+                    }
+                    t1.setStatus("COMMITTED");
+                    t1.setWaited_for(count);
+                    t1.setConflicts(count);
+                    t1.setComm_cost(comm_cost);
+                    arr.set(round,t1);
+                    nodal_txs.set(priority_queue[i],arr);
+                    System.out.print("T("+priority_queue[i]+","+round+")\t=> ");
+                    for(int x=0;x<count;x++) {
+                        if(x==0) {
+                            System.out.print("|----|");
+                        }
+                        else{
+                            System.out.print("----|");
+                        }
+                    }
+                    if((cumulative_rt + exec_time) < 10) {
+                        System.out.print("  " +(cumulative_rt + exec_time) + "\n");
+                    }
+                    else{
+                        System.out.print(" " + (cumulative_rt + exec_time) + "\n");
+                    }
+
+                    if((cumulative_rt + exec_time)>new_cum_time){
+                        new_cum_time = cumulative_rt + exec_time;
+                    }
+                }
+            }
+//            cumulative_rt += nodal_txs.get(priority_queue[total_nodes-1]).get(round).getExecution_time();
+            cumulative_rt = new_cum_time;
+            round++;
+        }
+    }
+
+    /*
+     * Execute transaction for clique grpah
+     */
+    public static void executeClique(Graphs clique){
+        int round=0, cumulative_rt=0,wait_time = 0;
+        ArrayList<ArrayList<Integer>> dependtx = new ArrayList<>();
+        while(round < total_txs) {
+            System.out.println("Round "+round);
+            boolean conflictstatus = false;
+            int j=0;
+            ArrayList<ArrayList<Transaction>> all_txs = new ArrayList<>();
+            all_txs = nodal_txs;
+            wait_time = 0;
+            int new_cum_time = 0;
+
+            for(int i=0;i<total_nodes;i++){
+                int initcost = 0,commcost=0;
+                if(i==0){
+                    for(int x=0;x<total_objs;x++){
+                        int cost = getCommCostClique(getNode(priority_queue[i], clique),getNode(objs.get(x).getNode(),clique));
+                        if(cost > initcost){
+                            initcost = cost;
+                        }
+                    }
+                }
+                int count = 0;
+                dependtx = generateConflictGraph(all_txs,total_nodes,round);
+                Transaction t = all_txs.get(i).get(round);
+                ArrayList<Integer> conflictlist = dependtx.get(priority_queue[i]);
+                for(int k=0;k<conflictlist.size();k++){
+                    int conflict = conflictlist.get(k);
+                    if(conflict == 1){
+                        count=k+1;
+                        //System.out.println("Conflict, status = "+all_txs.get(k).get(j).getStatus());
+                        if(all_txs.get(k).get(round).getStatus()=="COMMITTED"){
+                            int movecost = getCommCostClique(getNode(priority_queue[i],clique), getNode(k, clique));
+                            ArrayList<Transaction> arr = all_txs.get(priority_queue[i]);
+                            Transaction t1 = arr.get(round);
+                            if(all_txs.get(k).get(round).getExecution_time() + movecost > t1.getExecution_time()){
+                                t1.setExecution_time(all_txs.get(k).get(round).getExecution_time() + movecost);
+
+                            }
+//                            commcost += movecost;
+//                            t1.setComm_cost(commcost);
+                            arr.set(round,t1);
+                            nodal_txs.set(priority_queue[i],arr);
+                            count = all_txs.get(k).get(round).getWaited_for()+1;
+                        }
+                        else{
+                            conflictstatus = true;
+
+                        }
+                    }
+                }
+                if(conflictstatus == false){
+                    Transaction t1 = nodal_txs.get(priority_queue[i]).get(round);
+                    int[] exec = executeTxClique(t1,getNode(priority_queue[i],clique),clique);
                     int exec_time = exec[0];
                     int comm_cost = exec[1];
                     ArrayList<Transaction> arr = nodal_txs.get(priority_queue[i]);
@@ -464,46 +609,53 @@ public class Main {
 
         System.out.print("Choose Graph type: \n1->Line, 2->Clique, 3->Grid, 4->CLuster, 5->Hypercube, 6->Butterfly: ");
         int graph_type = reader.nextInt();
+        System.out.print("\nProvide total number of objects: ");
+        total_objs = reader.nextInt();
+        System.out.print("\nProvide total number of nodes: ");
+        total_nodes = reader.nextInt();
+        System.out.print("\nProvide total transactions per node: ");
+        total_txs = reader.nextInt();
 
         if(graph_type == 3) {
-            System.out.print("Provide total number of nodes (N*N)= ");
-            grid_size = (int)Math.sqrt(reader.nextInt());
+            grid_size = (int) Math.sqrt(total_nodes);
             System.out.print("\nProvide Sub-grid size (n*n; n = N/k), k = ");
             sub_grid = reader.nextInt();
-            System.out.println("\nCase 1: Read-Write set size for a tx is fixed.");
-            System.out.println("Case 2: Read-Write set size for a tx is random.");
-            System.out.print("Choose your option (1/2): ");
-            int option = reader.nextInt();
-
-
-            total_nodes = grid_size * grid_size;
-
-            ArrayList<Integer> obj_home = getRandList(total_objs, 1, total_nodes);
-            for (int i = 0; i < total_objs; i++) {
-                Objects obj = new Objects(i + 1, 1, obj_home.get(i));
-                objs.add(obj);
-            }
-
-
-            if (option == 1) {
-                for (int x = 0; x < total_nodes; x++) {
-                    txs = generateTransactions(total_objs, total_txs, update_rate, rwset_size);
-                    nodal_txs.add(txs);
-                }
-            } else if (option == 2) {
-                for (int x = 0; x < total_nodes; x++) {
-                    txs = generateTransactions(total_objs, total_txs, update_rate);
-                    nodal_txs.add(txs);
-                }
-            } else {
-                System.out.println("Invalid choice!");
-                System.exit(0);
-            }
         }
         else{
             System.out.println("not complete...");
-            System.exit(1);
+//            System.exit(1);
         }
+        System.out.println("\n\tCase 1: Read-Write set size for a TX is fixed.");
+        System.out.println("\tCase 2: Read-Write set size for a TX is random.");
+        System.out.print("Choose your option (1/2): ");
+        int option = reader.nextInt();
+
+
+        ArrayList<Integer> obj_home = getRandList(total_objs, 1, total_nodes);
+        for (int i = 0; i < total_objs; i++) {
+            Objects obj = new Objects(i + 1, 1, obj_home.get(i));
+            objs.add(obj);
+        }
+
+
+        if (option == 1) {
+            for (int x = 0; x < total_nodes; x++) {
+                txs = generateTransactions(total_objs, total_txs, update_rate, rwset_size);
+                nodal_txs.add(txs);
+            }
+        }
+        else if (option == 2) {
+            for (int x = 0; x < total_nodes; x++) {
+                txs = generateTransactions(total_objs, total_txs, update_rate);
+                nodal_txs.add(txs);
+            }
+        }
+        else {
+            System.out.println("Invalid choice!");
+            System.exit(0);
+        }
+
+
 
         for(int i=0;i<total_txs;i++){
             List<Objects> ws = new ArrayList<Objects>();
@@ -580,35 +732,44 @@ public class Main {
             }
             System.out.print(")\n");
         }
-        Graphs grid = Graphs.generateGridGraph(grid_size);
-        System.out.println("\n-----------------------------------------------\n\t  Grid graph of grid size ("+grid_size+" x "+grid_size+")\n-----------------------------------------------");
-        for(int i=0;i<grid_size;i++){
-            for(int j=0;j<grid_size;j++){
-                System.out.print(grid.getNodes().get(i*grid_size +j).getValue()+"\t");
-            }
-            System.out.println("\n");
+        Graphs grid = new Graphs();
+        Graphs clique = new Graphs();
+        if(graph_type == 2){
+            clique = Graphs.generateCliqueGraph(total_nodes);
+            generatePriorityQueueClique(total_nodes);
+            executeClique(clique);
         }
+        else if(graph_type == 3) {
+            grid = Graphs.generateGridGraph(grid_size);
 
-        System.out.println("\n-----------------------------------------------\n\t  Initial distribution of objects in grid\n-----------------------------------------------");
-        for(int i=0;i<grid_size;i++){
-            for(int j=0;j<grid_size;j++){
-                int home = -1;
-                for(int k=0;k<total_objs;k++){
-                    int nd = objs.get(k).getNode();
-                    if(nd == i*grid_size+j){
-                        home = objs.get(k).getObj_id();
-                    }
+            System.out.println("\n-----------------------------------------------\n\t  Grid graph of grid size (" + grid_size + " x " + grid_size + ")\n-----------------------------------------------");
+            for (int i = 0; i < grid_size; i++) {
+                for (int j = 0; j < grid_size; j++) {
+                    System.out.print(grid.getNodes().get(i * grid_size + j).getValue() + "\t");
                 }
-                System.out.print(home+"\t");
+                System.out.println("\n");
             }
-            System.out.println("\n");
-        }
 
-        generatePriorityQueue(grid_size,sub_grid);
-        System.out.println("Priority queue:");
-        for(int i = 0;i<total_nodes;i++){
-            System.out.print(priority_queue[i]+" ");
-        }
+            System.out.println("\n-----------------------------------------------\n\t  Initial distribution of objects in grid\n-----------------------------------------------");
+            for (int i = 0; i < grid_size; i++) {
+                for (int j = 0; j < grid_size; j++) {
+                    int home = -1;
+                    for (int k = 0; k < total_objs; k++) {
+                        int nd = objs.get(k).getNode();
+                        if (nd == i * grid_size + j) {
+                            home = objs.get(k).getObj_id();
+                        }
+                    }
+                    System.out.print(home + "\t");
+                }
+                System.out.println("\n");
+            }
+
+            generatePriorityQueueGrid(grid_size, sub_grid);
+            System.out.println("Priority queue:");
+            for (int i = 0; i < total_nodes; i++) {
+                System.out.print(priority_queue[i] + " ");
+            }
 
         /*System.out.println("\n-----------------------------------------------\n\t  Dependency Graph (Adjancency matrix)\n-----------------------------------------------");
         ArrayList<ArrayList<Integer>> depend = new ArrayList<>();
@@ -622,19 +783,19 @@ public class Main {
             System.out.println("\n");
         }*/
 
-        System.out.println("\n-----------------------------------------------\nTransaction Conflict Graph\n-----------------------------------------------");
-        ArrayList<ArrayList<Integer>> dependtx = new ArrayList<>();
-        for(int i=0;i<total_nodes;i++) {
-            dependtx = generateConflictGraph(nodal_txs,total_nodes,0);
-        }
-        for(int i=0;i<total_nodes;i++){
-            for(int j=0;j<total_nodes;j++){
-                System.out.print(dependtx.get(i).get(j) + " ");
+            System.out.println("\n-----------------------------------------------\nTransaction Conflict Graph\n-----------------------------------------------");
+            ArrayList<ArrayList<Integer>> dependtx = new ArrayList<>();
+            for (int i = 0; i < total_nodes; i++) {
+                dependtx = generateConflictGraph(nodal_txs, total_nodes, 0);
             }
-            System.out.println("\n");
-        }
+            for (int i = 0; i < total_nodes; i++) {
+                for (int j = 0; j < total_nodes; j++) {
+                    System.out.print(dependtx.get(i).get(j) + " ");
+                }
+                System.out.println("\n");
+            }
 
-        System.out.println("\n-----------------------------------------------\nTransaction execution\n-----------------------------------------------");
+            System.out.println("\n-----------------------------------------------\nTransaction execution\n-----------------------------------------------");
    /*     boolean noconflict = false;
 
         int round=0, cumulative_rt=0,wait_time = 0;
@@ -688,7 +849,7 @@ public class Main {
                 }
                 if(conflictstatus == false){
                     Transaction t1 = nodal_txs.get(priority_queue[i]).get(round);
-                    int[] exec = executeTx(t1,getNode(priority_queue[i],grid),grid);
+                    int[] exec = executeTxGrid(t1,getNode(priority_queue[i],grid),grid);
                     int exec_time = exec[0];
                     int comm_cost = exec[1];
                     ArrayList<Transaction> arr = nodal_txs.get(priority_queue[i]);
@@ -730,7 +891,8 @@ public class Main {
             round++;
         }*/
 
-        executeGrid(grid);
+            executeGrid(grid);
+        }
 
         System.out.println("Total execution time for each node\nNode\tRW Set\tRSET\tWSET\tCONFLICTS\tExec time\tComm Cost");
         for(int i = 0;i<total_nodes;i++){
