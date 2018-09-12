@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d13a0c39-7323-440b-a662-c634ce697ae9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Graphs.java" afterPath="$PROJECT_DIR$/src/Graphs.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Node.java" afterPath="$PROJECT_DIR$/src/Node.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,11 +29,21 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="40" column="6" lean-forward="true" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="6" />
+            <state relative-caret-position="336">
+              <caret line="148" column="0" lean-forward="true" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#735#759#0" expanded="true" />
+                <element signature="e#5573#5586#0" expanded="true" />
+                <element signature="e#5677#5686#0" expanded="true" />
+                <element signature="e#5734#5743#0" expanded="true" />
+                <element signature="e#6949#6962#0" expanded="true" />
+                <element signature="e#7053#7062#0" expanded="true" />
+                <element signature="e#7110#7119#0" expanded="true" />
+                <element signature="e#8216#8225#0" expanded="true" />
+                <element signature="e#33458#33467#0" expanded="true" />
+                <element signature="e#33515#33524#0" expanded="true" />
+                <element signature="e#33828#33837#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -138,9 +146,9 @@
         <option value="$PROJECT_DIR$/src/graphs.java" />
         <option value="$PROJECT_DIR$/src/Objects.java" />
         <option value="$PROJECT_DIR$/src/Transaction.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/Node.java" />
         <option value="$PROJECT_DIR$/src/Graphs.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
       </list>
     </option>
   </component>
@@ -320,7 +328,7 @@
       <workItem from="1533328919149" duration="49648000" />
       <workItem from="1533913540938" duration="88704000" />
       <workItem from="1535554340021" duration="13859000" />
-      <workItem from="1536165665132" duration="49316000" />
+      <workItem from="1536165665132" duration="57809000" />
     </task>
     <task id="LOCAL-00001" summary="Objects and transctions created.">
       <created>1533587451180</created>
@@ -441,11 +449,18 @@
       <option name="project" value="LOCAL" />
       <updated>1536622128393</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Execution model created.">
+      <created>1536707251067</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1536707251068</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="201527000" />
+    <option name="totallyTimeSpent" value="210020000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1967" y="-4" width="1873" height="1204" extended-state="6" />
@@ -459,7 +474,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31785065" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.50091076" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -519,6 +534,16 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#735#759#0" expanded="true" />
+            <element signature="e#5573#5586#0" expanded="true" />
+            <element signature="e#5677#5686#0" expanded="true" />
+            <element signature="e#5734#5743#0" expanded="true" />
+            <element signature="e#6949#6962#0" expanded="true" />
+            <element signature="e#7053#7062#0" expanded="true" />
+            <element signature="e#7110#7119#0" expanded="true" />
+            <element signature="e#8216#8225#0" expanded="true" />
+            <element signature="e#33458#33467#0" expanded="true" />
+            <element signature="e#33515#33524#0" expanded="true" />
+            <element signature="e#33828#33837#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -578,6 +603,16 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#735#759#0" expanded="true" />
+            <element signature="e#5573#5586#0" expanded="true" />
+            <element signature="e#5677#5686#0" expanded="true" />
+            <element signature="e#5734#5743#0" expanded="true" />
+            <element signature="e#6949#6962#0" expanded="true" />
+            <element signature="e#7053#7062#0" expanded="true" />
+            <element signature="e#7110#7119#0" expanded="true" />
+            <element signature="e#8216#8225#0" expanded="true" />
+            <element signature="e#33458#33467#0" expanded="true" />
+            <element signature="e#33515#33524#0" expanded="true" />
+            <element signature="e#33828#33837#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -637,6 +672,16 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#735#759#0" expanded="true" />
+            <element signature="e#5573#5586#0" expanded="true" />
+            <element signature="e#5677#5686#0" expanded="true" />
+            <element signature="e#5734#5743#0" expanded="true" />
+            <element signature="e#6949#6962#0" expanded="true" />
+            <element signature="e#7053#7062#0" expanded="true" />
+            <element signature="e#7110#7119#0" expanded="true" />
+            <element signature="e#8216#8225#0" expanded="true" />
+            <element signature="e#33458#33467#0" expanded="true" />
+            <element signature="e#33515#33524#0" expanded="true" />
+            <element signature="e#33828#33837#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -752,11 +797,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="40" column="6" lean-forward="true" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="6" />
+        <state relative-caret-position="336">
+          <caret line="148" column="0" lean-forward="true" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#735#759#0" expanded="true" />
+            <element signature="e#5573#5586#0" expanded="true" />
+            <element signature="e#5677#5686#0" expanded="true" />
+            <element signature="e#5734#5743#0" expanded="true" />
+            <element signature="e#6949#6962#0" expanded="true" />
+            <element signature="e#7053#7062#0" expanded="true" />
+            <element signature="e#7110#7119#0" expanded="true" />
+            <element signature="e#8216#8225#0" expanded="true" />
+            <element signature="e#33458#33467#0" expanded="true" />
+            <element signature="e#33515#33524#0" expanded="true" />
+            <element signature="e#33828#33837#0" expanded="true" />
           </folding>
         </state>
       </provider>

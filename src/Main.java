@@ -42,7 +42,7 @@ public class Main {
      * Calculate distance (communication cost) between two nodes in line graph.
      */
     public static int getCommCostLine(Node a, Node b){
-        return a.getX() - b.getX();
+        return (abs(a.getX() - b.getX()));
     }
 
     /*
@@ -124,6 +124,33 @@ public class Main {
      */
     public static void generatePriorityQueueLine(int linesize, int sublinesize){
         priority_queue = new int[total_nodes];
+//        ArrayList<Integer> lst = getRandList(cliquesize,0,total_nodes-1);
+        for(int i=0;i<total_nodes;i++){
+            priority_queue[i] = i;
+        }
+    }
+
+    /*
+     * Generate a priority queue for transaction execution in Star graph.
+     */
+    public static void generatePriorityQueueStar(int totalrays, int raysize){
+        priority_queue = new int[total_nodes];
+        int count = 0,roundsize = 0,round_total=0,k=0;
+        while(count < total_nodes) {
+            roundsize = (int)Math.pow(2,k);
+            if(round_total + roundsize > raysize){
+                roundsize = raysize - round_total;
+            }
+            for(int i = 0; i < totalrays; i++) {
+                for(int j = 0; j < roundsize;j++){
+                    priority_queue[count+1] = i*raysize + j+round_total;
+                    count++;
+                }
+
+            }
+
+            round_total += roundsize;
+        }
 //        ArrayList<Integer> lst = getRandList(cliquesize,0,total_nodes-1);
         for(int i=0;i<total_nodes;i++){
             priority_queue[i] = i;
@@ -746,11 +773,37 @@ public class Main {
     public static void main(String[] args) {
 //        System.out.println("Hello World!");
         Scanner reader = new Scanner(System.in);
+        int subgraph_line, subgraph_cluster, cluster_size, subgraph_star, ray_nodes;
 
         System.out.println("\n*** ----------------------------- ***\n");
 
-        System.out.print("Choose Graph type: \n1->Line, 2->Clique, 3->Grid, 4->CLuster, 5->Hypercube, 6->Butterfly: ");
+        System.out.print("Choose Graph type: \n1->Line, 2->Clique, 3->Grid, 4->CLuster, 5->Star: ");
         int graph_type = reader.nextInt();
+        if(graph_type == 1){
+            System.out.println("Provide the sub-graph length (l): ");
+            subgraph_line = reader.nextInt();
+        }
+        else if(graph_type == 3) {
+            grid_size = (int) Math.sqrt(total_nodes);
+            System.out.print("\nProvide Sub-grid size (n*n; n = N/k), k = ");
+            sub_grid = reader.nextInt();
+        }
+        else if(graph_type == 4){
+            System.out.println("Provide the total number of clusters: ");
+            subgraph_cluster = reader.nextInt();
+            System.out.println("Provide the size of each cluster (complete graph): ");
+            cluster_size = reader.nextInt();
+        }
+        else if(graph_type == 5){
+            System.out.println("Provide the total number of rays: ");
+            subgraph_star = reader.nextInt();
+            System.out.println("Provide the number of nodes on each ray: ");
+            ray_nodes = reader.nextInt();
+        }
+        else{
+            System.out.println("not complete...");
+//            System.exit(1);
+        }
         System.out.print("\nProvide total number of objects: ");
         total_objs = reader.nextInt();
         System.out.print("\nProvide total number of nodes: ");
@@ -758,15 +811,7 @@ public class Main {
         System.out.print("\nProvide total transactions per node: ");
         total_txs = reader.nextInt();
 
-        if(graph_type == 3) {
-            grid_size = (int) Math.sqrt(total_nodes);
-            System.out.print("\nProvide Sub-grid size (n*n; n = N/k), k = ");
-            sub_grid = reader.nextInt();
-        }
-        else{
-            System.out.println("not complete...");
-//            System.exit(1);
-        }
+
         System.out.println("\n\tCase 1: Read-Write set size for a TX is fixed.");
         System.out.println("\tCase 2: Read-Write set size for a TX is random.");
         System.out.print("Choose your option (1/2): ");
