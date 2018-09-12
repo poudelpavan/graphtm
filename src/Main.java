@@ -120,6 +120,17 @@ public class Main {
     }
 
     /*
+     * Generate a priority queue for transaction execution in Line graph.
+     */
+    public static void generatePriorityQueueLine(int linesize, int sublinesize){
+        priority_queue = new int[total_nodes];
+//        ArrayList<Integer> lst = getRandList(cliquesize,0,total_nodes-1);
+        for(int i=0;i<total_nodes;i++){
+            priority_queue[i] = i;
+        }
+    }
+
+    /*
      * Generate Read-Write set for a transaction with random size.
      */
     public static ArrayList<Transaction> generateTransactions(int tot_obj, int tot_tx, int updt_rate){
@@ -403,6 +414,38 @@ public class Main {
         int[] exec = {total_time,commcost};
         return exec;
     }
+
+    /*
+     * Execute transaction and return execution time based on the objects in read set and write set and its position on line.
+     */
+    private static int[] executeTxLine(Transaction t, Node n, Graphs g){
+        int total_time = 0,commcost =0;
+        List<Objects> rs = t.getRset();
+        List<Objects> ws = t.getWset();
+        for(int i = 0;i<rs.size();i++){
+            int node_id = rs.get(i).getNode();
+            Node nd = getNode(node_id,g);
+            int access_cost = getCommCostLine(n, nd);
+            if(total_time < access_cost){
+                total_time = access_cost;
+            }
+            commcost += access_cost;
+        }
+        for(int i = 0;i<ws.size();i++){
+            int node_id = ws.get(i).getNode();
+            Node nd =getNode(node_id,g);
+            int access_cost = getCommCostLine(n, nd);
+            if(total_time < access_cost){
+                total_time = access_cost;
+            }
+            commcost += access_cost;
+            Objects obj = ws.get(i);
+            obj.setNode(n.getNode_id());
+            objs.set(obj.getObj_id()-1,obj);
+        }
+        int[] exec = {total_time,commcost};
+        return exec;
+    }
     /*
      * Execute transaction for grid grpah
      */
@@ -601,6 +644,105 @@ public class Main {
         }
     }
 
+    /*
+     * Execute transaction for line grpah
+     */
+    public static void executeLine(Graphs line){
+        int round=0, cumulative_rt=0,wait_time = 0;
+        ArrayList<ArrayList<Integer>> dependtx = new ArrayList<>();
+        while(round < total_txs) {
+            System.out.println("Round "+round);
+            boolean conflictstatus = false;
+            int j=0;
+            ArrayList<ArrayList<Transaction>> all_txs = new ArrayList<>();
+            all_txs = nodal_txs;
+            wait_time = 0;
+            int new_cum_time = 0;
+
+            for(int i=0;i<total_nodes;i++){
+                int initcost = 0,commcost=0;
+                if(i==0){
+                    for(int x=0;x<total_objs;x++){
+                        int cost = getCommCostLine(getNode(priority_queue[i], line),getNode(objs.get(x).getNode(),line));
+                        if(cost > initcost){
+                            initcost = cost;
+                        }
+                    }
+                }
+                int count = 0;
+                dependtx = generateConflictGraph(all_txs,total_nodes,round);
+                Transaction t = all_txs.get(i).get(round);
+                ArrayList<Integer> conflictlist = dependtx.get(priority_queue[i]);
+                for(int k=0;k<conflictlist.size();k++){
+                    int conflict = conflictlist.get(k);
+                    if(conflict == 1){
+                        count=k+1;
+                        //System.out.println("Conflict, status = "+all_txs.get(k).get(j).getStatus());
+                        if(all_txs.get(k).get(round).getStatus()=="COMMITTED"){
+                            int movecost = getCommCostLine(getNode(priority_queue[i],line), getNode(k, line));
+                            ArrayList<Transaction> arr = all_txs.get(priority_queue[i]);
+                            Transaction t1 = arr.get(round);
+                            if(all_txs.get(k).get(round).getExecution_time() + movecost > t1.getExecution_time()){
+                                t1.setExecution_time(all_txs.get(k).get(round).getExecution_time() + movecost);
+
+                            }
+//                            commcost += movecost;
+//                            t1.setComm_cost(commcost);
+                            arr.set(round,t1);
+                            nodal_txs.set(priority_queue[i],arr);
+                            count = all_txs.get(k).get(round).getWaited_for()+1;
+                        }
+                        else{
+                            conflictstatus = true;
+
+                        }
+                    }
+                }
+                if(conflictstatus == false){
+                    Transaction t1 = nodal_txs.get(priority_queue[i]).get(round);
+                    int[] exec = executeTxLine(t1,getNode(priority_queue[i],line),line);
+                    int exec_time = exec[0];
+                    int comm_cost = exec[1];
+                    ArrayList<Transaction> arr = nodal_txs.get(priority_queue[i]);
+                    if(exec_time > t1.getExecution_time()) {
+                        t1.setExecution_time(exec_time);
+                    }
+                    else{
+                        exec_time = t1.getExecution_time();
+                    }
+                    t1.setStatus("COMMITTED");
+                    t1.setWaited_for(count);
+                    t1.setConflicts(count);
+                    t1.setComm_cost(comm_cost);
+                    arr.set(round,t1);
+                    nodal_txs.set(priority_queue[i],arr);
+                    System.out.print("T("+priority_queue[i]+","+round+")\t=> ");
+                    for(int x=0;x<count;x++) {
+                        if(x==0) {
+                            System.out.print("|----|");
+                        }
+                        else{
+                            System.out.print("----|");
+                        }
+                    }
+                    if((cumulative_rt + exec_time) < 10) {
+                        System.out.print("  " +(cumulative_rt + exec_time) + "\n");
+                    }
+                    else{
+                        System.out.print(" " + (cumulative_rt + exec_time) + "\n");
+                    }
+
+                    if((cumulative_rt + exec_time)>new_cum_time){
+                        new_cum_time = cumulative_rt + exec_time;
+                    }
+                }
+            }
+//            cumulative_rt += nodal_txs.get(priority_queue[total_nodes-1]).get(round).getExecution_time();
+            cumulative_rt = new_cum_time;
+            round++;
+        }
+    }
+
     public static void main(String[] args) {
 //        System.out.println("Hello World!");
         Scanner reader = new Scanner(System.in);
@@ -734,7 +876,13 @@ public class Main {
         }
         Graphs grid = new Graphs();
         Graphs clique = new Graphs();
-        if(graph_type == 2){
+        Graphs line = new Graphs();
+        if(graph_type == 1){
+            line = Graphs.generateLineGraph(total_nodes);
+            generatePriorityQueueLine(total_nodes,total_nodes);
+            executeLine(line);
+        }
+        else if(graph_type == 2){
             clique = Graphs.generateCliqueGraph(total_nodes);
             generatePriorityQueueClique(total_nodes);
             executeClique(clique);
