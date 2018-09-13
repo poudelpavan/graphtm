@@ -242,7 +242,7 @@ public class Node {
     /*
      * Generate nodes for cluster graph.
      */
-    public static ArrayList<Node> generateNodesCluster(int totalnodes,int clusters, int cluster_size){
+    public static ArrayList<Node> generateNodesCluster(int totalnodes, int clusters, int cluster_size){
         ArrayList<Node> nodes = new ArrayList<Node>();
         for(int r=0;r<totalnodes;r++) {
             Node nd = new Node();

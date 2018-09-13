@@ -86,13 +86,16 @@ public class Main {
         int clust_a = a.getX()/cluster_size;
         int clust_b = b.getX()/cluster_size;
         if(clust_a == clust_b){
-            cost = cluster_size;
+            cost = 1;
         }
-        if((a.getX() % cluster_size) > 0){
-            cost += 1;
-        }
-        if((b.getX() % cluster_size) > 0){
-            cost += 1;
+        else{
+            if((a.getX() % cluster_size) > 0){
+                cost_a = 1;
+            }
+            if((b.getX() % cluster_size) > 0){
+                cost_b = 1;
+            }
+            cost = cluster_size + cost_a + cost_b;
         }
 
         return cost;
@@ -215,13 +218,21 @@ public class Main {
     public static void generatePriorityQueueCluster(int totalclusters, int clustersize){
         priority_queue = new int[total_nodes];
         ArrayList<Integer> lst = getRandList(totalclusters,0,totalclusters-1);
+        for(int i=0;i<totalclusters;i++){
+            System.out.print(lst.get(i)+",");
+        }
+        System.out.println("");
         int k=0;
         for(int i=0;i<totalclusters;i++){
             ArrayList<Integer> rnd = getRandList(clustersize-1,1,clustersize-1);
+            for(int j=0;j<clustersize-1;j++){
+                System.out.print(rnd.get(j)+1+",");
+            }
+            System.out.println("");
             priority_queue[k] = lst.get(i)*clustersize;
             k++;
             for(int j=0;j<clustersize-1;j++) {
-                priority_queue[k] = lst.get(i)*clustersize + rnd.get(j);
+                priority_queue[k] = lst.get(i)*clustersize + rnd.get(j) + 1;
                 k++;
             }
         }
@@ -1084,6 +1095,7 @@ public class Main {
         }
     }
 
+
     public static void main(String[] args) {
 //        System.out.println("Hello World!");
         Scanner reader = new Scanner(System.in);
@@ -1319,6 +1331,24 @@ public class Main {
         else if(graph_type == 4){
             cluster = Graphs.generateClusterGraph(total_nodes,subgraph_cluster,cluster_size);
             generatePriorityQueueCluster(subgraph_cluster,cluster_size);
+            System.out.println("Priority queue:");
+            for (int i = 0; i < total_nodes; i++) {
+                System.out.print(priority_queue[i] + " ");
+            }
+
+            System.out.println("\n-----------------------------------------------\nTransaction Conflict Graph\n-----------------------------------------------");
+            ArrayList<ArrayList<Integer>> dependtx = new ArrayList<>();
+            for (int i = 0; i < total_nodes; i++) {
+                dependtx = generateConflictGraph(nodal_txs, total_nodes, 0);
+            }
+            for (int i = 0; i < total_nodes; i++) {
+                for (int j = 0; j < total_nodes; j++) {
+                    System.out.print(dependtx.get(i).get(j) + " ");
+                }
+                System.out.println("\n");
+            }
+
+            System.out.println("\n-----------------------------------------------\nTransaction execution\n-----------------------------------------------");
             executeCluster(cluster,cluster_size);
         }
         else if(graph_type == 5){
