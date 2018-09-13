@@ -68,8 +68,34 @@ public class Main {
         else{
             cost_b = b.getX() % ray_size;
         }
+        int ray_a = a.getX()/ray_size;
+        int ray_b = b.getX()/ray_size;
+        if(ray_a == ray_b){
+            return (abs(cost_a - cost_b));
+        }
+        else {
+            return (cost_a + cost_b);
+        }
+    }
 
-        return (cost_a + cost_b);
+    /*
+     * Calculate distance (communication cost) between two nodes in cluster graph.
+     */
+    public static int getCommCostCluster(Node a, Node b, int cluster_size){
+        int cost_a = 0, cost_b = 0,cost=0;
+        int clust_a = a.getX()/cluster_size;
+        int clust_b = b.getX()/cluster_size;
+        if(clust_a == clust_b){
+            cost = cluster_size;
+        }
+        if((a.getX() % cluster_size) > 0){
+            cost += 1;
+        }
+        if((b.getX() % cluster_size) > 0){
+            cost += 1;
+        }
+
+        return cost;
     }
 
     /*
@@ -180,6 +206,24 @@ public class Main {
             }
             k++;
             round_total += roundsize;
+        }
+    }
+
+    /*
+     * Generate a priority queue for transaction execution in Cluster graph.
+     */
+    public static void generatePriorityQueueCluster(int totalclusters, int clustersize){
+        priority_queue = new int[total_nodes];
+        ArrayList<Integer> lst = getRandList(totalclusters,0,totalclusters-1);
+        int k=0;
+        for(int i=0;i<totalclusters;i++){
+            ArrayList<Integer> rnd = getRandList(clustersize-1,1,clustersize-1);
+            priority_queue[k] = lst.get(i)*clustersize;
+            k++;
+            for(int j=0;j<clustersize-1;j++) {
+                priority_queue[k] = lst.get(i)*clustersize + rnd.get(j);
+                k++;
+            }
         }
     }
 
@@ -573,8 +617,6 @@ public class Main {
                                 t1.setExecution_time(all_txs.get(k).get(round).getExecution_time() + movecost);
 
                             }
-//                            commcost += movecost;
-//                            t1.setComm_cost(commcost);
                             arr.set(round,t1);
                             nodal_txs.set(priority_queue[i],arr);
                             count = all_txs.get(k).get(round).getWaited_for()+1;
@@ -624,7 +666,6 @@ public class Main {
                     }
                 }
             }
-//            cumulative_rt += nodal_txs.get(priority_queue[total_nodes-1]).get(round).getExecution_time();
             cumulative_rt = new_cum_time;
             round++;
         }
@@ -672,8 +713,6 @@ public class Main {
                                 t1.setExecution_time(all_txs.get(k).get(round).getExecution_time() + movecost);
 
                             }
-//                            commcost += movecost;
-//                            t1.setComm_cost(commcost);
                             arr.set(round,t1);
                             nodal_txs.set(priority_queue[i],arr);
                             count = all_txs.get(k).get(round).getWaited_for()+1;
@@ -723,7 +762,6 @@ public class Main {
                     }
                 }
             }
-//            cumulative_rt += nodal_txs.get(priority_queue[total_nodes-1]).get(round).getExecution_time();
             cumulative_rt = new_cum_time;
             round++;
         }
@@ -762,7 +800,6 @@ public class Main {
                     int conflict = conflictlist.get(k);
                     if(conflict == 1){
                         count=k+1;
-                        //System.out.println("Conflict, status = "+all_txs.get(k).get(j).getStatus());
                         if(all_txs.get(k).get(round).getStatus()=="COMMITTED"){
                             int movecost = getCommCostLine(getNode(priority_queue[i],line), getNode(k, line));
                             ArrayList<Transaction> arr = all_txs.get(priority_queue[i]);
@@ -771,8 +808,6 @@ public class Main {
                                 t1.setExecution_time(all_txs.get(k).get(round).getExecution_time() + movecost);
 
                             }
-//                            commcost += movecost;
-//                            t1.setComm_cost(commcost);
                             arr.set(round,t1);
                             nodal_txs.set(priority_queue[i],arr);
                             count = all_txs.get(k).get(round).getWaited_for()+1;
@@ -822,7 +857,6 @@ public class Main {
                     }
                 }
             }
-//            cumulative_rt += nodal_txs.get(priority_queue[total_nodes-1]).get(round).getExecution_time();
             cumulative_rt = new_cum_time;
             round++;
         }
@@ -861,7 +895,6 @@ public class Main {
                     int conflict = conflictlist.get(k);
                     if(conflict == 1){
                         count=k+1;
-                        //System.out.println("Conflict, status = "+all_txs.get(k).get(j).getStatus());
                         if(all_txs.get(k).get(round).getStatus()=="COMMITTED"){
                             int movecost = getCommCostStar(getNode(priority_queue[i],star), getNode(k, star),ray_size);
                             ArrayList<Transaction> arr = all_txs.get(priority_queue[i]);
@@ -870,8 +903,6 @@ public class Main {
                                 t1.setExecution_time(all_txs.get(k).get(round).getExecution_time() + movecost);
 
                             }
-//                            commcost += movecost;
-//                            t1.setComm_cost(commcost);
                             arr.set(round,t1);
                             nodal_txs.set(priority_queue[i],arr);
                             count = all_txs.get(k).get(round).getWaited_for()+1;
@@ -921,7 +952,6 @@ public class Main {
                     }
                 }
             }
-//            cumulative_rt += nodal_txs.get(priority_queue[total_nodes-1]).get(round).getExecution_time();
             cumulative_rt = new_cum_time;
             round++;
         }
@@ -939,32 +969,41 @@ public class Main {
         if(graph_type == 1){
             System.out.println("Provide the sub-graph length (l): ");
             subgraph_line = reader.nextInt();
+            System.out.print("\nProvide total number of nodes: ");
+            total_nodes = reader.nextInt();
+        }
+        else if(graph_type == 2){
+            System.out.print("\nProvide total number of nodes: ");
+            total_nodes = reader.nextInt();
         }
         else if(graph_type == 3) {
             grid_size = (int) Math.sqrt(total_nodes);
             System.out.print("\nProvide Sub-grid size (n*n; n = N/k), k = ");
             sub_grid = reader.nextInt();
+            System.out.print("\nProvide total number of nodes: ");
+            total_nodes = reader.nextInt();
         }
         else if(graph_type == 4){
             System.out.println("Provide the total number of clusters: ");
             subgraph_cluster = reader.nextInt();
             System.out.println("Provide the size of each cluster (complete graph): ");
             cluster_size = reader.nextInt();
+            total_nodes = subgraph_cluster * cluster_size;
         }
         else if(graph_type == 5){
             System.out.println("Provide the total number of rays: ");
             subgraph_star = reader.nextInt();
             System.out.println("Provide the number of nodes on each ray: ");
             ray_nodes = reader.nextInt();
+            total_nodes = subgraph_star * ray_nodes + 1;
         }
         else{
-            System.out.println("not complete...");
-//            System.exit(1);
+            System.out.println("Invalid option.");
+            System.exit(1);
         }
         System.out.print("\nProvide total number of objects: ");
         total_objs = reader.nextInt();
-        System.out.print("\nProvide total number of nodes: ");
-        total_nodes = reader.nextInt();
+
         System.out.print("\nProvide total transactions per node: ");
         total_txs = reader.nextInt();
 
@@ -1147,103 +1186,9 @@ public class Main {
             }
 
             System.out.println("\n-----------------------------------------------\nTransaction execution\n-----------------------------------------------");
-   /*     boolean noconflict = false;
-
-        int round=0, cumulative_rt=0,wait_time = 0;
-        while(round < total_txs) {
-            System.out.println("Round "+round);
-            boolean conflictstatus = false;
-            int j=0;
-            ArrayList<ArrayList<Transaction>> all_txs = new ArrayList<>();
-            all_txs = nodal_txs;
-            wait_time = 0;
-            int new_cum_time = 0;
-
-            for(int i=0;i<total_nodes;i++){
-                int initcost = 0,commcost=0;
-                if(i==0){
-                    for(int x=0;x<total_objs;x++){
-                        int cost = getCommCostGrid(getNode(priority_queue[i], grid),getNode(objs.get(x).getNode(),grid));
-                        if(cost > initcost){
-                            initcost = cost;
-                        }
-                    }
-                }
-                int count = 0;
-                dependtx = generateConflictGraph(all_txs,total_nodes,round);
-                Transaction t = all_txs.get(i).get(round);
-                ArrayList<Integer> conflictlist = dependtx.get(priority_queue[i]);
-                for(int k=0;k<conflictlist.size();k++){
-                    int conflict = conflictlist.get(k);
-                    if(conflict == 1){
-                        count=k+1;
-                        //System.out.println("Conflict, status = "+all_txs.get(k).get(j).getStatus());
-                        if(all_txs.get(k).get(round).getStatus()=="COMMITTED"){
-                            int movecost = getCommCostGrid(getNode(priority_queue[i],grid), getNode(k, grid));
-                            ArrayList<Transaction> arr = all_txs.get(priority_queue[i]);
-                            Transaction t1 = arr.get(round);
-                            if(all_txs.get(k).get(round).getExecution_time() + movecost > t1.getExecution_time()){
-                                t1.setExecution_time(all_txs.get(k).get(round).getExecution_time() + movecost);
-
-                            }
-//                            commcost += movecost;
-//                            t1.setComm_cost(commcost);
-                            arr.set(round,t1);
-                            nodal_txs.set(priority_queue[i],arr);
-                            count = all_txs.get(k).get(round).getWaited_for()+1;
-                        }
-                        else{
-                            conflictstatus = true;
-
-                        }
-                    }
-                }
-                if(conflictstatus == false){
-                    Transaction t1 = nodal_txs.get(priority_queue[i]).get(round);
-                    int[] exec = executeTxGrid(t1,getNode(priority_queue[i],grid),grid);
-                    int exec_time = exec[0];
-                    int comm_cost = exec[1];
-                    ArrayList<Transaction> arr = nodal_txs.get(priority_queue[i]);
-                    if(exec_time > t1.getExecution_time()) {
-                        t1.setExecution_time(exec_time);
-                    }
-                    else{
-                        exec_time = t1.getExecution_time();
-                    }
-                    t1.setStatus("COMMITTED");
-                    t1.setWaited_for(count);
-                    t1.setConflicts(count);
-                    t1.setComm_cost(comm_cost);
-                    arr.set(round,t1);
-                    nodal_txs.set(priority_queue[i],arr);
-                    System.out.print("T("+priority_queue[i]+","+round+")\t=> ");
-                    for(int x=0;x<count;x++) {
-                        if(x==0) {
-                            System.out.print("|----|");
-                        }
-                        else{
-                            System.out.print("----|");
-                        }
-                    }
-                    if((cumulative_rt + exec_time) < 10) {
-                        System.out.print("  " +(cumulative_rt + exec_time) + "\n");
-                    }
-                    else{
-                        System.out.print(" " + (cumulative_rt + exec_time) + "\n");
-                    }
-
-                    if((cumulative_rt + exec_time)>new_cum_time){
-                        new_cum_time = cumulative_rt + exec_time;
-                    }
-                }
-            }
-//            cumulative_rt += nodal_txs.get(priority_queue[total_nodes-1]).get(round).getExecution_time();
-            cumulative_rt = new_cum_time;
-            round++;
-        }*/
-
             executeGrid(grid);
         }
+
         else if(graph_type == 5){
             star = Graphs.generateStarGraph(total_nodes);
             generatePriorityQueueStar(subgraph_star,ray_nodes);
