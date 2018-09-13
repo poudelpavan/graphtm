@@ -277,6 +277,45 @@ public class Main {
     }
 
     /*
+     * Calculate length of a subgraph in Line graph based on longest shortest walk of any object
+     */
+    public static int calculateL(ArrayList<ArrayList<Transaction>> txs, int round){
+        int l=0,curr_node=0,obj_node=0;
+        for (ArrayList<Transaction> tx : txs) {
+            Transaction inner_tx = (Transaction) tx.get(round);
+            List<Objects> rset = inner_tx.getRset();
+            List<Objects> wset = inner_tx.getWset();
+
+            for (Objects objects : rset) {
+                obj_node = objects.getNode();
+                if(abs(obj_node - curr_node) > l){
+                    l = abs(obj_node - curr_node);
+                    System.out.println(l);
+                }
+            }
+            for (Objects objects : wset) {
+                obj_node = objects.getNode();
+                if(abs(obj_node - curr_node) > l){
+                    l = abs(obj_node - curr_node);
+                    System.out.println(l);
+                }
+            }
+            curr_node++;
+        }
+/*
+
+        for(int i=0;i<total_nodes;i++){
+            List<Objects> rset = txs.get(i).get()
+            for(int j=0;j<total_nodes && j!=i;j++){
+
+            }
+
+        }
+*/
+        return l;
+    }
+
+    /*
      * Generate Read-Write set for a transaction with fixed size.
      */
     public static ArrayList<Transaction> generateTransactions(int tot_obj, int tot_tx, int updt_rate, int rws_size){
@@ -1261,6 +1300,7 @@ public class Main {
         Graphs cluster = new Graphs();
         if(graph_type == 1){
             line = Graphs.generateLineGraph(total_nodes);
+            int l = calculateL(nodal_txs,0);
             generatePriorityQueueLine(total_nodes,total_nodes);
             executeLine(line);
         }
