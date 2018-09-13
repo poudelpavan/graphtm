@@ -147,6 +147,27 @@ public class Node {
         }
         return neighbors;
     }
+
+    /*
+     * Get neighbors of a node in cluster graph.
+     */
+    public static ArrayList<Integer> getNeighborsCluster(int r, int clusters, int cluster_size){
+        ArrayList<Integer> neighbors = new ArrayList<Integer>();
+        int clust_id = r/cluster_size;
+        for(int i=0;i<cluster_size;i++){
+            if((clust_id * cluster_size +i) != r){
+                neighbors.add(clust_id * cluster_size +i);
+            }
+        }
+        if(r%cluster_size == 0){
+            for(int i=0;i<clusters;i++){
+                if(i*cluster_size != r){
+                    neighbors.add(i*cluster_size);
+                }
+            }
+        }
+        return neighbors;
+    }
     /*
      * Generate nodes for grid graph.
      */
@@ -212,6 +233,23 @@ public class Node {
             nd.setValue(r + 1);
             nd.setX(r);
             ArrayList<Integer> neighbors = getNeighborsStar(r,rays,rays_size);
+            nd.setNeighbors(neighbors);
+            nodes.add(nd);
+        }
+        return nodes;
+    }
+
+    /*
+     * Generate nodes for cluster graph.
+     */
+    public static ArrayList<Node> generateNodesCluster(int totalnodes,int clusters, int cluster_size){
+        ArrayList<Node> nodes = new ArrayList<Node>();
+        for(int r=0;r<totalnodes;r++) {
+            Node nd = new Node();
+            nd.setNode_id(r);
+            nd.setValue(r + 1);
+            nd.setX(r);
+            ArrayList<Integer> neighbors = getNeighborsCluster(r,clusters,cluster_size);
             nd.setNeighbors(neighbors);
             nodes.add(nd);
         }

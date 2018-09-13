@@ -95,13 +95,26 @@ public class Graphs {
     /*
      * Generate a Star graph.
      */
-    public static Graphs generateStarGraph(int starsize){
+    public static Graphs generateStarGraph(int starsize, int rays, int rays_size){
         Graphs star = new Graphs();
         star.setGraph_id("star"+starsize);
         star.setNumNodes(starsize);
         star.setNumEdges(starsize-1);
-        ArrayList<Node> nodes = Node.generateNodesLine(starsize);
+        ArrayList<Node> nodes = Node.generateNodesStar(starsize,rays,rays_size);
         star.setNodes(nodes);
         return star;
+    }
+
+    /*
+     * Generate a Cluster graph.
+     */
+    public static Graphs generateClusterGraph(int total_nodes, int clusters, int cluster_size){
+        Graphs cluster = new Graphs();
+        cluster.setGraph_id("cluster"+total_nodes);
+        cluster.setNumNodes(total_nodes);
+        cluster.setNumEdges((clusters * ((cluster_size * (cluster_size -1))/2)) + ((clusters *(clusters -1))/2));
+        ArrayList<Node> nodes = Node.generateNodesCluster(total_nodes,clusters,cluster_size);
+        cluster.setNodes(nodes);
+        return cluster;
     }
 }

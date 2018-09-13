@@ -575,6 +575,38 @@ public class Main {
         int[] exec = {total_time,commcost};
         return exec;
     }
+
+    /*
+     * Execute transaction and return execution time based on the objects in read set and write set and its position on cluster.
+     */
+    private static int[] executeTxCluster(Transaction t, Node n, Graphs g, int cluster_size){
+        int total_time = 0,commcost =0;
+        List<Objects> rs = t.getRset();
+        List<Objects> ws = t.getWset();
+        for(int i = 0;i<rs.size();i++){
+            int node_id = rs.get(i).getNode();
+            Node nd = getNode(node_id,g);
+            int access_cost = getCommCostCluster(n, nd,cluster_size);
+            if(total_time < access_cost){
+                total_time = access_cost;
+            }
+            commcost += access_cost;
+        }
+        for(int i = 0;i<ws.size();i++){
+            int node_id = ws.get(i).getNode();
+            Node nd =getNode(node_id,g);
+            int access_cost = getCommCostCluster(n, nd,cluster_size);
+            if(total_time < access_cost){
+                total_time = access_cost;
+            }
+            commcost += access_cost;
+            Objects obj = ws.get(i);
+            obj.setNode(n.getNode_id());
+            objs.set(obj.getObj_id()-1,obj);
+        }
+        int[] exec = {total_time,commcost};
+        return exec;
+    }
     /*
      * Execute transaction for grid grpah
      */
@@ -863,8 +895,8 @@ public class Main {
     }
 
     /*
- * Execute transaction for star grpah
- */
+     * Execute transaction for star grpah
+     */
     public static void executeStar(Graphs star, int ray_size){
         int round=0, cumulative_rt=0,wait_time = 0;
         ArrayList<ArrayList<Integer>> dependtx = new ArrayList<>();
@@ -916,6 +948,101 @@ public class Main {
                 if(conflictstatus == false){
                     Transaction t1 = nodal_txs.get(priority_queue[i]).get(round);
                     int[] exec = executeTxStar(t1,getNode(priority_queue[i],star),star,ray_size);
+                    int exec_time = exec[0];
+                    int comm_cost = exec[1];
+                    ArrayList<Transaction> arr = nodal_txs.get(priority_queue[i]);
+                    if(exec_time > t1.getExecution_time()) {
+                        t1.setExecution_time(exec_time);
+                    }
+                    else{
+                        exec_time = t1.getExecution_time();
+                    }
+                    t1.setStatus("COMMITTED");
+                    t1.setWaited_for(count);
+                    t1.setConflicts(count);
+                    t1.setComm_cost(comm_cost);
+                    arr.set(round,t1);
+                    nodal_txs.set(priority_queue[i],arr);
+                    System.out.print("T("+priority_queue[i]+","+round+")\t=> ");
+                    for(int x=0;x<count;x++) {
+                        if(x==0) {
+                            System.out.print("|----|");
+                        }
+                        else{
+                            System.out.print("----|");
+                        }
+                    }
+                    if((cumulative_rt + exec_time) < 10) {
+                        System.out.print("  " +(cumulative_rt + exec_time) + "\n");
+                    }
+                    else{
+                        System.out.print(" " + (cumulative_rt + exec_time) + "\n");
+                    }
+
+                    if((cumulative_rt + exec_time)>new_cum_time){
+                        new_cum_time = cumulative_rt + exec_time;
+                    }
+                }
+            }
+            cumulative_rt = new_cum_time;
+            round++;
+        }
+    }
+
+    /*
+     * Execute transaction for cluster grpah
+     */
+    public static void executeCluster(Graphs cluster, int cluster_size){
+        int round=0, cumulative_rt=0,wait_time = 0;
+        ArrayList<ArrayList<Integer>> dependtx = new ArrayList<>();
+        while(round < total_txs) {
+            System.out.println("Round "+round);
+            boolean conflictstatus = false;
+            int j=0;
+            ArrayList<ArrayList<Transaction>> all_txs = new ArrayList<>();
+            all_txs = nodal_txs;
+            wait_time = 0;
+            int new_cum_time = 0;
+
+            for(int i=0;i<total_nodes;i++){
+                int initcost = 0,commcost=0;
+                if(i==0){
+                    for(int x=0;x<total_objs;x++){
+                        int cost = getCommCostCluster(getNode(priority_queue[i], cluster),getNode(objs.get(x).getNode(),cluster),cluster_size);
+                        if(cost > initcost){
+                            initcost = cost;
+                        }
+                    }
+                }
+                int count = 0;
+                dependtx = generateConflictGraph(all_txs,total_nodes,round);
+                Transaction t = all_txs.get(i).get(round);
+                ArrayList<Integer> conflictlist = dependtx.get(priority_queue[i]);
+                for(int k=0;k<conflictlist.size();k++){
+                    int conflict = conflictlist.get(k);
+                    if(conflict == 1){
+                        count=k+1;
+                        if(all_txs.get(k).get(round).getStatus()=="COMMITTED"){
+                            int movecost = getCommCostCluster(getNode(priority_queue[i],cluster), getNode(k, cluster),cluster_size);
+                            ArrayList<Transaction> arr = all_txs.get(priority_queue[i]);
+                            Transaction t1 = arr.get(round);
+                            if(all_txs.get(k).get(round).getExecution_time() + movecost > t1.getExecution_time()){
+                                t1.setExecution_time(all_txs.get(k).get(round).getExecution_time() + movecost);
+
+                            }
+                            arr.set(round,t1);
+                            nodal_txs.set(priority_queue[i],arr);
+                            count = all_txs.get(k).get(round).getWaited_for()+1;
+                        }
+                        else{
+                            conflictstatus = true;
+
+                        }
+                    }
+                }
+                if(conflictstatus == false){
+                    Transaction t1 = nodal_txs.get(priority_queue[i]).get(round);
+                    int[] exec = executeTxCluster(t1,getNode(priority_queue[i],cluster),cluster,cluster_size);
                     int exec_time = exec[0];
                     int comm_cost = exec[1];
                     ArrayList<Transaction> arr = nodal_txs.get(priority_queue[i]);
@@ -1119,6 +1246,7 @@ public class Main {
         Graphs clique = new Graphs();
         Graphs line = new Graphs();
         Graphs star = new Graphs();
+        Graphs cluster = new Graphs();
         if(graph_type == 1){
             line = Graphs.generateLineGraph(total_nodes);
             generatePriorityQueueLine(total_nodes,total_nodes);
@@ -1188,9 +1316,13 @@ public class Main {
             System.out.println("\n-----------------------------------------------\nTransaction execution\n-----------------------------------------------");
             executeGrid(grid);
         }
-
+        else if(graph_type == 4){
+            cluster = Graphs.generateClusterGraph(total_nodes,subgraph_cluster,cluster_size);
+            generatePriorityQueueCluster(subgraph_cluster,cluster_size);
+            executeCluster(cluster,cluster_size);
+        }
         else if(graph_type == 5){
-            star = Graphs.generateStarGraph(total_nodes);
+            star = Graphs.generateStarGraph(total_nodes, subgraph_star, ray_nodes);
             generatePriorityQueueStar(subgraph_star,ray_nodes);
             executeStar(star,ray_nodes);
         }
