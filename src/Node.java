@@ -124,6 +124,30 @@ public class Node {
     }
 
     /*
+     * Get neighbors of a node in star graph.
+     */
+    public static ArrayList<Integer> getNeighborsStar(int r, int rays, int rays_size){
+        ArrayList<Integer> neighbors = new ArrayList<Integer>();
+
+        if(r == 0){
+            for(int i=0;i<rays;i++) {
+                neighbors.add(i*rays_size+1);
+            }
+        }
+        else if((r%rays_size) == 0){
+            neighbors.add(r-1);
+        }
+        else if((r%rays_size) == 1){
+            neighbors.add(0);
+            neighbors.add(r+1);
+        }
+        else{
+            neighbors.add(r-1);
+            neighbors.add(r+1);
+        }
+        return neighbors;
+    }
+    /*
      * Generate nodes for grid graph.
      */
     public static ArrayList<Node> generateNodesGrid(int gridsize){
@@ -171,6 +195,23 @@ public class Node {
             nd.setValue(r + 1);
             nd.setX(r);
             ArrayList<Integer> neighbors = getNeighborsLine(r, linesize);
+            nd.setNeighbors(neighbors);
+            nodes.add(nd);
+        }
+        return nodes;
+    }
+
+    /*
+     * Generate nodes for line graph.
+     */
+    public static ArrayList<Node> generateNodesStar(int starsize,int rays, int rays_size){
+        ArrayList<Node> nodes = new ArrayList<Node>();
+        for(int r=0;r<starsize;r++) {
+            Node nd = new Node();
+            nd.setNode_id(r);
+            nd.setValue(r + 1);
+            nd.setX(r);
+            ArrayList<Integer> neighbors = getNeighborsStar(r,rays,rays_size);
             nd.setNeighbors(neighbors);
             nodes.add(nd);
         }

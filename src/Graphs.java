@@ -91,4 +91,17 @@ public class Graphs {
         line.setNodes(nodes);
         return line;
     }
+
+    /*
+     * Generate a Star graph.
+     */
+    public static Graphs generateStarGraph(int starsize){
+        Graphs star = new Graphs();
+        star.setGraph_id("star"+starsize);
+        star.setNumNodes(starsize);
+        star.setNumEdges(starsize-1);
+        ArrayList<Node> nodes = Node.generateNodesLine(starsize);
+        star.setNodes(nodes);
+        return star;
+    }
 }
