@@ -135,6 +135,7 @@ public class Main {
      */
     public static void generatePriorityQueueStar(int totalrays, int raysize){
         priority_queue = new int[total_nodes];
+        priority_queue[0]=0;
         int count = 0,roundsize = 0,round_total=0,k=0;
         while(count < total_nodes) {
             roundsize = (int)Math.pow(2,k);
@@ -142,13 +143,13 @@ public class Main {
                 roundsize = raysize - round_total;
             }
             for(int i = 0; i < totalrays; i++) {
-                for(int j = 0; j < roundsize;j++){
-                    priority_queue[count+1] = i*raysize + j+round_total;
+                for(int j = 1; j <= roundsize;j++){
+                    priority_queue[count+1] = i*raysize + j + round_total;
                     count++;
                 }
 
             }
-
+            k++;
             round_total += roundsize;
         }
 //        ArrayList<Integer> lst = getRandList(cliquesize,0,total_nodes-1);
@@ -773,7 +774,7 @@ public class Main {
     public static void main(String[] args) {
 //        System.out.println("Hello World!");
         Scanner reader = new Scanner(System.in);
-        int subgraph_line, subgraph_cluster, cluster_size, subgraph_star, ray_nodes;
+        int subgraph_line=0, subgraph_cluster=0, cluster_size=0, subgraph_star=0, ray_nodes=0;
 
         System.out.println("\n*** ----------------------------- ***\n");
 
@@ -1085,6 +1086,12 @@ public class Main {
         }*/
 
             executeGrid(grid);
+        }
+        else if(graph_type == 5){
+            generatePriorityQueueStar(subgraph_star,ray_nodes);
+            for(int i = 0; i <total_nodes;i++){
+                System.out.println(priority_queue[i]+",");
+            }
         }
 
         System.out.println("Total execution time for each node\nNode\tRW Set\tRSET\tWSET\tCONFLICTS\tExec time\tComm Cost");
