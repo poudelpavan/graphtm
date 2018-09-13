@@ -1106,7 +1106,7 @@ public class Main {
         System.out.print("Choose Graph type: \n1->Line, 2->Clique, 3->Grid, 4->CLuster, 5->Star: ");
         int graph_type = reader.nextInt();
         if(graph_type == 1){
-            System.out.println("Provide the sub-graph length (l): ");
+            System.out.print("\nProvide the sub-graph length (l): ");
             subgraph_line = reader.nextInt();
             System.out.print("\nProvide total number of nodes: ");
             total_nodes = reader.nextInt();
@@ -1123,16 +1123,16 @@ public class Main {
             total_nodes = reader.nextInt();
         }
         else if(graph_type == 4){
-            System.out.println("Provide the total number of clusters: ");
+            System.out.print("\nProvide the total number of clusters: ");
             subgraph_cluster = reader.nextInt();
-            System.out.println("Provide the size of each cluster (complete graph): ");
+            System.out.print("\nProvide the size of each cluster (complete graph): ");
             cluster_size = reader.nextInt();
             total_nodes = subgraph_cluster * cluster_size;
         }
         else if(graph_type == 5){
-            System.out.println("Provide the total number of rays: ");
+            System.out.print("\nProvide the total number of rays: ");
             subgraph_star = reader.nextInt();
-            System.out.println("Provide the number of nodes on each ray: ");
+            System.out.print("\nProvide the number of nodes on each ray: ");
             ray_nodes = reader.nextInt();
             total_nodes = subgraph_star * ray_nodes + 1;
         }
