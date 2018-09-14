@@ -178,11 +178,43 @@ public class Main {
     /*
      * Generate a priority queue for transaction execution in Line graph.
      */
-    public static void generatePriorityQueueLine(int linesize, int sublinesize){
+    public static void generatePriorityQueueLine(int linesize, int round){
         priority_queue = new int[total_nodes];
-//        ArrayList<Integer> lst = getRandList(cliquesize,0,total_nodes-1);
-        for(int i=0;i<total_nodes;i++){
-            priority_queue[i] = i;
+        int l = calculateL(nodal_txs,round);
+        int j=0,k = 0,total = l;
+        if(l<(linesize/2)){
+            while(((k+1)*l) <= total_nodes) {
+                for (int i = 0; i < l; i++) {
+                    priority_queue[j] = k*l + i;
+                    j++;
+                }
+                k = k + 2;
+            }
+            if(k*l < total_nodes){
+                for(int i=0;i<(total_nodes - k*l);i++){
+                    priority_queue[j] = k*l + i;
+                    j++;
+                }
+            }
+            k=1;
+            while(((k+1)*l) <= total_nodes) {
+                for (int i = 0; i < l; i++) {
+                    priority_queue[j] = k*l + i;
+                    j++;
+                }
+                k = k + 2;
+            }
+            if(k*l < total_nodes){
+                for(int i=0;i<(total_nodes - k*l);i++){
+                    priority_queue[j] = k*l + i;
+                    j++;
+                }
+            }
+        }
+        else {
+            for (int i = 0; i < total_nodes; i++) {
+                priority_queue[i] = i;
+            }
         }
     }
 
@@ -282,7 +314,7 @@ public class Main {
     public static int calculateL(ArrayList<ArrayList<Transaction>> txs, int round){
         int l=0,curr_node=0,obj_node=0;
         for (ArrayList<Transaction> tx : txs) {
-            Transaction inner_tx = (Transaction) tx.get(round);
+            Transaction inner_tx = tx.get(round);
             List<Objects> rset = inner_tx.getRset();
             List<Objects> wset = inner_tx.getWset();
 
@@ -302,16 +334,6 @@ public class Main {
             }
             curr_node++;
         }
-/*
-
-        for(int i=0;i<total_nodes;i++){
-            List<Objects> rset = txs.get(i).get()
-            for(int j=0;j<total_nodes && j!=i;j++){
-
-            }
-
-        }
-*/
         return l;
     }
 
@@ -863,6 +885,7 @@ public class Main {
             all_txs = nodal_txs;
             wait_time = 0;
             int new_cum_time = 0;
+            generatePriorityQueueLine(total_nodes,round);
 
             for(int i=0;i<total_nodes;i++){
                 int initcost = 0,commcost=0;
@@ -1145,8 +1168,8 @@ public class Main {
         System.out.print("Choose Graph type: \n1->Line, 2->Clique, 3->Grid, 4->CLuster, 5->Star: ");
         int graph_type = reader.nextInt();
         if(graph_type == 1){
-            System.out.print("\nProvide the sub-graph length (l): ");
-            subgraph_line = reader.nextInt();
+//            System.out.print("\nProvide the sub-graph length (l): ");
+//            subgraph_line = reader.nextInt();
             System.out.print("\nProvide total number of nodes: ");
             total_nodes = reader.nextInt();
         }
@@ -1300,8 +1323,8 @@ public class Main {
         Graphs cluster = new Graphs();
         if(graph_type == 1){
             line = Graphs.generateLineGraph(total_nodes);
-            int l = calculateL(nodal_txs,0);
-            generatePriorityQueueLine(total_nodes,total_nodes);
+//            int l = calculateL(nodal_txs,0);
+//            generatePriorityQueueLine(total_nodes,total_nodes);
             executeLine(line);
         }
         else if(graph_type == 2){
