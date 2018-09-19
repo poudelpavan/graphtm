@@ -102,6 +102,17 @@ public class Main {
     }
 
     /*
+    * Reverse a priority queue.
+    */
+    public static void reversePriorityQueue(){
+        int[] temp = new int[total_nodes];
+        for(int i=0;i<total_nodes;i++){
+            temp[i] = priority_queue[total_nodes - 1 - i];
+        }
+        priority_queue = temp;
+    }
+
+    /*
      * Generate a priority queue for transaction execution in Grid graph.
      */
     public static void generatePriorityQueueGrid(int gridsize, int subgrid){
@@ -772,6 +783,7 @@ public class Main {
             }
             cumulative_rt = new_cum_time;
             round++;
+            reversePriorityQueue();
         }
     }
 
@@ -1178,11 +1190,11 @@ public class Main {
             total_nodes = reader.nextInt();
         }
         else if(graph_type == 3) {
-            grid_size = (int) Math.sqrt(total_nodes);
             System.out.print("\nProvide Sub-grid size (n*n; n = N/k), k = ");
             sub_grid = reader.nextInt();
             System.out.print("\nProvide total number of nodes: ");
             total_nodes = reader.nextInt();
+            grid_size = (int) Math.sqrt(total_nodes);
         }
         else if(graph_type == 4){
             System.out.print("\nProvide the total number of clusters: ");
@@ -1449,7 +1461,7 @@ public class Main {
                     commcost += nodal_txs.get(priority_queue[i]).get(j).getComm_cost();
 //                }
             }
-            System.out.println("N"+priority_queue[i]+"\t: \t  "+rwsetsize+"\t"+rset+"\t\t"+wset+"\t\t\t"+conflict+"\t\t  "+exec_time+"\t\t\t "+commcost);
+            System.out.println("N"+priority_queue[i]+"\t"+rwsetsize+"\t"+rset+"\t"+wset+"\t"+conflict+"\t"+exec_time+"\t"+commcost);
         }
     }
 }
