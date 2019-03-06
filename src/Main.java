@@ -1,9 +1,7 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 import static java.lang.Math.abs;
+import static java.lang.Math.sqrt;
 
 /**
  * @author Pavan Poudel
@@ -176,6 +174,167 @@ public class Main {
     }
 
     /*
+     * Find index of an element in an array.
+     */
+    public static int indexOf(int prq[], int value){
+        int index = 0;
+        for(int x = 0; x < prq.length; x++){
+            if(prq[x] == value){
+                index = x;
+                break;
+            }
+        }
+        return index;
+    }
+
+    /*
+     * Generate a priority queue for transaction execution in Grid graph-online.
+     */
+    public static void generatePriorityQueueOnlineGrid(ArrayList<ArrayList<Integer>> components){
+        priority_queue = new int[total_nodes];
+
+        int count = 0;
+
+        //find snake-path in grid
+        int gridsize = (int) Math.sqrt(total_nodes), k = 0;
+        int prq[] = new int[total_nodes];
+        for(int i=0;i<gridsize; i++){
+            for(int l=0; l<gridsize; l++){
+                if(i%2 == 0){
+                    prq[k] = i * gridsize + l;
+                    k++;
+                }
+                else{
+                    prq[k] = i * gridsize + (gridsize - l - 1);
+                    k++;
+                }
+            }
+        }
+        for(int i = 0; i < components.size(); i++){
+            ArrayList<Integer> temp = components.get(i);
+            int cur_index = 0;
+            boolean prev = false;
+
+            for(int x = 1; x < components.get(i).size(); x++){
+                int curr_node = components.get(i).get(x);
+                cur_index = indexOf(prq, curr_node);
+                for(int y = 0; y < x; y++){
+                    if(cur_index < indexOf(prq, temp.get(y))){
+                        ArrayList<Integer> temp1 = new ArrayList<>();
+                        for(int z = y; z<x; z++){
+                            temp1.add(temp.get(z));
+                        }
+                        temp.set(y,curr_node);
+                        for(int z = 0; z<temp1.size(); z++){
+                            temp.set(y+1, temp1.get(z));
+                            y++;
+                        }
+                        prev = true;
+                        break;
+                    }
+                }
+                if(prev == false){
+                    temp.set(x,components.get(i).get(x));
+                }
+            }
+            components.set(i, temp);
+        }
+
+        System.out.println("Sorted Components:");
+        for(int i = 0; i < components.size(); i++){
+            System.out.println(components.get(i));
+            if(components.get(i).size() > count){
+                count = components.get(i).size();
+            }
+        }
+        int round = 0, j = 0;
+        while(round < count) {
+            for (int i = 0; i < components.size(); i++) {
+                if (components.get(i).size() > round) {
+                    priority_queue[j] = components.get(i).get(round);
+                    j++;
+                }
+            }
+            round++;
+        }
+    }
+
+    /*
+     * Generate a priority queue for transaction execution in Grid graph-online.
+     */
+    public static void generatePriorityQueueOnline(ArrayList<ArrayList<Integer>> components, int priorityq[]){
+        priority_queue = new int[total_nodes];
+
+        int count = 0;
+
+        //find snake-path in grid
+//        int gridsize = (int) Math.sqrt(total_nodes), k = 0;
+        int prq[] = new int[total_nodes];
+/*        for(int i=0;i<gridsize; i++){
+            for(int l=0; l<gridsize; l++){
+                if(i%2 == 0){
+                    prq[k] = i * gridsize + l;
+                    k++;
+                }
+                else{
+                    prq[k] = i * gridsize + (gridsize - l - 1);
+                    k++;
+                }
+            }
+        }*/
+
+        prq = priorityq;
+
+        for(int i = 0; i < components.size(); i++){
+            ArrayList<Integer> temp = components.get(i);
+            int cur_index = 0;
+            boolean prev = false;
+
+            for(int x = 1; x < components.get(i).size(); x++){
+                int curr_node = components.get(i).get(x);
+                cur_index = indexOf(prq, curr_node);
+                for(int y = 0; y < x; y++){
+                    if(cur_index < indexOf(prq, temp.get(y))){
+                        ArrayList<Integer> temp1 = new ArrayList<>();
+                        for(int z = y; z<x; z++){
+                            temp1.add(temp.get(z));
+                        }
+                        temp.set(y,curr_node);
+                        for(int z = 0; z<temp1.size(); z++){
+                            temp.set(y+1, temp1.get(z));
+                            y++;
+                        }
+                        prev = true;
+                        break;
+                    }
+                }
+                if(prev == false){
+                    temp.set(x,components.get(i).get(x));
+                }
+            }
+            components.set(i, temp);
+        }
+
+//        System.out.println("Sorted Components:");
+        for(int i = 0; i < components.size(); i++){
+//            System.out.println(components.get(i));
+            if(components.get(i).size() > count){
+                count = components.get(i).size();
+            }
+        }
+        int round = 0, j = 0;
+        while(round < count) {
+            for (int i = 0; i < components.size(); i++) {
+                if (components.get(i).size() > round) {
+                    priority_queue[j] = components.get(i).get(round);
+                    j++;
+                }
+            }
+            round++;
+        }
+    }
+
+    /*
      * Generate a priority queue for transaction execution in Grid graph.
      */
     public static void generatePriorityQueueClique(int cliquesize){
@@ -282,7 +441,7 @@ public class Main {
     }
 
     /*
-     * Generate Read-Write set for a transaction with random size.
+     * Generate Read-Write set for a transaction with random size for offline case.
      */
     public static ArrayList<Transaction> generateTransactions(int tot_obj, int tot_tx, int updt_rate){
         ArrayList<Transaction> txs = new ArrayList<Transaction>(tot_tx);
@@ -318,6 +477,47 @@ public class Main {
         }
         return txs;
     }
+	
+	    /*
+     * Generate Read-Write set for a transaction with random size for online case.
+     */
+    public static ArrayList<Transaction> generateTxsOnline(ArrayList<ArrayList<Integer>> objList, int tot_tx, int updt_rate){
+        ArrayList<Transaction> txs = new ArrayList<Transaction>(tot_tx);
+
+//        ArrayList<ArrayList<Integer>> objList = getRWList(total_objs, total_nodes);
+        for(int i=0;i<tot_tx;i++) {
+            List<Objects> ws = new ArrayList<Objects>();
+            List<Objects> rs = new ArrayList<Objects>();
+
+            List<Objects> rwset = setRWSetOnline(objList);
+
+            Random rand = new Random();
+            int rws_size = rwset.size();
+            int ws_size = rws_size * updt_rate / 100;
+            int rs_size = rws_size - ws_size;
+            int n = 0, sum = 0;
+
+            ArrayList<Integer> randList = getRandList(rws_size, 0, rwset.size()-1);
+//            System.out.println(randList);
+
+            while (n < randList.size()) {
+                if (sum < ws_size) {
+                    ws.add(rwset.get(randList.get(n)));
+                    sum = sum + rwset.get(randList.get(n)).getObj_size();
+                } else {
+                    rs.add(rwset.get(randList.get(n)));
+                }
+                n++;
+            }
+
+            List<Objects> rset = rs;
+            List<Objects> wset = ws;
+            Transaction tx = new Transaction(i + 1, rws_size, updt_rate, rset, wset,"IDLE",0,0,0,0);
+
+            txs.add(tx);
+        }
+        return txs;
+    }
 
     /*
      * Calculate length of a subgraph in Line graph based on longest shortest walk of any object
@@ -333,14 +533,14 @@ public class Main {
                 obj_node = objects.getNode();
                 if(abs(obj_node - curr_node) > l){
                     l = abs(obj_node - curr_node);
-                    System.out.println(l);
+//                    System.out.println(l);
                 }
             }
             for (Objects objects : wset) {
                 obj_node = objects.getNode();
                 if(abs(obj_node - curr_node) > l){
                     l = abs(obj_node - curr_node);
-                    System.out.println(l);
+//                    System.out.println(l);
                 }
             }
             curr_node++;
@@ -383,6 +583,43 @@ public class Main {
         }
         return txs;
     }
+	
+	    /*
+     * Generate Read-Write set for a transaction with fixed size - online.
+     */
+    public static ArrayList<Transaction> generateTxsOnline(ArrayList<ArrayList<Integer>> objList, int tot_tx, int updt_rate, int rws_size){
+        ArrayList<Transaction> txs = new ArrayList<Transaction>(tot_tx);
+
+//        ArrayList<ArrayList<Integer>> objList = getRWList(total_objs, total_nodes);
+        for(int i=0;i<tot_tx;i++) {
+            List<Objects> ws = new ArrayList<Objects>();
+            List<Objects> rs = new ArrayList<Objects>();
+
+            int ws_size = rws_size * updt_rate / 100;
+            int rs_size = rws_size - ws_size;
+            int n = 0, sum = 0;
+
+            List<Objects> rwset = setRWSetOnline(objList);
+            ArrayList<Integer> randList = getRandList(rws_size, 0, rwset.size()-1);
+
+            while (n < randList.size()) {
+                if (sum < ws_size) {
+                    ws.add(rwset.get(randList.get(n)));
+                    sum = sum + rwset.get(randList.get(n)).getObj_size();
+                } else {
+                    rs.add(rwset.get(randList.get(n)));
+                }
+                n++;
+            }
+
+            List<Objects> rset = rs;
+            List<Objects> wset = ws;
+            Transaction tx = new Transaction(i + 1, rws_size, updt_rate, rset, wset,"IDLE",0,0,0,0);
+
+            txs.add(tx);
+        }
+        return txs;
+    }
 
     /*
      * Generate a list of unique random numbers.
@@ -401,6 +638,29 @@ public class Main {
     }
 
     /*
+     * Generate a list of union of read-write sets to have different components.
+     */
+    public static ArrayList<ArrayList<Integer>> getRWList(int total_objs, int total_nodes){
+
+        ArrayList<ArrayList<Integer>> objList = new ArrayList<>();
+        int tot_comps = (int) sqrt(total_nodes);
+//        System.out.println(total_nodes);
+        Random rand = new Random();
+        int range = rand.nextInt(tot_comps) + 1;
+        for(int i=0;i<range;i++){
+            objList.add(new ArrayList<Integer>());
+        }
+
+        for(int i = 1; i < total_objs + 1; i++){
+            int j = rand.nextInt(range);
+//            System.out.println(j);
+            objList.get(j).add(new Integer(i));
+        }
+        System.out.println(objList);
+        return objList;
+    }
+
+    /*
      * Generate a random Read-Write set.
      */
     private static List<Objects> setRWSet(int rw_size, int total_objs){
@@ -413,10 +673,38 @@ public class Main {
             int x = rand.nextInt(total_objs);
             if (!randList.contains(x)) {
                 randList.add(x);
-                randList.add(x);
                 rw.add(objs.get(x));
                 sum = sum + objs.get(x).getObj_size();
             }
+        }
+        return rw;
+    }
+	
+	/*
+     * Generate a random Read-Write set - online.
+     */
+    private static List<Objects> setRWSetOnline(ArrayList<ArrayList<Integer>> objList){
+        List<Objects> rw = new ArrayList<>();
+        int sum = 0;
+        Random rand = new Random();
+        ArrayList<Integer> randList = new ArrayList<>();
+
+        //ArrayList<ArrayList<Integer>> objList = getRWList(total_objs, total_nodes);
+
+        int tot_comps = objList.size();
+        int j = rand.nextInt(tot_comps);
+
+        int max = objList.get(j).size();
+        int rw_size = rand.nextInt(max)+1;
+        while (sum<rw_size) {
+            int x = rand.nextInt(max);
+//            System.out.println("sum = "+sum+" rw_size = "+rw_size+" max = "+max+" x = "+x);
+            if (!randList.contains(x)) {
+                randList.add(x);
+                rw.add(objs.get((objList.get(j).get(x))-1));
+                sum = sum + objs.get((objList.get(j).get(x))-1).getObj_size();
+            }
+//            System.out.println("sum = "+sum+" rw_size = "+rw_size+" max = "+max+" x = "+x);
         }
         return rw;
     }
@@ -447,6 +735,102 @@ public class Main {
                 }
             }
             adjMatrix.add(dependent);
+        }
+        return adjMatrix;
+    }
+	
+	    /*
+     * Generate a transaction dependency graph based on objects positioned on the node -online.
+     */
+    private static ArrayList<ArrayList<Integer>> generateDependencyGraphOnline(ArrayList<ArrayList<Transaction>> txs, int total_nodes, int tx_num){
+        ArrayList<ArrayList<Integer>> adjMatrix = new ArrayList<>();
+
+        for(int i = 0;i<total_nodes;i++) {
+            ArrayList<Integer> dependent = new ArrayList<>(total_nodes);
+            for (int j = 0; j < total_nodes; j++) {
+                dependent.add(0);
+            }
+            adjMatrix.add(dependent);
+        }
+        /*System.out.println("adjacency matrix before:\n");
+        for (int i = 0; i < total_nodes; i++) {
+            for (int j = 0; j < total_nodes; j++) {
+                System.out.print(adjMatrix.get(i).get(j) + " ");
+            }
+            System.out.println("\n");
+        }*/
+
+        for(int i = 0;i<total_nodes;i++){
+            List<Objects> rs = txs.get(i).get(tx_num).getRset();
+            List<Objects> ws = txs.get(i).get(tx_num).getWset();
+
+            ArrayList<Integer> dependent1 = new ArrayList<>(total_nodes);
+            for(int j=0;j<total_nodes;j++){
+                dependent1.add(0);
+            }
+            for(int j=0;j<total_nodes;j++){
+                if(j != i) {
+                    boolean depends = false;
+                    List<Objects> rs1 = txs.get(j).get(tx_num).getRset();
+                    List<Objects> ws1 = txs.get(j).get(tx_num).getWset();
+                    for (int k = 0; k < ws.size(); k++) {
+                        Objects obj = ws.get(k);
+                        int obj_id = obj.getObj_id();
+                        for (int l = 0; l < ws1.size(); l++) {
+                            Objects obj1 = ws1.get(l);
+                            int obj_id1 = obj1.getObj_id();
+                            if (obj_id == obj_id1) {
+                                depends = true;
+                                break;
+                            }
+                        }
+                        if (depends == true) {
+                            break;
+                        }
+                        for (int l = 0; l < rs1.size(); l++) {
+                            Objects obj1 = rs1.get(l);
+                            int obj_id1 = obj1.getObj_id();
+                            if (obj_id == obj_id1) {
+                                depends = true;
+                                break;
+                            }
+                        }
+                        if (depends == true) {
+                            break;
+                        }
+                    }
+                    for (int k = 0; k < rs.size(); k++) {
+                        Objects obj = rs.get(k);
+                        int obj_id = obj.getObj_id();
+                        for (int l = 0; l < ws1.size(); l++) {
+                            Objects obj1 = ws1.get(l);
+                            int obj_id1 = obj1.getObj_id();
+                            if (obj_id == obj_id1) {
+                                depends = true;
+                                break;
+                            }
+                        }
+                        if (depends == true) {
+                            break;
+                        }
+                    }
+                    if (depends == true) {
+                        dependent1.set(j, 1);
+                    }
+                }
+            }
+            /*for (int j = 0; j < total_nodes; j++) {
+                System.out.print(dependent1.get(j) + " ");
+            }
+            System.out.println("\n");*/
+            adjMatrix.set(i,dependent1);
+        }
+        System.out.println("Transaction Conflict Graph (adjacency matrix):\n");
+        for (int i = 0; i < total_nodes; i++) {
+            for (int j = 0; j < total_nodes; j++) {
+                System.out.print(adjMatrix.get(i).get(j) + " ");
+            }
+            System.out.println("\n");
         }
         return adjMatrix;
     }
@@ -517,6 +901,42 @@ public class Main {
     }
 
     /*
+     * Find components from transaction dependency graph based on Read set and Write set.
+     */
+    private static ArrayList<ArrayList<Integer>> generateComponents(ArrayList<ArrayList<Transaction>> txs, int total_nodes, int tx_num){
+        ArrayList<ArrayList<Integer>> compArray = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> adjMatrix = generateDependencyGraphOnline(txs,total_nodes,tx_num);
+        ArrayList<Integer> nodes = new ArrayList<>(total_nodes);
+        for(int i = 0;i<total_nodes;i++) {
+            nodes.add(i);
+        }
+
+
+
+        while(nodes.size() > 0) {
+            ArrayList<Integer> comp = new ArrayList<>();
+            int i = 0;
+            comp.add(new Integer(nodes.get(0)));
+            nodes.remove(new Integer(nodes.get(0)));
+            int rounds = comp.size();
+            while (i < rounds) {
+                for (int j = 0; j < total_nodes; j++) {
+                    int conflict = adjMatrix.get(comp.get(i)).get(j);
+                    if (conflict == 1 && !comp.contains(new Integer(j))) {
+                        comp.add(new Integer(j));
+                        nodes.remove(new Integer(j));
+                        rounds++;
+                    }
+                }
+                i++;
+            }
+            compArray.add(comp);
+        }
+
+        return compArray;
+    }
+
+    /*
      * Retrieve node of a grid with node_id.
      */
     private static Node getNode(int n_id, Graphs g){
@@ -528,6 +948,39 @@ public class Main {
             nd = g.getNodes().get(j);
         }
         return nd;
+    }
+
+    /*
+     * Find Graph type online.
+     */
+    private static String getGraphType(int total_nodes, Graphs g){
+        ArrayList<Integer> neighbors = new ArrayList<>();
+        for(int i = 0; i<total_nodes; i++){
+            Node nd = g.getNodes().get(i);
+            int tot_neighbors = nd.getNeighbors().size();
+            if(!neighbors.contains(tot_neighbors)){
+                neighbors.add(tot_neighbors);
+            }
+        }
+        int count = neighbors.size();
+        if(neighbors.contains(2) && neighbors.contains(3) && neighbors.contains(4) && count == 3){
+            return "GRID";
+        }
+        else if(count == 1){
+            return "CLIQUE";
+        }
+        else if(neighbors.contains(1) && neighbors.contains(2) && count == 2){
+            return "LINE";
+        }
+        else if(!neighbors.contains(1) && count == 2){
+            return "CLUSTER";
+        }
+        else if(neighbors.contains(1) && neighbors.contains(2) && count == 3){
+            return "STAR";
+        }
+        else{
+            return "UNKNOWN";
+        }
     }
 
     /*
@@ -1177,88 +1630,102 @@ public class Main {
 
         System.out.println("\n*** ----------------------------- ***\n");
 
-        System.out.print("Choose Graph type: \n1->Line, 2->Clique, 3->Grid, 4->CLuster, 5->Star: ");
-        int graph_type = reader.nextInt();
-        if(graph_type == 1){
+		System.out.print("Algorithm Type [1->OFFLINE, 2->ONLINE]: ");
+        int alg = reader.nextInt();
+        if(alg == 1) {
+
+            System.out.print("Graph Type [1->Line, 2->Clique, 3->Grid, 4->CLuster, 5->Star]: ");
+            int graph_type = reader.nextInt();
+            if (graph_type == 1) {
 //            System.out.print("\nProvide the sub-graph length (l): ");
 //            subgraph_line = reader.nextInt();
-            System.out.print("\nProvide total number of nodes: ");
-            total_nodes = reader.nextInt();
-        }
-        else if(graph_type == 2){
-            System.out.print("\nProvide total number of nodes: ");
-            total_nodes = reader.nextInt();
-        }
-        else if(graph_type == 3) {
-            System.out.print("\nProvide Sub-grid size (n*n; n = N/k), k = ");
-            sub_grid = reader.nextInt();
-            System.out.print("\nProvide total number of nodes: ");
-            total_nodes = reader.nextInt();
-            grid_size = (int) Math.sqrt(total_nodes);
-        }
-        else if(graph_type == 4){
-            System.out.print("\nProvide the total number of clusters: ");
-            subgraph_cluster = reader.nextInt();
-            System.out.print("\nProvide the size of each cluster (complete graph): ");
-            cluster_size = reader.nextInt();
-            total_nodes = subgraph_cluster * cluster_size;
-        }
-        else if(graph_type == 5){
-            System.out.print("\nProvide the total number of rays: ");
-            subgraph_star = reader.nextInt();
-            System.out.print("\nProvide the number of nodes on each ray: ");
-            ray_nodes = reader.nextInt();
-            total_nodes = subgraph_star * ray_nodes + 1;
-        }
-        else{
-            System.out.println("Invalid option.");
-            System.exit(1);
-        }
-        System.out.print("\nProvide total number of objects: ");
-        total_objs = reader.nextInt();
-
-        System.out.print("\nProvide total transactions per node: ");
-        total_txs = reader.nextInt();
-
-
-        System.out.println("\n\tCase 1: Read-Write set size for a TX is fixed.");
-        System.out.println("\tCase 2: Read-Write set size for a TX is random.");
-        System.out.print("Choose your option (1/2): ");
-        int option = reader.nextInt();
-
-
-        ArrayList<Integer> obj_home = getRandList(total_objs, 1, total_nodes);
-        for (int i = 0; i < total_objs; i++) {
-            Objects obj = new Objects(i + 1, 1, obj_home.get(i));
-            objs.add(obj);
-        }
-
-
-        if (option == 1) {
-            for (int x = 0; x < total_nodes; x++) {
-                txs = generateTransactions(total_objs, total_txs, update_rate, rwset_size);
-                nodal_txs.add(txs);
+                System.out.print("Total number of nodes: ");
+                total_nodes = reader.nextInt();
+            } else if (graph_type == 2) {
+                System.out.print("Total number of nodes: ");
+                total_nodes = reader.nextInt();
+            } else if (graph_type == 3) {
+                System.out.print("Total number of nodes: ");
+                total_nodes = reader.nextInt();
+                System.out.print("Sub-grid size (n*n; n = N/k), k = ");
+                sub_grid = reader.nextInt();
+                grid_size = (int) Math.sqrt(total_nodes);
+            } else if (graph_type == 4) {
+                System.out.print("Total number of clusters: ");
+                subgraph_cluster = reader.nextInt();
+                System.out.print("Size of each cluster (complete graph): ");
+                cluster_size = reader.nextInt();
+                total_nodes = subgraph_cluster * cluster_size;
+            } else if (graph_type == 5) {
+                System.out.print("Total number of rays: ");
+                subgraph_star = reader.nextInt();
+                System.out.print("Number of nodes on each ray: ");
+                ray_nodes = reader.nextInt();
+                total_nodes = subgraph_star * ray_nodes + 1;
+            } else {
+                System.out.println("Invalid option.");
+                System.exit(1);
             }
-        }
-        else if (option == 2) {
-            for (int x = 0; x < total_nodes; x++) {
-                txs = generateTransactions(total_objs, total_txs, update_rate);
-                nodal_txs.add(txs);
+            System.out.print("Total number of objects: ");
+            total_objs = reader.nextInt();
+
+            System.out.print("Total transactions per node: ");
+            total_txs = reader.nextInt();
+
+
+//        System.out.println("\n\tCase 1: Read-Write set size for a TX is fixed.");
+//        System.out.println("\tCase 2: Read-Write set size for a TX is random.");
+            System.out.print("Read-Write Set size [1->Fixed Size, 2->Random Size]: ");
+            int option = reader.nextInt();
+
+
+            ArrayList<Integer> obj_home = getRandList(total_objs, 1, total_nodes);
+            for (int i = 0; i < total_objs; i++) {
+                Objects obj = new Objects(i + 1, 1, obj_home.get(i));
+                objs.add(obj);
             }
-        }
-        else {
-            System.out.println("Invalid choice!");
-            System.exit(0);
-        }
 
 
+            if (option == 1) {
+                if (alg == 1) {
+                    for (int x = 0; x < total_nodes; x++) {
+                        txs = generateTransactions(total_objs, total_txs, update_rate, rwset_size);
+                        nodal_txs.add(txs);
+                    }
+                } else {
+                    ArrayList<ArrayList<Integer>> objList = getRWList(total_objs, total_nodes);
+                    for (int x = 0; x < total_nodes; x++) {
+                        txs = generateTxsOnline(objList, total_txs, update_rate);
+                        nodal_txs.add(txs);
+                    }
 
+                }
+            } else if (option == 2) {
+                if (alg == 1) {
+                    for (int x = 0; x < total_nodes; x++) {
+                        txs = generateTransactions(total_objs, total_txs, update_rate);
+                        nodal_txs.add(txs);
+                    }
+                } else {
+                    ArrayList<ArrayList<Integer>> objList = getRWList(total_objs, total_nodes);
+                    for (int x = 0; x < total_nodes; x++) {
+                        txs = generateTxsOnline(objList, total_txs, update_rate);
+                        nodal_txs.add(txs);
+                    }
+                }
+            } else {
+                System.out.println("Invalid choice!");
+                System.exit(0);
+            }
+
+
+        /*ArrayList<ArrayList<Integer>> objList = getRWList(total_objs, total_nodes);
         for(int i=0;i<total_txs;i++){
             List<Objects> ws = new ArrayList<Objects>();
             List<Objects> rs = new ArrayList<Objects>();
-            int ws_size = rwset_size * update_rate/100;
-            int rs_size = (rwset_size) - ws_size;
-            List<Objects> rwset = setRWSet(rwset_size,total_objs);
+            List<Objects> rwset = setRWSet(objList);
+            int ws_size = (rwset.size()) * update_rate/100;
+            int rs_size = (rwset.size()) - ws_size;
             int n = 0, sum = 0;
             Random rand = new Random();
             ArrayList<Integer> randList = new ArrayList<Integer>();
@@ -1285,96 +1752,94 @@ public class Main {
             Transaction tx = new Transaction(i+1, rwset_size, update_rate,rset,wset,"IDLE",0,0,0,0);
 
             txs.add(tx);
-        }
+        }*/
 
-        System.out.println("---------------------------------");
-        System.out.println("Tx\trw-set-size\tupdate-rate");
-        System.out.println("---------------------------------");
-        for(int i=0;i<total_txs;i++){
-            System.out.print("T"+txs.get(i).getTx_id()+"   \t"+txs.get(i).getRw_set_size()+"\t\t"+txs.get(i).getUpdate_rate()+"\t\tRead Set(Objects) ==> (");
-            for(int j=0;j<txs.get(i).getRset().size();j++){
+            System.out.println("---------------------------------");
+            System.out.println("Tx\trw-set-size\tupdate-rate");
+            System.out.println("---------------------------------");
+            for (int i = 0; i < total_txs; i++) {
+                System.out.print("T" + txs.get(i).getTx_id() + "   \t" + txs.get(i).getRw_set_size() + "\t\t" + txs.get(i).getUpdate_rate() + "\t\tRead Set(Objects) ==> (");
+                for (int j = 0; j < txs.get(i).getRset().size(); j++) {
 //                System.out.print("o"+txs.get(i).getRset().get(j).getObj_id()+":"+txs.get(i).getRset().get(j).getObj_size()+" ");
-                System.out.print(txs.get(i).getRset().get(j).getObj_id());
-                if(j<txs.get(i).getRset().size()-1){
-                    System.out.print(", ");
+                    System.out.print(txs.get(i).getRset().get(j).getObj_id());
+                    if (j < txs.get(i).getRset().size() - 1) {
+                        System.out.print(", ");
+                    }
                 }
-            }
-            System.out.print(")\n\t\t\t\t\t\tWrite Set(Objects) ==> (");
-            for(int j=0;j<txs.get(i).getWset().size();j++){
-                System.out.print(txs.get(i).getWset().get(j).getObj_id());
-                if(j<txs.get(i).getWset().size()-1){
-                    System.out.print(", ");
+                System.out.print(")\n\t\t\t\t\t\tWrite Set(Objects) ==> (");
+                for (int j = 0; j < txs.get(i).getWset().size(); j++) {
+                    System.out.print(txs.get(i).getWset().get(j).getObj_id());
+                    if (j < txs.get(i).getWset().size() - 1) {
+                        System.out.print(", ");
+                    }
                 }
+                System.out.print(")\n");
             }
-            System.out.print(")\n");
-        }
 
-        System.out.println("\n---------------------------------\nNodes vs. Transactions\n---------------------------------");
-        for(int i=0;i<total_nodes;i++){
-            System.out.print("N"+(i+1)+"  \tT"+nodal_txs.get(i).get(0).getTx_id()+"   \t"+nodal_txs.get(i).get(0).getRw_set_size()+"\t\t"+nodal_txs.get(i).get(0).getUpdate_rate()+"\t\tRead Set(Objects) ==> (");
-            for(int j=0;j<nodal_txs.get(i).get(0).getRset().size();j++){
+            System.out.println("\n---------------------------------\nNodes vs. Transactions\n---------------------------------");
+            for (int i = 0; i < total_nodes; i++) {
+                System.out.print("N" + (i + 1) + "  \tT" + nodal_txs.get(i).get(0).getTx_id() + "   \t" + nodal_txs.get(i).get(0).getRw_set_size() + "\t\t" + nodal_txs.get(i).get(0).getUpdate_rate() + "\t\tRead Set(Objects) ==> (");
+                for (int j = 0; j < nodal_txs.get(i).get(0).getRset().size(); j++) {
 //                System.out.print("o"+txs.get(i).getRset().get(j).getObj_id()+":"+txs.get(i).getRset().get(j).getObj_size()+" ");
-                System.out.print(nodal_txs.get(i).get(0).getRset().get(j).getObj_id());
-                if(j<nodal_txs.get(i).get(0).getRset().size()-1){
-                    System.out.print(", ");
+                    System.out.print(nodal_txs.get(i).get(0).getRset().get(j).getObj_id());
+                    if (j < nodal_txs.get(i).get(0).getRset().size() - 1) {
+                        System.out.print(", ");
+                    }
                 }
-            }
-            System.out.print(")\n\t\t\t\t\t\t\t\tWrite Set(Objects) ==> (");
-            for(int j=0;j<nodal_txs.get(i).get(0).getWset().size();j++){
-                System.out.print(nodal_txs.get(i).get(0).getWset().get(j).getObj_id());
-                if(j<nodal_txs.get(i).get(0).getWset().size()-1){
-                    System.out.print(", ");
+                System.out.print(")\n\t\t\t\t\t\t\t\tWrite Set(Objects) ==> (");
+                for (int j = 0; j < nodal_txs.get(i).get(0).getWset().size(); j++) {
+                    System.out.print(nodal_txs.get(i).get(0).getWset().get(j).getObj_id());
+                    if (j < nodal_txs.get(i).get(0).getWset().size() - 1) {
+                        System.out.print(", ");
+                    }
                 }
+                System.out.print(")\n");
             }
-            System.out.print(")\n");
-        }
-        Graphs grid = new Graphs();
-        Graphs clique = new Graphs();
-        Graphs line = new Graphs();
-        Graphs star = new Graphs();
-        Graphs cluster = new Graphs();
-        if(graph_type == 1){
-            line = Graphs.generateLineGraph(total_nodes);
+            Graphs grid = new Graphs();
+            Graphs clique = new Graphs();
+            Graphs line = new Graphs();
+            Graphs star = new Graphs();
+            Graphs cluster = new Graphs();
+            if (graph_type == 1) {
+                line = Graphs.generateLineGraph(total_nodes);
 //            int l = calculateL(nodal_txs,0);
 //            generatePriorityQueueLine(total_nodes,total_nodes);
-            executeLine(line);
-        }
-        else if(graph_type == 2){
-            clique = Graphs.generateCliqueGraph(total_nodes);
-            generatePriorityQueueClique(total_nodes);
-            executeClique(clique);
-        }
-        else if(graph_type == 3) {
-            grid = Graphs.generateGridGraph(grid_size);
+                executeLine(line);
+            } else if (graph_type == 2) {
+                clique = Graphs.generateCliqueGraph(total_nodes);
+                generatePriorityQueueClique(total_nodes);
+                executeClique(clique);
+            } else if (graph_type == 3) {
+                grid = Graphs.generateGridGraph(grid_size);
 
-            System.out.println("\n-----------------------------------------------\n\t  Grid graph of grid size (" + grid_size + " x " + grid_size + ")\n-----------------------------------------------");
-            for (int i = 0; i < grid_size; i++) {
-                for (int j = 0; j < grid_size; j++) {
-                    System.out.print(grid.getNodes().get(i * grid_size + j).getValue() + "\t");
-                }
-                System.out.println("\n");
-            }
-
-            System.out.println("\n-----------------------------------------------\n\t  Initial distribution of objects in grid\n-----------------------------------------------");
-            for (int i = 0; i < grid_size; i++) {
-                for (int j = 0; j < grid_size; j++) {
-                    int home = -1;
-                    for (int k = 0; k < total_objs; k++) {
-                        int nd = objs.get(k).getNode();
-                        if (nd == i * grid_size + j) {
-                            home = objs.get(k).getObj_id();
-                        }
+                System.out.println("\n-----------------------------------------------\n\t  Grid graph of grid size (" + grid_size + " x " + grid_size + ")\n-----------------------------------------------");
+                for (int i = 0; i < grid_size; i++) {
+                    for (int j = 0; j < grid_size; j++) {
+                        System.out.print(grid.getNodes().get(i * grid_size + j).getValue() + "\t");
                     }
-                    System.out.print(home + "\t");
+                    System.out.println("\n");
                 }
-                System.out.println("\n");
-            }
 
-            generatePriorityQueueGrid(grid_size, sub_grid);
-            System.out.println("Priority queue:");
-            for (int i = 0; i < total_nodes; i++) {
-                System.out.print(priority_queue[i] + " ");
-            }
+                System.out.println("\n-----------------------------------------------\n\t  Initial distribution of objects in grid\n-----------------------------------------------");
+                for (int i = 0; i < grid_size; i++) {
+                    for (int j = 0; j < grid_size; j++) {
+                        int home = -1;
+                        for (int k = 0; k < total_objs; k++) {
+                            int nd = objs.get(k).getNode();
+                            if (nd == i * grid_size + j) {
+                                home = objs.get(k).getObj_id();
+                            }
+                        }
+                        System.out.print(home + "\t");
+                    }
+                    System.out.println("\n");
+                }
+
+                generatePriorityQueueGrid(grid_size, sub_grid);
+                System.out.println("Priority queue:");
+                for (int i = 0; i < total_nodes; i++) {
+                    System.out.print(priority_queue[i] + " ");
+                }
 
         /*System.out.println("\n-----------------------------------------------\n\t  Dependency Graph (Adjancency matrix)\n-----------------------------------------------");
         ArrayList<ArrayList<Integer>> depend = new ArrayList<>();
@@ -1388,80 +1853,383 @@ public class Main {
             System.out.println("\n");
         }*/
 
-            System.out.println("\n-----------------------------------------------\nTransaction Conflict Graph\n-----------------------------------------------");
-            ArrayList<ArrayList<Integer>> dependtx = new ArrayList<>();
-            for (int i = 0; i < total_nodes; i++) {
-                dependtx = generateConflictGraph(nodal_txs, total_nodes, 0);
-            }
-            for (int i = 0; i < total_nodes; i++) {
-                for (int j = 0; j < total_nodes; j++) {
-                    System.out.print(dependtx.get(i).get(j) + " ");
+                System.out.println("\n-----------------------------------------------\nTransaction Dependency Graph\n-----------------------------------------------");
+                ArrayList<ArrayList<Integer>> dependtx = new ArrayList<>();
+                for (int i = 0; i < total_nodes; i++) {
+                    dependtx = generateConflictGraph(nodal_txs, total_nodes, 0);
                 }
-                System.out.println("\n");
-            }
-
-            System.out.println("\n-----------------------------------------------\nTransaction execution\n-----------------------------------------------");
-            executeGrid(grid);
-        }
-        else if(graph_type == 4){
-            cluster = Graphs.generateClusterGraph(total_nodes,subgraph_cluster,cluster_size);
-            generatePriorityQueueCluster(subgraph_cluster,cluster_size);
-            System.out.println("Priority queue:");
-            for (int i = 0; i < total_nodes; i++) {
-                System.out.print(priority_queue[i] + " ");
-            }
-
-            System.out.println("\n-----------------------------------------------\nTransaction Conflict Graph\n-----------------------------------------------");
-            ArrayList<ArrayList<Integer>> dependtx = new ArrayList<>();
-            for (int i = 0; i < total_nodes; i++) {
-                dependtx = generateConflictGraph(nodal_txs, total_nodes, 0);
-            }
-            for (int i = 0; i < total_nodes; i++) {
-                for (int j = 0; j < total_nodes; j++) {
-                    System.out.print(dependtx.get(i).get(j) + " ");
+                for (int i = 0; i < total_nodes; i++) {
+                    for (int j = 0; j < total_nodes; j++) {
+                        System.out.print(dependtx.get(i).get(j) + " ");
+                    }
+                    System.out.println("\n");
                 }
-                System.out.println("\n");
+
+                System.out.println("\n-----------------------------------------------\nComponents of Transaction Conflict Graph\n-----------------------------------------------");
+                ArrayList<ArrayList<Integer>> components = generateComponents(nodal_txs, total_nodes, 0);
+
+                System.out.println("Components of the conflict graph:\n");
+                for (int i = 0; i < components.size(); i++) {
+                    System.out.print("C" + (i + 1) + ":\t(");
+                    for (int j = 0; j < components.get(i).size(); j++) {
+                        System.out.print(components.get(i).get(j) + " ");
+                    }
+                    System.out.print(")\n");
+                }
+
+
+                System.out.println("\n-----------------------------------------------\nTransaction execution\n-----------------------------------------------");
+                executeGrid(grid);
+            } else if (graph_type == 4) {
+                cluster = Graphs.generateClusterGraph(total_nodes, subgraph_cluster, cluster_size);
+                generatePriorityQueueCluster(subgraph_cluster, cluster_size);
+                System.out.println("Priority queue:");
+                for (int i = 0; i < total_nodes; i++) {
+                    System.out.print(priority_queue[i] + " ");
+                }
+
+                System.out.println("\n-----------------------------------------------\nTransaction Conflict Graph\n-----------------------------------------------");
+                ArrayList<ArrayList<Integer>> dependtx = new ArrayList<>();
+                for (int i = 0; i < total_nodes; i++) {
+                    dependtx = generateConflictGraph(nodal_txs, total_nodes, 0);
+                }
+                for (int i = 0; i < total_nodes; i++) {
+                    for (int j = 0; j < total_nodes; j++) {
+                        System.out.print(dependtx.get(i).get(j) + " ");
+                    }
+                    System.out.println("\n");
+                }
+
+                System.out.println("\n-----------------------------------------------\nTransaction execution\n-----------------------------------------------");
+                executeCluster(cluster, cluster_size);
+            } else if (graph_type == 5) {
+                star = Graphs.generateStarGraph(total_nodes, subgraph_star, ray_nodes);
+                generatePriorityQueueStar(subgraph_star, ray_nodes);
+                executeStar(star, ray_nodes);
             }
 
-            System.out.println("\n-----------------------------------------------\nTransaction execution\n-----------------------------------------------");
-            executeCluster(cluster,cluster_size);
-        }
-        else if(graph_type == 5){
-            star = Graphs.generateStarGraph(total_nodes, subgraph_star, ray_nodes);
-            generatePriorityQueueStar(subgraph_star,ray_nodes);
-            executeStar(star,ray_nodes);
-        }
-
-        System.out.println("Total execution time for each node\nNode\tRW Set\tRSET\tWSET\tCONFLICTS\tExec time\tComm Cost");
-        for(int i = 0;i<total_nodes;i++){
-            int exec_time = 0,rwsetsize=0,rset = 0, wset = 0,conflict = 0,commcost = 0;
-            for(int j =0;j<total_txs;j++){
-                exec_time += nodal_txs.get(i).get(j).getExecution_time();
-                rwsetsize += nodal_txs.get(i).get(j).getRw_set_size();
-                rset += nodal_txs.get(i).get(j).getRset().size();
-                wset += nodal_txs.get(i).get(j).getWset().size();
-                conflict += nodal_txs.get(i).get(j).getConflicts();
+            System.out.println("Total execution time for each node\nNode\tRW Set\tRSET\tWSET\tCONFLICTS\tExec time\tComm Cost");
+            for (int i = 0; i < total_nodes; i++) {
+                int exec_time = 0, rwsetsize = 0, rset = 0, wset = 0, conflict = 0, commcost = 0;
+                for (int j = 0; j < total_txs; j++) {
+                    exec_time += nodal_txs.get(i).get(j).getExecution_time();
+                    rwsetsize += nodal_txs.get(i).get(j).getRw_set_size();
+                    rset += nodal_txs.get(i).get(j).getRset().size();
+                    wset += nodal_txs.get(i).get(j).getWset().size();
+                    conflict += nodal_txs.get(i).get(j).getConflicts();
 //                if(nodal_txs.get(i).get(j).getComm_cost() > commcost) {
                     commcost += nodal_txs.get(i).get(j).getComm_cost();
 //                }
+                }
+                System.out.println("N" + i + "\t: \t  " + rwsetsize + "\t" + rset + "\t\t" + wset + "\t\t\t" + conflict + "\t\t  " + exec_time + "\t\t\t " + commcost);
             }
-            System.out.println("N"+i+"\t: \t  "+rwsetsize+"\t"+rset+"\t\t"+wset+"\t\t\t"+conflict+"\t\t  "+exec_time+"\t\t\t "+commcost);
-        }
 
-        System.out.println("Based on priority:");
-        for(int i = 0;i<total_nodes;i++){
-            int exec_time = 0,rwsetsize=0, rset = 0, wset = 0,conflict = 0,commcost=0;
-            for(int j =0;j<total_txs;j++){
-                exec_time += nodal_txs.get(priority_queue[i]).get(j).getExecution_time();
-                rwsetsize += nodal_txs.get(priority_queue[i]).get(j).getRw_set_size();
-                rset += nodal_txs.get(priority_queue[i]).get(j).getRset().size();
-                wset += nodal_txs.get(priority_queue[i]).get(j).getWset().size();
-                conflict += nodal_txs.get(priority_queue[i]).get(j).getConflicts();
+            System.out.println("Based on priority:");
+            for (int i = 0; i < total_nodes; i++) {
+                int exec_time = 0, rwsetsize = 0, rset = 0, wset = 0, conflict = 0, commcost = 0;
+                for (int j = 0; j < total_txs; j++) {
+                    exec_time += nodal_txs.get(priority_queue[i]).get(j).getExecution_time();
+                    rwsetsize += nodal_txs.get(priority_queue[i]).get(j).getRw_set_size();
+                    rset += nodal_txs.get(priority_queue[i]).get(j).getRset().size();
+                    wset += nodal_txs.get(priority_queue[i]).get(j).getWset().size();
+                    conflict += nodal_txs.get(priority_queue[i]).get(j).getConflicts();
 //                if(nodal_txs.get(priority_queue[i]).get(j).getComm_cost() > commcost) {
                     commcost += nodal_txs.get(priority_queue[i]).get(j).getComm_cost();
 //                }
+                }
+                System.out.println("N" + priority_queue[i] + "\t" + rwsetsize + "\t" + rset + "\t" + wset + "\t" + conflict + "\t" + exec_time + "\t" + commcost);
             }
-            System.out.println("N"+priority_queue[i]+"\t"+rwsetsize+"\t"+rset+"\t"+wset+"\t"+conflict+"\t"+exec_time+"\t"+commcost);
+        }
+        else if (alg == 2){
+            System.out.print("Graph Type [1->Line, 2->Clique, 3->Grid, 4->CLuster, 5->Star]: ");
+            int graph_type = reader.nextInt();
+            if (graph_type == 1) {
+                System.out.print("Total number of nodes: ");
+                total_nodes = reader.nextInt();
+            } else if (graph_type == 2) {
+                System.out.print("Total number of nodes: ");
+                total_nodes = reader.nextInt();
+            } else if (graph_type == 3) {
+                System.out.print("Total number of nodes: ");
+                total_nodes = reader.nextInt();
+                sub_grid = 1;
+                grid_size = (int) Math.sqrt(total_nodes);
+            } else if (graph_type == 4) {
+                System.out.print("Total number of clusters: ");
+                subgraph_cluster = reader.nextInt();
+                System.out.print("Size of each cluster (complete graph): ");
+                cluster_size = reader.nextInt();
+                total_nodes = subgraph_cluster * cluster_size;
+            } else if (graph_type == 5) {
+                System.out.print("Total number of rays: ");
+                subgraph_star = reader.nextInt();
+                System.out.print("Number of nodes on each ray: ");
+                ray_nodes = reader.nextInt();
+                total_nodes = subgraph_star * ray_nodes + 1;
+            } else {
+                System.out.println("Invalid option.");
+                System.exit(1);
+            }
+            Random ran = new Random();
+            total_objs = ran.nextInt(total_nodes/2 + 1) + total_nodes/2;
+            total_txs = 2;
+
+            ArrayList<Integer> obj_home = getRandList(total_objs, 1, total_nodes);
+            for (int i = 0; i < total_objs; i++) {
+                Objects obj = new Objects(i + 1, 1, obj_home.get(i));
+                objs.add(obj);
+            }
+
+            ArrayList<ArrayList<Integer>> objList = getRWList(total_objs, total_nodes);
+            for (int x = 0; x < total_nodes; x++) {
+                txs = generateTxsOnline(objList, total_txs, update_rate);
+                nodal_txs.add(txs);
+            }
+
+            System.out.println("\n---------------------------------\nNodes vs. Transactions\n---------------------------------");
+            for (int i = 0; i < total_nodes; i++) {
+                System.out.print("N" + (i + 1) + "  \tT" + nodal_txs.get(i).get(0).getTx_id() + "   \t" + nodal_txs.get(i).get(0).getRw_set_size() + "\t\t" + nodal_txs.get(i).get(0).getUpdate_rate() + "\t\tRead Set(Objects) ==> (");
+                for (int j = 0; j < nodal_txs.get(i).get(0).getRset().size(); j++) {
+//                System.out.print("o"+txs.get(i).getRset().get(j).getObj_id()+":"+txs.get(i).getRset().get(j).getObj_size()+" ");
+                    System.out.print(nodal_txs.get(i).get(0).getRset().get(j).getObj_id());
+                    if (j < nodal_txs.get(i).get(0).getRset().size() - 1) {
+                        System.out.print(", ");
+                    }
+                }
+                System.out.print(")\n\t\t\t\t\t\t\t\tWrite Set(Objects) ==> (");
+                for (int j = 0; j < nodal_txs.get(i).get(0).getWset().size(); j++) {
+                    System.out.print(nodal_txs.get(i).get(0).getWset().get(j).getObj_id());
+                    if (j < nodal_txs.get(i).get(0).getWset().size() - 1) {
+                        System.out.print(", ");
+                    }
+                }
+                System.out.print(")\n");
+            }
+            Graphs grid = new Graphs();
+            Graphs clique = new Graphs();
+            Graphs line = new Graphs();
+            Graphs star = new Graphs();
+            Graphs cluster = new Graphs();
+            if (graph_type == 1) {
+                line = Graphs.generateLineGraph(total_nodes);
+                ArrayList<ArrayList<Integer>> components = generateComponents(nodal_txs, total_nodes, 0);
+
+                System.out.println("Components of the conflict graph:\n");
+                for (int i = 0; i < components.size(); i++) {
+                    System.out.print("C" + (i + 1) + ":\t(");
+                    for (int j = 0; j < components.get(i).size(); j++) {
+                        System.out.print(components.get(i).get(j) + " ");
+                    }
+                    System.out.print(")\n");
+                }
+
+                generatePriorityQueueLine(total_nodes, total_txs-1);
+                generatePriorityQueueOnline(components, priority_queue);
+                System.out.println("Priority queue:");
+                for (int i = 0; i < total_nodes; i++) {
+                    System.out.print(priority_queue[i] + " ");
+                }
+                executeLine(line);
+            } else if (graph_type == 2) {
+                clique = Graphs.generateCliqueGraph(total_nodes);
+                ArrayList<ArrayList<Integer>> components = generateComponents(nodal_txs, total_nodes, 0);
+
+                System.out.println("Components of the conflict graph:\n");
+                for (int i = 0; i < components.size(); i++) {
+                    System.out.print("C" + (i + 1) + ":\t(");
+                    for (int j = 0; j < components.get(i).size(); j++) {
+                        System.out.print(components.get(i).get(j) + " ");
+                    }
+                    System.out.print(")\n");
+                }
+
+                generatePriorityQueueClique(total_nodes);
+                generatePriorityQueueOnline(components,priority_queue);
+                System.out.println("Priority queue:");
+                for (int i = 0; i < total_nodes; i++) {
+                    System.out.print(priority_queue[i] + " ");
+                }
+                executeClique(clique);
+            } else if (graph_type == 3) {
+                grid = Graphs.generateGridGraph(grid_size);
+
+                System.out.println("\n-----------------------------------------------\n\t  Grid graph of grid size (" + grid_size + " x " + grid_size + ")\n-----------------------------------------------");
+                for (int i = 0; i < grid_size; i++) {
+                    for (int j = 0; j < grid_size; j++) {
+                        System.out.print(grid.getNodes().get(i * grid_size + j).getValue() + "\t");
+                    }
+                    System.out.println("\n");
+                }
+
+                System.out.println("\n-----------------------------------------------\n\t  Initial distribution of objects in grid\n-----------------------------------------------");
+                for (int i = 0; i < grid_size; i++) {
+                    for (int j = 0; j < grid_size; j++) {
+                        int home = -1;
+                        for (int k = 0; k < total_objs; k++) {
+                            int nd = objs.get(k).getNode();
+                            if (nd == i * grid_size + j) {
+                                home = objs.get(k).getObj_id();
+                            }
+                        }
+                        System.out.print(home + "\t");
+                    }
+                    System.out.println("\n");
+                }
+
+//                System.out.println("\n-----------------------------------------------\nComponents of Transaction Conflict Graph\n-----------------------------------------------");
+                ArrayList<ArrayList<Integer>> components = generateComponents(nodal_txs, total_nodes, 0);
+
+                System.out.println("Components of the conflict graph:\n");
+                for (int i = 0; i < components.size(); i++) {
+                    System.out.print("C" + (i + 1) + ":\t(");
+                    for (int j = 0; j < components.get(i).size(); j++) {
+                        System.out.print(components.get(i).get(j) + " ");
+                    }
+                    System.out.print(")\n");
+                }
+
+                generatePriorityQueueOnlineGrid(components);
+                System.out.println("Priority queue:");
+                for (int i = 0; i < total_nodes; i++) {
+                    System.out.print(priority_queue[i] + " ");
+                }
+
+                System.out.println("\n-----------------------------------------------\nTransaction Dependency Graph\n-----------------------------------------------");
+                ArrayList<ArrayList<Integer>> dependtx = new ArrayList<>();
+                for (int i = 0; i < total_nodes; i++) {
+                    dependtx = generateConflictGraph(nodal_txs, total_nodes, 0);
+                }
+                for (int i = 0; i < total_nodes; i++) {
+                    for (int j = 0; j < total_nodes; j++) {
+                        System.out.print(dependtx.get(i).get(j) + " ");
+                    }
+                    System.out.println("\n");
+                }
+
+                System.out.println("\n-----------------------------------------------\nTransaction execution\n-----------------------------------------------");
+
+                executeGrid(grid);
+            }
+            else if (graph_type == 4) {
+                cluster = Graphs.generateClusterGraph(total_nodes, subgraph_cluster, cluster_size);
+//                System.out.println("\n-----------------------------------------------\nComponents of Transaction Conflict Graph\n-----------------------------------------------");
+                ArrayList<ArrayList<Integer>> components = generateComponents(nodal_txs, total_nodes, 0);
+
+                System.out.println("Components of the conflict graph:\n");
+                for (int i = 0; i < components.size(); i++) {
+                    System.out.print("C" + (i + 1) + ":\t(");
+                    for (int j = 0; j < components.get(i).size(); j++) {
+                        System.out.print(components.get(i).get(j) + " ");
+                    }
+                    System.out.print(")\n");
+                }
+
+                generatePriorityQueueCluster(subgraph_cluster, cluster_size);
+                generatePriorityQueueOnline(components, priority_queue);
+                System.out.println("Priority queue:");
+                for (int i = 0; i < total_nodes; i++) {
+                    System.out.print(priority_queue[i] + " ");
+                }
+
+                System.out.println("\n-----------------------------------------------\nTransaction Dependency Graph\n-----------------------------------------------");
+                ArrayList<ArrayList<Integer>> dependtx = new ArrayList<>();
+                for (int i = 0; i < total_nodes; i++) {
+                    dependtx = generateConflictGraph(nodal_txs, total_nodes, 0);
+                }
+                for (int i = 0; i < total_nodes; i++) {
+                    for (int j = 0; j < total_nodes; j++) {
+                        System.out.print(dependtx.get(i).get(j) + " ");
+                    }
+                    System.out.println("\n");
+                }
+
+                System.out.println("\n-----------------------------------------------\nTransaction execution\n-----------------------------------------------");
+                executeCluster(cluster, cluster_size);
+            }
+            else if (graph_type == 5) {
+                star = Graphs.generateStarGraph(total_nodes, subgraph_star, ray_nodes);
+                ArrayList<ArrayList<Integer>> components = generateComponents(nodal_txs, total_nodes, 0);
+
+                System.out.println("Components of the conflict graph:\n");
+                for (int i = 0; i < components.size(); i++) {
+                    System.out.print("C" + (i + 1) + ":\t(");
+                    for (int j = 0; j < components.get(i).size(); j++) {
+                        System.out.print(components.get(i).get(j) + " ");
+                    }
+                    System.out.print(")\n");
+                }
+
+                generatePriorityQueueStar(subgraph_star, ray_nodes);
+                generatePriorityQueueOnline(components, priority_queue);
+                System.out.println("Priority queue:");
+                for (int i = 0; i < total_nodes; i++) {
+                    System.out.print(priority_queue[i] + " ");
+                }
+                executeStar(star, ray_nodes);
+            }
+
+            System.out.println("Total execution time for each node\nNode\tRW Set\tRSET\tWSET\tCONFLICTS\tExec time\tComm Cost");
+            for (int i = 0; i < total_nodes; i++) {
+                int exec_time = 0, rwsetsize = 0, rset = 0, wset = 0, conflict = 0, commcost = 0;
+                for (int j = 0; j < total_txs; j++) {
+                    exec_time += nodal_txs.get(i).get(j).getExecution_time();
+                    rwsetsize += nodal_txs.get(i).get(j).getRw_set_size();
+                    rset += nodal_txs.get(i).get(j).getRset().size();
+                    wset += nodal_txs.get(i).get(j).getWset().size();
+                    conflict += nodal_txs.get(i).get(j).getConflicts();
+//                if(nodal_txs.get(i).get(j).getComm_cost() > commcost) {
+                    commcost += nodal_txs.get(i).get(j).getComm_cost();
+//                }
+                }
+                System.out.println("N" + i + "\t: \t  " + rwsetsize + "\t" + rset + "\t\t" + wset + "\t\t\t" + conflict + "\t\t  " + exec_time + "\t\t\t " + commcost);
+            }
+
+            System.out.println("Based on priority:");
+            for (int i = 0; i < total_nodes; i++) {
+                int exec_time = 0, rwsetsize = 0, rset = 0, wset = 0, conflict = 0, commcost = 0;
+                for (int j = 0; j < total_txs; j++) {
+                    exec_time += nodal_txs.get(priority_queue[i]).get(j).getExecution_time();
+                    rwsetsize += nodal_txs.get(priority_queue[i]).get(j).getRw_set_size();
+                    rset += nodal_txs.get(priority_queue[i]).get(j).getRset().size();
+                    wset += nodal_txs.get(priority_queue[i]).get(j).getWset().size();
+                    conflict += nodal_txs.get(priority_queue[i]).get(j).getConflicts();
+//                if(nodal_txs.get(priority_queue[i]).get(j).getComm_cost() > commcost) {
+                    commcost += nodal_txs.get(priority_queue[i]).get(j).getComm_cost();
+//                }
+                }
+                System.out.println("N" + priority_queue[i] + "\t" + rwsetsize + "\t" + rset + "\t" + wset + "\t" + conflict + "\t" + exec_time + "\t" + commcost);
+            }
+
+
+            /*System.out.print("Total Nodes (approx.): ");
+            total_nodes = reader.nextInt();
+            Random rand = new Random();
+            *//* Select graph type randomly *//*
+            int g_type = rand.nextInt(5) + 1;
+
+            Graphs line = new Graphs();
+            Graphs clique = new Graphs();
+            Graphs grid = new Graphs();
+            Graphs cluster = new Graphs();
+            Graphs star = new Graphs();
+
+            if(g_type == 1){
+                line = Graphs.generateLineGraph(total_nodes);
+                executeLine(line);
+            }
+            else if(g_type == 2){
+                clique = Graphs.generateCliqueGraph(total_nodes);
+
+            }
+            else if(g_type == 3){
+
+                int gridsize = (int) Math.sqrt(total_nodes) * (int) Math.sqrt(total_nodes);
+                grid = Graphs.generateGridGraph(gridsize);
+            }*/
+        }
+        else{
+            System.out.println("Invalid option.");
+            System.exit(1);
         }
     }
 }
