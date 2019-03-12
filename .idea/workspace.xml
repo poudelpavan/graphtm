@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d13a0c39-7323-440b-a662-c634ce697ae9" name="Default" comment="Online Execution model created.">
-      <change afterPath="$PROJECT_DIR$/src/Online.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Online.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Online.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Transaction.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -28,36 +28,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="832">
-              <caret line="2435" column="17" lean-forward="true" selection-start-line="2435" selection-start-column="17" selection-end-line="2435" selection-end-column="17" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#688#712#0" expanded="true" />
-                <element signature="e#9252#9265#0" expanded="true" />
-                <element signature="e#9356#9365#0" expanded="true" />
-                <element signature="e#9413#9422#0" expanded="true" />
-                <element signature="e#10656#10669#0" expanded="true" />
-                <element signature="e#10846#10855#0" expanded="true" />
-                <element signature="e#10903#10912#0" expanded="true" />
-                <element signature="e#13175#13188#0" expanded="true" />
-                <element signature="e#13279#13288#0" expanded="true" />
-                <element signature="e#13336#13345#0" expanded="true" />
-                <element signature="e#14495#14508#0" expanded="true" />
-                <element signature="e#14685#14694#0" expanded="true" />
-                <element signature="e#14742#14751#0" expanded="true" />
-                <element signature="e#15838#15847#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Online.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="30">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
             </state>
           </provider>
         </entry>
@@ -77,9 +51,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Transaction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+            <state relative-caret-position="315">
+              <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
               <folding>
+                <element signature="e#538#539#0" expanded="true" />
+                <element signature="e#585#586#0" expanded="true" />
+                <element signature="e#627#628#0" expanded="true" />
+                <element signature="e#480#481#0" expanded="true" />
                 <element signature="e#513#514#0" expanded="true" />
                 <element signature="e#562#563#0" expanded="true" />
                 <element signature="e#606#607#0" expanded="true" />
@@ -138,6 +116,24 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="355">
+              <caret line="2526" column="14" lean-forward="true" selection-start-line="2526" selection-start-column="14" selection-end-line="2526" selection-end-column="14" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#16134#16147#0" expanded="true" />
+                <element signature="e#16324#16333#0" expanded="true" />
+                <element signature="e#16381#16390#0" expanded="true" />
+                <element signature="e#18465#18478#0" expanded="true" />
+                <element signature="e#18655#18664#0" expanded="true" />
+                <element signature="e#18712#18721#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -182,8 +178,8 @@
         <option value="$PROJECT_DIR$/src/Objects.java" />
         <option value="$PROJECT_DIR$/src/Graphs.java" />
         <option value="$PROJECT_DIR$/src/Node.java" />
-        <option value="$PROJECT_DIR$/src/Online.java" />
         <option value="$PROJECT_DIR$/src/Transaction.java" />
+        <option value="$PROJECT_DIR$/src/Online.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
       </list>
     </option>
@@ -225,7 +221,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552411071142" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552432429087" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.0" />
@@ -327,7 +323,7 @@
       <workItem from="1533913540938" duration="88704000" />
       <workItem from="1535554340021" duration="13859000" />
       <workItem from="1536165665132" duration="88375000" />
-      <workItem from="1551377310067" duration="98869000" />
+      <workItem from="1551377310067" duration="112893000" />
     </task>
     <task id="LOCAL-00001" summary="Objects and transctions created.">
       <created>1533587451180</created>
@@ -511,11 +507,18 @@
       <option name="project" value="LOCAL" />
       <updated>1551895484249</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Online Execution model created.">
+      <created>1552411197946</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1552411197946</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="339455000" />
+    <option name="totallyTimeSpent" value="353479000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -528,7 +531,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1967" y="-4" width="1873" height="1204" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1713191" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -541,7 +543,7 @@
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32969034" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49972633" visible="true" weight="0.30640668" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49972633" visible="true" weight="0.55246055" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39925718" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -600,16 +602,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Objects.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="e#358#359#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/lang/Integer.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
@@ -639,11 +631,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Online.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Objects.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#358#359#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Transaction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+        <state relative-caret-position="315">
+          <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
           <folding>
+            <element signature="e#538#539#0" expanded="true" />
+            <element signature="e#585#586#0" expanded="true" />
+            <element signature="e#627#628#0" expanded="true" />
+            <element signature="e#480#481#0" expanded="true" />
             <element signature="e#513#514#0" expanded="true" />
             <element signature="e#562#563#0" expanded="true" />
             <element signature="e#606#607#0" expanded="true" />
@@ -677,32 +690,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="832">
-          <caret line="2435" column="17" lean-forward="true" selection-start-line="2435" selection-start-column="17" selection-end-line="2435" selection-end-column="17" />
+        <state relative-caret-position="355">
+          <caret line="2526" column="14" lean-forward="true" selection-start-line="2526" selection-start-column="14" selection-end-line="2526" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#688#712#0" expanded="true" />
-            <element signature="e#9252#9265#0" expanded="true" />
-            <element signature="e#9356#9365#0" expanded="true" />
-            <element signature="e#9413#9422#0" expanded="true" />
-            <element signature="e#10656#10669#0" expanded="true" />
-            <element signature="e#10846#10855#0" expanded="true" />
-            <element signature="e#10903#10912#0" expanded="true" />
-            <element signature="e#13175#13188#0" expanded="true" />
-            <element signature="e#13279#13288#0" expanded="true" />
-            <element signature="e#13336#13345#0" expanded="true" />
-            <element signature="e#14495#14508#0" expanded="true" />
-            <element signature="e#14685#14694#0" expanded="true" />
-            <element signature="e#14742#14751#0" expanded="true" />
-            <element signature="e#15838#15847#0" expanded="true" />
+            <element signature="e#16134#16147#0" expanded="true" />
+            <element signature="e#16324#16333#0" expanded="true" />
+            <element signature="e#16381#16390#0" expanded="true" />
+            <element signature="e#18465#18478#0" expanded="true" />
+            <element signature="e#18655#18664#0" expanded="true" />
+            <element signature="e#18712#18721#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Online.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>

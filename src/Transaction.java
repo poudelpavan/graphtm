@@ -17,6 +17,15 @@ public class Transaction {
     private int comm_cost;
     private int waiting_time;
     private int arrived_at;
+    private int home_node;
+
+    public int getHome_node() {
+        return home_node;
+    }
+
+    public void setHome_node(int home_node) {
+        this.home_node = home_node;
+    }
 
     public int getArrived_at() {
         return arrived_at;
