@@ -15,6 +15,24 @@ public class Transaction {
     private int waited_for;
     private int conflicts;
     private int comm_cost;
+    private int waiting_time;
+    private int arrived_at;
+
+    public int getArrived_at() {
+        return arrived_at;
+    }
+
+    public void setArrived_at(int arrived_at) {
+        this.arrived_at = arrived_at;
+    }
+
+    public int getWaiting_time() {
+        return waiting_time;
+    }
+
+    public void setWaiting_time(int waiting_time) {
+        this.waiting_time = waiting_time;
+    }
 
     public Transaction(int tx_id, int rw_set_size, int update_rate, List<Objects> rset, List<Objects> wset, String status, int execution_time, int waited_for, int conflicts, int comm_cost) {
         this.tx_id = tx_id;
@@ -27,6 +45,9 @@ public class Transaction {
         this.waited_for = waited_for;
         this.conflicts = conflicts;
         this.comm_cost = comm_cost;
+    }
+
+    public Transaction() {
     }
 
     public int getComm_cost() {
