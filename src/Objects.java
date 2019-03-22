@@ -17,6 +17,9 @@ public class Objects {
         return obj_id;
     }
 
+    public Objects() {
+    }
+
     public void setObj_id(int obj_id) {
         this.obj_id = obj_id;
     }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d13a0c39-7323-440b-a662-c634ce697ae9" name="Default" comment="Online Execution model created.">
+    <list default="true" id="d13a0c39-7323-440b-a662-c634ce697ae9" name="Default" comment="Schedules on Independent Sets done.">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Online.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Online.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Objects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,20 +28,12 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Online.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Objects.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="480">
+              <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
               <folding>
+                <element signature="e#329#330#0" expanded="true" />
                 <element signature="e#358#359#0" expanded="true" />
               </folding>
             </state>
@@ -93,7 +85,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Graphs.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
+            <state relative-caret-position="960">
               <caret line="78" column="22" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
               <folding>
                 <element signature="e#963#964#0" expanded="true" />
@@ -106,8 +98,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Node.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-412">
-              <caret line="176" column="40" lean-forward="true" selection-start-line="176" selection-start-column="40" selection-end-line="176" selection-end-column="40" />
+            <state relative-caret-position="2310">
+              <caret line="176" column="40" selection-start-line="176" selection-start-column="40" selection-end-line="176" selection-end-column="40" />
               <folding>
                 <element signature="e#616#617#0" expanded="true" />
                 <element signature="e#646#647#0" expanded="true" />
@@ -119,8 +111,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="2526" column="14" lean-forward="true" selection-start-line="2526" selection-start-column="14" selection-end-line="2526" selection-end-column="14" />
+            <state relative-caret-position="222">
+              <caret line="2832" column="39" lean-forward="true" selection-start-line="2832" selection-start-column="39" selection-end-line="2832" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#16134#16147#0" expanded="true" />
@@ -129,6 +121,7 @@
                 <element signature="e#18465#18478#0" expanded="true" />
                 <element signature="e#18655#18664#0" expanded="true" />
                 <element signature="e#18712#18721#0" expanded="true" />
+                <element signature="e#80101#80118#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -163,6 +156,7 @@
       <find>46</find>
       <find>status</find>
       <find>max</find>
+      <find>total_objs</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -175,11 +169,11 @@
         <option value="$PROJECT_DIR$/src/transaction.java" />
         <option value="$PROJECT_DIR$/src/objects.java" />
         <option value="$PROJECT_DIR$/src/graphs.java" />
-        <option value="$PROJECT_DIR$/src/Objects.java" />
         <option value="$PROJECT_DIR$/src/Graphs.java" />
         <option value="$PROJECT_DIR$/src/Node.java" />
         <option value="$PROJECT_DIR$/src/Transaction.java" />
         <option value="$PROJECT_DIR$/src/Online.java" />
+        <option value="$PROJECT_DIR$/src/Objects.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
       </list>
     </option>
@@ -215,15 +209,30 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
+      <pane id="Scope">
+        <subPane subId="Scope 'Production'; set:Production; class com.intellij.psi.search.scope.ProjectProductionScope">
+          <expand>
+            <path>
+              <item name="trafex" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="trafex" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+            </path>
+            <path>
+              <item name="trafex" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="trafex" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552432429087" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553279156050" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.445977" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
@@ -323,7 +332,7 @@
       <workItem from="1533913540938" duration="88704000" />
       <workItem from="1535554340021" duration="13859000" />
       <workItem from="1536165665132" duration="88375000" />
-      <workItem from="1551377310067" duration="112893000" />
+      <workItem from="1551377310067" duration="163427000" />
     </task>
     <task id="LOCAL-00001" summary="Objects and transctions created.">
       <created>1533587451180</created>
@@ -514,11 +523,18 @@
       <option name="project" value="LOCAL" />
       <updated>1552411197946</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Schedules on Independent Sets done.">
+      <created>1552432554167</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1552432554167</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="353479000" />
+    <option name="totallyTimeSpent" value="404013000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -543,15 +559,15 @@
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32969034" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49972633" visible="true" weight="0.55246055" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49917898" visible="true" weight="0.42432684" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39925718" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32961932" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32961932" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50027364" side_tool="true" weight="0.55431753" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.500821" side_tool="true" weight="0.26740947" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.46332404" />
-      <window_info anchor="bottom" id="Messages" order="10" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49917898" weight="0.32961932" />
       <window_info anchor="right" id="Maven" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -585,7 +601,8 @@
     <MESSAGE value="Dependency graph created." />
     <MESSAGE value="Execution model created." />
     <MESSAGE value="Online Execution model created." />
-    <option name="LAST_COMMIT_MESSAGE" value="Online Execution model created." />
+    <MESSAGE value="Schedules on Independent Sets done." />
+    <option name="LAST_COMMIT_MESSAGE" value="Schedules on Independent Sets done." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/avc.java" />
@@ -609,9 +626,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Online.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Graphs.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
+        <state relative-caret-position="960">
           <caret line="78" column="22" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
           <folding>
             <element signature="e#963#964#0" expanded="true" />
@@ -622,8 +646,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-412">
-          <caret line="176" column="40" lean-forward="true" selection-start-line="176" selection-start-column="40" selection-end-line="176" selection-end-column="40" />
+        <state relative-caret-position="2310">
+          <caret line="176" column="40" selection-start-line="176" selection-start-column="40" selection-end-line="176" selection-end-column="40" />
           <folding>
             <element signature="e#616#617#0" expanded="true" />
             <element signature="e#646#647#0" expanded="true" />
@@ -631,22 +655,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Online.java">
+    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/lang/ProcessBuilder.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        <state relative-caret-position="448">
+          <caret line="234" selection-start-line="234" selection-end-line="234" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Objects.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="e#358#359#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/ref/tinystm/Makefile">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Transaction.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -688,10 +705,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Objects.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+          <folding>
+            <element signature="e#329#330#0" expanded="true" />
+            <element signature="e#358#359#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="2526" column="14" lean-forward="true" selection-start-line="2526" selection-start-column="14" selection-end-line="2526" selection-end-column="14" />
+        <state relative-caret-position="222">
+          <caret line="2832" column="39" lean-forward="true" selection-start-line="2832" selection-start-column="39" selection-end-line="2832" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#16134#16147#0" expanded="true" />
@@ -700,6 +728,7 @@
             <element signature="e#18465#18478#0" expanded="true" />
             <element signature="e#18655#18664#0" expanded="true" />
             <element signature="e#18712#18721#0" expanded="true" />
+            <element signature="e#80101#80118#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -755,7 +784,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>1.8</last-edited>
+          <last-edited>1.8.0_191</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
