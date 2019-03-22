@@ -1,11 +1,467 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d13a0c39-7323-440b-a662-c634ce697ae9" name="Default" comment="Schedules on Independent Sets done.">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="d13a0c39-7323-440b-a662-c634ce697ae9" name="Default" comment="Bank benchmark executed with both online and offline agls.">
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/ChangeLog" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/Doxyfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/GNU-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/LICENSE.VELOX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/MIT-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/Makefile.clang" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/Makefile.common" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/Makefile.gcc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/Makefile.icc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/Makefile.suncc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/README" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/README.VELOX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/Makefile.common" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/abi.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/arch_x86.S" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/dtmc/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/dtmc/arch.S" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/dtmc/libitm.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/dtmc/libtanger-stm.public-symbols" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/dtmc/libtanger-stm.support" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/dtmc/tanger-stm-internal.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/dtmc/tanger.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/dtmc/tanger.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/dtmc/tm_macros.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/gcc/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/gcc/alloc_cpp.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/gcc/arch.S" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/gcc/clone.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/gcc/eh.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/gcc/libitm.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/gcc/tm_macros.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/intel/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/intel/alloc.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/intel/arch.S" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/intel/libitm.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/intel/tm_macros.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/lib.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/libitm.h.tpl.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/libitm.h.tpl.footer" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/libitm.h.tpl.header" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/libitm.h.tpl.unifdef" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/oracle/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/oracle/arch.S" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/oracle/otm.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/pthread_wrapper.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/test/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/abi/tm_macros.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/annotated.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/bc_s.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/bdwn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/classes.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/closed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/dir_d44c64559bbebec7f509842c48db8b23.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/doxygen.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/doxygen.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/dynsections.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/files.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/ftv2blank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/ftv2cl.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/ftv2doc.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/ftv2folderclosed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/ftv2folderopen.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/ftv2lastnode.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/ftv2link.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/ftv2mlastnode.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/ftv2mnode.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/ftv2mo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/ftv2node.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/ftv2ns.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/ftv2plastnode.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/ftv2pnode.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/ftv2splitbar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/ftv2vertline.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/functions.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/functions_vars.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/globals.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/globals_defs.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/globals_eval.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/globals_func.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/globals_type.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/mod__ab_8h.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/mod__ab_8h_source.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/mod__cb_8h.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/mod__cb_8h_source.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/mod__log_8h.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/mod__log_8h_source.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/mod__mem_8h.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/mod__mem_8h_source.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/mod__print_8h.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/mod__print_8h_source.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/mod__stats_8h.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/mod__stats_8h_source.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/nav_f.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/nav_g.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/nav_h.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/open.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/stm_8h.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/stm_8h_source.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/structstm__ab__stats.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/sync_off.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/sync_on.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/tab_a.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/tab_b.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/tab_h.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/tab_s.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/tabs.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/unionstm__tx__attr.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/wrappers_8h.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/doc/html/wrappers_8h_source.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/include/mod_ab.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/include/mod_cb.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/include/mod_log.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/include/mod_mem.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/include/mod_order.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/include/mod_print.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/include/mod_stats.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/include/stm.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/include/wrappers.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/lib/libstm.a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/asf/asf-highlevel.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/asf/asf-opcodes.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/atomic.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/atomic_ops/AUTHORS" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/atomic_ops/COPYING" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/atomic_ops/README" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/atomic_ops/aligned_atomic_load_store.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/atomic_ops/all_acquire_release_volatile.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/atomic_ops/ao_t_is_int.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/atomic_ops/atomic_ops.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/atomic_ops/generalize-small.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/atomic_ops/generalize.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/atomic_ops/ia64.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/atomic_ops/ordered_except_wr.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/atomic_ops/powerpc.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/atomic_ops/read_ordered.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/atomic_ops/sparc.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/atomic_ops/standard_ao_double_t.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/atomic_ops/test_and_set_t_is_ao_t.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/atomic_ops/test_and_set_t_is_char.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/atomic_ops/x86.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/atomic_ops/x86_64.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/gc.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/gc.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/mod_ab.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/mod_ab.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/mod_cb_mem.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/mod_cb_mem.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/mod_log.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/mod_log.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/mod_order.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/mod_order.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/mod_print.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/mod_print.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/mod_stats.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/mod_stats.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/stm.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/stm.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/stm_internal.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/stm_wbctl.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/stm_wbetl.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/stm_wt.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/tls.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/utils.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/wrappers.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/src/wrappers.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test-asf/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test-asf/intset/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test-asf/intset/intset.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test-asf/intset/ptlcalls.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test-asf/intset/rbtree.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test-asf/intset/rbtree.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/bank/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/bank/bank" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/bank/bank.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/bank/bank.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/intset/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/intset/README.rbtree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset-hs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset-hs.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset-ll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset-ll.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset-rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset-rb.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset-sl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset-sl.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/intset/rbtree.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/intset/rbtree.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/intset/tm.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/intset/types.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/regression/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/regression/irrevocability" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/regression/irrevocability.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/regression/irrevocability.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/regression/perf.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/regression/types" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/regression/types.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/regression/types.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/AUTHORS" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/VERSIONS" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/Defines.common.mk" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/Makefile.seq" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/Makefile.stm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/Makefile.stm.otm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/README" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/adtree.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/adtree.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/adtree.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/bayes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/bayes.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/bayes.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/data.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/data.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/data.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/learner.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/learner.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/learner.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/net.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/net.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/net.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/operation.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/query.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/sort.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/sort.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/sort.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/common/Defines.common.mk" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/common/Defines.common.otm.mk" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/common/Makefile.common" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/common/Makefile.seq" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/common/Makefile.stm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/common/Makefile.stm.otm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/Defines.common.mk" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/Makefile.seq" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/Makefile.stm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/Makefile.stm.otm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/README" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/gene.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/gene.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/gene.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/genome" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/genome.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/genome.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/nucleotide.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/segments.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/segments.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/segments.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/sequencer.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/sequencer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/sequencer.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/table.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/table.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/table.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/Defines.common.mk" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/Makefile.seq" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/Makefile.stm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/Makefile.stm.otm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/README" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/decoder.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/decoder.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/detector.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/detector.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/dictionary.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/dictionary.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/error.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/intruder.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/packet.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/packet.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/preprocessor.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/preprocessor.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/stream.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/stream.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/Defines.common.mk" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/LICENSE.kmeans" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/Makefile.seq" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/Makefile.stm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/Makefile.stm.otm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/README" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/cluster.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/cluster.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/common.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/common.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/inputs/color.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/inputs/color100.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/inputs/edge.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/inputs/edge100.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/inputs/generate.py.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/inputs/random-n16384-d24-c16.txt.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/inputs/random-n2048-d16-c16.txt.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/inputs/random-n65536-d32-c16.txt.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/inputs/random1000_12.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/inputs/random50000_12.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/inputs/texture100.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/kmeans.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/normal.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/normal.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/util.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/Defines.common.mk" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/Makefile.seq" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/Makefile.stm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/Makefile.stm.otm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/README" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/coordinate.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/coordinate.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/grid.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/grid.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/generate.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/random-x128-y128-z3-n128.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/random-x128-y128-z3-n64.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/random-x128-y128-z5-n128.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/random-x256-y256-z3-n256.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/random-x256-y256-z5-n256.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/random-x32-y32-z3-n64.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/random-x32-y32-z3-n96.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/random-x48-y48-z3-n48.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/random-x48-y48-z3-n64.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/random-x512-y512-z7-n512.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/random-x64-y64-z3-n48.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/random-x64-y64-z3-n64.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/labyrinth.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/maze.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/maze.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/router.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/router.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/LEGALNOTICE.rbtree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/LICENSE.rbtree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/avltree.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/avltree.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/bitmap.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/bitmap.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/bitmap.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/hash.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/hash.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/hash.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/hashtable.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/hashtable.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/hashtable.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/heap.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/heap.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/list.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/list.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/list.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/map.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/memory.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/memory.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/mt19937ar.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/mt19937ar.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/mt19937ar.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/pair.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/pair.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/pair.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/queue.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/queue.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/queue.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/random.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/random.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/random.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/rbtree.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/rbtree.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/rbtree.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/set.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/thread.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/thread.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/thread.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/timer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/tm.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/types.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/utility.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/vector.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/vector.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/vector.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/Defines.common.mk" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/Makefile.orig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/Makefile.seq" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/Makefile.stm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/Makefile.stm.otm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/README" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/alg_radix_smp.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/alg_radix_smp.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/computeGraph.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/computeGraph.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/createPartition.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/createPartition.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/cutClusters.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/cutClusters.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/defs.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/findSubGraphs.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/findSubGraphs.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/genScalData.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/genScalData.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/getStartLists.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/getStartLists.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/getUserParameters.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/getUserParameters.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/globals.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/globals.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/ssca2.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/Defines.common.mk" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/Makefile.seq" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/Makefile.stm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/Makefile.stm.otm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/README" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/action.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/client.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/client.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/client.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/customer.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/customer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/customer.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/manager.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/manager.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/manager.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/operation.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/reservation.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/reservation.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/reservation.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/vacation.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/vacation.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/Defines.common.mk" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/Makefile.seq" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/Makefile.stm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/Makefile.stm.otm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/README" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/coordinate.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/coordinate.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/element.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/element.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/633.2.ele.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/633.2.node.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/633.2.poly.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/dots.2.ele.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/dots.2.node.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/dots.2.poly.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/ladder.2.ele.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/ladder.2.node.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/ladder.2.poly.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/spiral.2.ele.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/spiral.2.node.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/spiral.2.poly.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/ttimeu10000.2.ele.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/ttimeu10000.2.node.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/ttimeu10000.2.poly.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/ttimeu100000.2.ele.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/ttimeu100000.2.node.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/ttimeu100000.2.poly.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/ttimeu1000000.2.ele.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/ttimeu1000000.2.node.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/ttimeu1000000.2.poly.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/mesh.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/mesh.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/region.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/region.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/yada.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -111,8 +567,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="2832" column="39" lean-forward="true" selection-start-line="2832" selection-start-column="39" selection-end-line="2832" selection-end-column="39" />
+            <state relative-caret-position="342">
+              <caret line="2840" column="55" lean-forward="true" selection-start-line="2840" selection-start-column="55" selection-end-line="2840" selection-end-column="55" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#16134#16147#0" expanded="true" />
@@ -202,6 +658,11 @@
             <path>
               <item name="trafex" type="b2602c69:ProjectViewProjectNode" />
               <item name="trafex" type="462c0819:PsiDirectoryNode" />
+              <item name="ref" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trafex" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trafex" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -230,7 +691,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553279156050" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553279378259" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />
@@ -332,7 +793,7 @@
       <workItem from="1533913540938" duration="88704000" />
       <workItem from="1535554340021" duration="13859000" />
       <workItem from="1536165665132" duration="88375000" />
-      <workItem from="1551377310067" duration="163427000" />
+      <workItem from="1551377310067" duration="163720000" />
     </task>
     <task id="LOCAL-00001" summary="Objects and transctions created.">
       <created>1533587451180</created>
@@ -530,11 +991,18 @@
       <option name="project" value="LOCAL" />
       <updated>1552432554167</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Bank benchmark executed with both online and offline agls.">
+      <created>1553279281112</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1553279281112</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="404013000" />
+    <option name="totallyTimeSpent" value="404306000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -548,7 +1016,7 @@
   <component name="ToolWindowManager">
     <frame x="1967" y="-4" width="1873" height="1204" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1713191" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1713191" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -559,7 +1027,7 @@
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32969034" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49917898" visible="true" weight="0.42432684" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49917898" visible="true" weight="0.42432684" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39925718" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -602,7 +1070,8 @@
     <MESSAGE value="Execution model created." />
     <MESSAGE value="Online Execution model created." />
     <MESSAGE value="Schedules on Independent Sets done." />
-    <option name="LAST_COMMIT_MESSAGE" value="Schedules on Independent Sets done." />
+    <MESSAGE value="Bank benchmark executed with both online and offline agls." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bank benchmark executed with both online and offline agls." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/avc.java" />
@@ -718,8 +1187,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="2832" column="39" lean-forward="true" selection-start-line="2832" selection-start-column="39" selection-end-line="2832" selection-end-column="39" />
+        <state relative-caret-position="342">
+          <caret line="2840" column="55" lean-forward="true" selection-start-line="2840" selection-start-column="55" selection-end-line="2840" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#16134#16147#0" expanded="true" />
