@@ -177,7 +177,7 @@ public class Node {
             for(int c=0;c<gridsize;c++){
                 Node nd = new Node();
                 nd.setNode_id(r*gridsize + c);
-                nd.setValue(r*gridsize + c+1);
+                nd.setValue(r*gridsize + c);
                 nd.setX(r);
                 nd.setY(c);
                 ArrayList<Integer> neighbors = getNeighborsGrid(r, c, gridsize, gridsize);
@@ -196,8 +196,9 @@ public class Node {
         for(int r=0;r<cliquesize;r++) {
             Node nd = new Node();
             nd.setNode_id(r);
-            nd.setValue(r + 1);
+            nd.setValue(r);
             nd.setX(r);
+            nd.setY(0);
             ArrayList<Integer> neighbors = getNeighborsClique(r, cliquesize);
             nd.setNeighbors(neighbors);
             nodes.add(nd);
@@ -213,8 +214,9 @@ public class Node {
         for(int r=0;r<linesize;r++) {
             Node nd = new Node();
             nd.setNode_id(r);
-            nd.setValue(r + 1);
+            nd.setValue(r);
             nd.setX(r);
+            nd.setY(0);
             ArrayList<Integer> neighbors = getNeighborsLine(r, linesize);
             nd.setNeighbors(neighbors);
             nodes.add(nd);
@@ -230,8 +232,9 @@ public class Node {
         for(int r=0;r<starsize;r++) {
             Node nd = new Node();
             nd.setNode_id(r);
-            nd.setValue(r + 1);
+            nd.setValue(r);
             nd.setX(r);
+            nd.setY(0);
             ArrayList<Integer> neighbors = getNeighborsStar(r,rays,rays_size);
             nd.setNeighbors(neighbors);
             nodes.add(nd);
@@ -247,8 +250,9 @@ public class Node {
         for(int r=0;r<totalnodes;r++) {
             Node nd = new Node();
             nd.setNode_id(r);
-            nd.setValue(r + 1);
+            nd.setValue(r);
             nd.setX(r);
+            nd.setY(0);
             ArrayList<Integer> neighbors = getNeighborsCluster(r,clusters,cluster_size);
             nd.setNeighbors(neighbors);
             nodes.add(nd);

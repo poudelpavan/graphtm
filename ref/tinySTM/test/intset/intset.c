@@ -1580,7 +1580,7 @@ int main(int argc, char **argv)
   /* Start threads */
   barrier_cross(&barrier);
 
-  printf("STARTING...\n");
+  // printf("STARTING...\n");
   gettimeofday(&start, NULL);
   if (duration > 0) {
     nanosleep(&timeout, NULL);
@@ -1590,7 +1590,7 @@ int main(int argc, char **argv)
   }
   stop = 1;
   gettimeofday(&end, NULL);
-  printf("STOPPING...\n");
+  // printf("STOPPING...\n");
 
   /* Wait for thread completion */
   for (i = 0; i < nb_threads; i++) {
@@ -1619,7 +1619,7 @@ int main(int argc, char **argv)
   reads = 0;
   updates = 0;
   for (i = 0; i < nb_threads; i++) {
-    printf("Thread %d\n", i);
+    printf("\nThread %d\n", i);
     printf("  #add        : %lu\n", data[i].nb_add);
     printf("  #remove     : %lu\n", data[i].nb_remove);
     printf("  #contains   : %lu\n", data[i].nb_contains);
