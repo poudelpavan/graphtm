@@ -1,277 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d13a0c39-7323-440b-a662-c634ce697ae9" name="Default" comment="offline algorithm updated.">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="d13a0c39-7323-440b-a662-c634ce697ae9" name="Default" comment="STAMP Benchmarks added.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset-hs" beforeDir="false" afterPath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset-hs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset-hs.o" beforeDir="false" afterPath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset-hs.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset-ll" beforeDir="false" afterPath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset-ll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset-ll.o" beforeDir="false" afterPath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset-ll.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset-rb" beforeDir="false" afterPath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset-rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset-rb.o" beforeDir="false" afterPath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset-rb.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset-sl" beforeDir="false" afterPath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset-sl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset-sl.o" beforeDir="false" afterPath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset-sl.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset.c" beforeDir="false" afterPath="$PROJECT_DIR$/ref/tinySTM/test/intset/intset.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/AUTHORS" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/VERSIONS" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/Defines.common.mk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/Makefile.seq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/Makefile.stm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/Makefile.stm.otm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/README" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/adtree.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/adtree.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/adtree.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/bayes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/bayes.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/bayes.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/data.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/data.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/data.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/learner.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/learner.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/learner.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/net.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/net.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/net.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/operation.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/query.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/sort.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/sort.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/bayes/sort.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/common/Defines.common.mk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/common/Defines.common.otm.mk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/common/Makefile.common" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/common/Makefile.seq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/common/Makefile.stm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/common/Makefile.stm.otm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/Defines.common.mk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/Makefile.seq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/Makefile.stm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/Makefile.stm.otm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/README" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/gene.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/gene.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/gene.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/genome" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/genome.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/genome.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/nucleotide.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/segments.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/segments.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/segments.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/sequencer.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/sequencer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/sequencer.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/table.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/table.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/genome/table.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/Defines.common.mk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/Makefile.seq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/Makefile.stm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/Makefile.stm.otm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/README" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/decoder.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/decoder.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/detector.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/detector.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/dictionary.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/dictionary.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/error.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/intruder.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/packet.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/packet.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/preprocessor.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/preprocessor.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/stream.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/intruder/stream.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/Defines.common.mk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/LICENSE.kmeans" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/Makefile.seq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/Makefile.stm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/Makefile.stm.otm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/README" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/cluster.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/cluster.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/common.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/common.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/inputs/color.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/inputs/color100.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/inputs/edge.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/inputs/edge100.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/inputs/generate.py.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/inputs/random-n16384-d24-c16.txt.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/inputs/random-n2048-d16-c16.txt.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/inputs/random-n65536-d32-c16.txt.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/inputs/random1000_12.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/inputs/random50000_12.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/inputs/texture100.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/kmeans.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/normal.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/normal.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/kmeans/util.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/Defines.common.mk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/Makefile.seq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/Makefile.stm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/Makefile.stm.otm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/README" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/coordinate.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/coordinate.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/grid.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/grid.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/generate.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/random-x128-y128-z3-n128.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/random-x128-y128-z3-n64.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/random-x128-y128-z5-n128.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/random-x256-y256-z3-n256.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/random-x256-y256-z5-n256.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/random-x32-y32-z3-n64.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/random-x32-y32-z3-n96.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/random-x48-y48-z3-n48.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/random-x48-y48-z3-n64.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/random-x512-y512-z7-n512.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/random-x64-y64-z3-n48.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/inputs/random-x64-y64-z3-n64.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/labyrinth.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/maze.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/maze.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/router.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/labyrinth/router.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/LEGALNOTICE.rbtree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/LICENSE.rbtree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/avltree.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/avltree.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/bitmap.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/bitmap.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/bitmap.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/hash.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/hash.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/hash.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/hashtable.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/hashtable.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/hashtable.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/heap.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/heap.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/list.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/list.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/list.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/map.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/memory.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/memory.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/mt19937ar.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/mt19937ar.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/mt19937ar.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/pair.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/pair.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/pair.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/queue.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/queue.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/queue.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/random.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/random.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/random.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/rbtree.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/rbtree.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/rbtree.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/set.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/thread.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/thread.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/thread.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/timer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/tm.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/types.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/utility.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/vector.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/vector.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/lib/vector.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/Defines.common.mk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/Makefile.orig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/Makefile.seq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/Makefile.stm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/Makefile.stm.otm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/README" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/alg_radix_smp.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/alg_radix_smp.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/computeGraph.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/computeGraph.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/createPartition.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/createPartition.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/cutClusters.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/cutClusters.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/defs.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/findSubGraphs.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/findSubGraphs.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/genScalData.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/genScalData.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/getStartLists.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/getStartLists.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/getUserParameters.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/getUserParameters.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/globals.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/globals.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/ssca2/ssca2.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/Defines.common.mk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/Makefile.seq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/Makefile.stm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/Makefile.stm.otm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/README" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/action.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/client.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/client.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/client.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/customer.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/customer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/customer.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/manager.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/manager.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/manager.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/operation.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/reservation.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/reservation.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/reservation.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/vacation.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/vacation/vacation.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/Defines.common.mk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/Makefile.seq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/Makefile.stm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/Makefile.stm.otm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/README" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/coordinate.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/coordinate.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/element.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/element.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/633.2.ele.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/633.2.node.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/633.2.poly.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/dots.2.ele.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/dots.2.node.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/dots.2.poly.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/ladder.2.ele.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/ladder.2.node.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/ladder.2.poly.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/spiral.2.ele.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/spiral.2.node.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/spiral.2.poly.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/ttimeu10000.2.ele.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/ttimeu10000.2.node.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/ttimeu10000.2.poly.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/ttimeu100000.2.ele.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/ttimeu100000.2.node.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/ttimeu100000.2.poly.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/ttimeu1000000.2.ele.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/ttimeu1000000.2.node.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/inputs/ttimeu1000000.2.poly.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/mesh.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/mesh.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/region.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/region.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/tinySTM/test/stamp/yada/yada.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ref/stamp" beforeDir="false" afterPath="$PROJECT_DIR$/ref/stamp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -377,8 +109,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="2568" column="9" lean-forward="true" selection-start-line="2568" selection-start-column="9" selection-end-line="2568" selection-end-column="9" />
+            <state relative-caret-position="110">
+              <caret line="2555" column="38" lean-forward="true" selection-start-line="2555" selection-start-column="38" selection-end-line="2555" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#16134#16147#0" expanded="true" />
@@ -488,19 +220,6 @@
             <path>
               <item name="trafex" type="b2602c69:ProjectViewProjectNode" />
               <item name="trafex" type="462c0819:PsiDirectoryNode" />
-              <item name="ref" type="462c0819:PsiDirectoryNode" />
-              <item name="tinySTM" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="trafex" type="b2602c69:ProjectViewProjectNode" />
-              <item name="trafex" type="462c0819:PsiDirectoryNode" />
-              <item name="ref" type="462c0819:PsiDirectoryNode" />
-              <item name="tinySTM" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="trafex" type="b2602c69:ProjectViewProjectNode" />
-              <item name="trafex" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -529,7 +248,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553639745629" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553640207209" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />
@@ -631,7 +350,7 @@
       <workItem from="1533913540938" duration="88704000" />
       <workItem from="1535554340021" duration="13859000" />
       <workItem from="1536165665132" duration="88375000" />
-      <workItem from="1551377310067" duration="207822000" />
+      <workItem from="1551377310067" duration="208320000" />
     </task>
     <task id="LOCAL-00001" summary="Objects and transctions created.">
       <created>1533587451180</created>
@@ -850,11 +569,25 @@
       <option name="project" value="LOCAL" />
       <updated>1553565549452</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Benchmarks added.">
+      <created>1553639696161</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1553639696161</updated>
+    </task>
+    <task id="LOCAL-00033" summary="STAMP Benchmarks added.">
+      <created>1553639805396</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1553639805396</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="448408000" />
+    <option name="totallyTimeSpent" value="448906000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -867,9 +600,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1967" y="-4" width="1873" height="1204" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1713191" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1713191" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -880,7 +612,7 @@
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32969034" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49917898" visible="true" weight="0.47818014" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49917898" visible="true" weight="0.47818014" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39925718" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -929,7 +661,9 @@
     <MESSAGE value="Schedules on Independent Sets done." />
     <MESSAGE value="Bank benchmark executed with both online and offline agls." />
     <MESSAGE value="offline algorithm updated." />
-    <option name="LAST_COMMIT_MESSAGE" value="offline algorithm updated." />
+    <MESSAGE value="Benchmarks added." />
+    <MESSAGE value="STAMP Benchmarks added." />
+    <option name="LAST_COMMIT_MESSAGE" value="STAMP Benchmarks added." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/avc.java" />
@@ -1045,8 +779,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="2568" column="9" lean-forward="true" selection-start-line="2568" selection-start-column="9" selection-end-line="2568" selection-end-column="9" />
+        <state relative-caret-position="110">
+          <caret line="2555" column="38" lean-forward="true" selection-start-line="2555" selection-start-column="38" selection-end-line="2555" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#16134#16147#0" expanded="true" />
