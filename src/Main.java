@@ -844,13 +844,13 @@ public class Main {
             System.out.println("\n");*/
             adjMatrix.set(i,dependent1);
         }
-        System.out.println("Transaction Conflict Graph (adjacency matrix):\n");
+        /*System.out.println("Transaction Conflict Graph (adjacency matrix):\n");
         for (int i = 0; i < total_nodes; i++) {
             for (int j = 0; j < total_nodes; j++) {
                 System.out.print(adjMatrix.get(i).get(j) + " ");
             }
             System.out.println("\n");
-        }
+        }*/
         return adjMatrix;
     }
 
@@ -2447,10 +2447,11 @@ public class Main {
             total_nodes = subgraph_star * ray_nodes + 1;
         }
         System.out.println("Total nodes:\t\t\t"+total_nodes);
-        System.out.println("Continue? (Y/N)");
-        if(reader.nextLine().equals("n") || reader.nextLine().equals("N")){
+        /*System.out.print("Continue? (Y/N)");
+        if(reader.next().equals("n") || reader.nextLine().equals("N")){
             System.exit(0);
-        }
+        }*/
+        System.out.println("Running ...");
 
         /*System.out.print("Graph Type [1->Line, 2->Clique, 3->Grid, 4->CLuster, 5->Star]: ");
         graph_type = reader.nextInt();
@@ -2599,6 +2600,7 @@ public class Main {
                 op1 = op.replaceAll("<<>>","");
                 System.out.println(op1);
             }
+            System.out.println(op);
         }
         input.close();
 
@@ -2606,7 +2608,7 @@ public class Main {
         String txl = split[split.length-1].split("-")[1];
         int rw_size = threads*threads;
         int length = Integer.parseInt(txl) + rw_size;
-        System.out.println(length);
+//        System.out.println(length);
         String [][] Trs = new String[length][rw_size], Tws = new String[length][rw_size];
         int[] rset_size = new int[length], wset_size = new int[length];
         for(int i = 0; i < length; i++){
@@ -2661,7 +2663,7 @@ public class Main {
             }
         }
 
-        System.out.println("Transactions:\n");
+//        System.out.println("Transactions:\n");
         /*for(int i = 0; i < tottxs; i++){
             System.out.print("T"+i+":  \tRS => (");
             for(int j = 0; j < TXRS.get(i).size(); j++){
@@ -2742,6 +2744,7 @@ public class Main {
             Transaction t = new Transaction(i,rwset_size,update_rate,rs_obj,ws_obj,"IDLE",0,0,0,0);
             transactions.add(t);
         }
+/*
 
         System.out.println("Tx\trw-set-size\tupdate-rate");
         System.out.println("---------------------------------");
@@ -2764,6 +2767,7 @@ public class Main {
             System.out.print(")\n");
         }
 
+*/
 
         txs = transactions;
 
@@ -2936,6 +2940,7 @@ public class Main {
                 System.out.print(")\n");
             }*/
 
+/*
             System.out.println("\n---------------------------------\nNodes vs. Transactions\n---------------------------------");
             for (int i = 0; i < total_nodes; i++) {
                 System.out.print("N" + (i + 1) + "  \tT" + nodal_txs.get(i).get(0).getTx_id() + "   \t" + nodal_txs.get(i).get(0).getRw_set_size() + "\t\t" + nodal_txs.get(i).get(0).getUpdate_rate() + "\t\tRead Set(Objects) ==> (");
@@ -2955,6 +2960,7 @@ public class Main {
                 }
                 System.out.print(")\n");
             }
+*/
 
             if (graph_type == 1) {
                 line = Graphs.generateLineGraph(total_nodes);
@@ -2975,6 +2981,7 @@ public class Main {
             } else if (graph_type == 3) {
                 grid = Graphs.generateGridGraph(grid_size);
 
+/*
                 System.out.println("\n-----------------------------------------------\n\t  Grid graph of grid size (" + grid_size + " x " + grid_size + ")\n-----------------------------------------------");
                 for (int i = 0; i < grid_size; i++) {
                     for (int j = 0; j < grid_size; j++) {
@@ -2997,12 +3004,15 @@ public class Main {
                     }
                     System.out.println("\n");
                 }
+*/
 
                 generatePriorityQueueGrid(grid_size, sub_grid);
+/*
                 System.out.println("Priority queue:");
                 for (int i = 0; i < total_nodes; i++) {
                     System.out.print(priority_queue[i] + " ");
                 }
+*/
 
         /*System.out.println("\n-----------------------------------------------\n\t  Dependency Graph (Adjancency matrix)\n-----------------------------------------------");
         ArrayList<ArrayList<Integer>> depend = new ArrayList<>();
@@ -3016,11 +3026,12 @@ public class Main {
             System.out.println("\n");
         }*/
 
-                System.out.println("\n-----------------------------------------------\nTransaction Dependency Graph\n-----------------------------------------------");
+//                System.out.println("\n-----------------------------------------------\nTransaction Dependency Graph\n-----------------------------------------------");
                 ArrayList<ArrayList<Integer>> dependtx = new ArrayList<>();
                 for (int i = 0; i < total_nodes; i++) {
                     dependtx = generateConflictGraph(nodal_txs, total_nodes, 0);
                 }
+/*
                 for (int i = 0; i < total_nodes; i++) {
                     for (int j = 0; j < total_nodes; j++) {
                         System.out.print(dependtx.get(i).get(j) + " ");
@@ -3029,9 +3040,10 @@ public class Main {
                 }
 
                 System.out.println("\n-----------------------------------------------\nComponents of Transaction Conflict Graph\n-----------------------------------------------");
+*/
                 ArrayList<ArrayList<Integer>> components = generateComponents(nodal_txs, total_nodes, 0);
 
-                System.out.println("Components of the conflict graph:\n");
+ /*               System.out.println("Components of the conflict graph:\n");
                 for (int i = 0; i < components.size(); i++) {
                     System.out.print("C" + (i + 1) + ":\t(");
                     for (int j = 0; j < components.get(i).size(); j++) {
@@ -3039,7 +3051,7 @@ public class Main {
                     }
                     System.out.print(")\n");
                 }
-
+*/
                 int opt[] = getOptimalCosts(nodal_txs, total_nodes, grid);
                 optimal_rt = opt[0];
                 optimal_comcost = opt[1];
@@ -3058,33 +3070,35 @@ public class Main {
                     }
                 }*/
 
-                System.out.println("\n-----------------------------------------------\nTransaction execution\n-----------------------------------------------");
+//                System.out.println("\n-----------------------------------------------\nTransaction execution\n-----------------------------------------------");
 //                executeGrid(grid);
             } else if (graph_type == 4) {
                 cluster = Graphs.generateClusterGraph(total_nodes, subgraph_cluster, cluster_size);
                 generatePriorityQueueCluster(subgraph_cluster, cluster_size);
+/*
                 System.out.println("Priority queue:");
                 for (int i = 0; i < total_nodes; i++) {
                     System.out.print(priority_queue[i] + " ");
                 }
 
                 System.out.println("\n-----------------------------------------------\nTransaction Conflict Graph\n-----------------------------------------------");
+*/
                 ArrayList<ArrayList<Integer>> dependtx = new ArrayList<>();
                 for (int i = 0; i < total_nodes; i++) {
                     dependtx = generateConflictGraph(nodal_txs, total_nodes, 0);
                 }
-                for (int i = 0; i < total_nodes; i++) {
+ /*               for (int i = 0; i < total_nodes; i++) {
                     for (int j = 0; j < total_nodes; j++) {
                         System.out.print(dependtx.get(i).get(j) + " ");
                     }
                     System.out.println("\n");
                 }
-
+*/
                 int opt[] = getOptimalCosts(nodal_txs, total_nodes, cluster, cluster_size);
                 optimal_rt = opt[0];
                 optimal_comcost = opt[1];
 
-                System.out.println("\n-----------------------------------------------\nTransaction execution\n-----------------------------------------------");
+//                System.out.println("\n-----------------------------------------------\nTransaction execution\n-----------------------------------------------");
 //                executeCluster(cluster, cluster_size);
             } else if (graph_type == 5) {
                 star = Graphs.generateStarGraph(total_nodes, subgraph_star, ray_nodes);
@@ -3188,6 +3202,7 @@ public class Main {
             ArrayList<ArrayList<Integer>> objList = getRWList(total_objs, total_nodes);
             txs = generateTxsOnline(objList, total_txs, update_rate);*/
 
+/*
             System.out.println("\n---------------------------------\nNodes vs. Transactions\n---------------------------------");
             for (int i = 0; i < total_nodes; i++) {
                 System.out.print("N" + (i + 1) + "  \tT" + txs.get(i).getTx_id() + "   \t" + txs.get(i).getRw_set_size() + "\t\t" + txs.get(i).getUpdate_rate() + "\t\tRead Set(Objects) ==> (");
@@ -3207,6 +3222,7 @@ public class Main {
                 }
                 System.out.print(")\n");
             }
+*/
 
             /*grid = Graphs.generateGridGraph(grid_size);
             ArrayList<Node> nds = grid.getNodes();
@@ -3469,14 +3485,19 @@ public class Main {
                 cstlst.add(timestep);
                 cstlst.add(tot_comm_cost);
 
-//            System.out.println(committed_txs.size() + " "+ txs.size());
-                System.out.println("\nTotal Communication cost = " + tot_comm_cost);
+                if(z == 0){
+                    System.out.println("OFFLINE.");
+                }
+                else{
+                    System.out.println("ONLINE.");
+                }
                 System.out.println("Total Execution cost = " + timestep);
-                System.out.println("Total Objects = "+objts.size());
+                System.out.println("Total Communication cost = " + tot_comm_cost);
+//                System.out.println("Total Objects = "+objts.size());
 
-                System.out.println("\n\nTransaction \t Arrived at \t Wating Time \t Execution Time \t Communication Cost");
+//                System.out.println("\n\nTransaction \t Arrived at \t Wating Time \t Execution Time \t Communication Cost");
                 for (int i = 0; i < committed_txs.size(); i++) {
-                    System.out.println("   T" + committed_txs.get(i).getTx_id() + "\t\t\t\t  " + committed_txs.get(i).getArrived_at() + " \t\t\t  " + committed_txs.get(i).getWaiting_time() + "  \t\t\t\t  " + committed_txs.get(i).getExecution_time() + "  \t\t\t\t  " + committed_txs.get(i).getComm_cost());
+//                    System.out.println("   T" + committed_txs.get(i).getTx_id() + "\t\t\t\t  " + committed_txs.get(i).getArrived_at() + " \t\t\t  " + committed_txs.get(i).getWaiting_time() + "  \t\t\t\t  " + committed_txs.get(i).getExecution_time() + "  \t\t\t\t  " + committed_txs.get(i).getComm_cost());
                     tot_wait_online += committed_txs.get(i).getWaiting_time();
                     tot_conflicts_online += committed_txs.get(i).getConflicts();
                 }
@@ -3505,6 +3526,7 @@ public class Main {
                 running_txs.clear();
                 prev_run_list.clear();
             }
+            System.out.println("Done.");
             System.out.println("\n\nTotal Transactions: \t"+tottxs+"\n\n-------------------------------------------------------------------------------------------");
             System.out.println("Cases\t\t\t\tExecution Time\tCommunication Cost \t  Waiting Time \tTotal Conflicts\n------------------------------------------------------------------------------------------");
             System.out.println("OPTIMAL: \t\t\t\t "+optimal_rt +" \t\t\t " + optimal_comcost + " \t\t\t\t   0   \t\t    " + optimal_conflicts);

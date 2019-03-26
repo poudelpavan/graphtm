@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d13a0c39-7323-440b-a662-c634ce697ae9" name="Default" comment="STAMP Benchmarks added.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/stamp" beforeDir="false" afterPath="$PROJECT_DIR$/ref/stamp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -109,8 +109,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="2555" column="38" lean-forward="true" selection-start-line="2555" selection-start-column="38" selection-end-line="2555" selection-end-column="38" />
+            <state relative-caret-position="213">
+              <caret line="2606" column="46" lean-forward="true" selection-start-line="2606" selection-start-column="46" selection-end-line="2606" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#16134#16147#0" expanded="true" />
@@ -209,17 +209,6 @@
             <path>
               <item name="trafex" type="b2602c69:ProjectViewProjectNode" />
               <item name="trafex" type="462c0819:PsiDirectoryNode" />
-              <item name="ref" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="trafex" type="b2602c69:ProjectViewProjectNode" />
-              <item name="trafex" type="462c0819:PsiDirectoryNode" />
-              <item name="ref" type="462c0819:PsiDirectoryNode" />
-              <item name="stamp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="trafex" type="b2602c69:ProjectViewProjectNode" />
-              <item name="trafex" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -248,7 +237,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553640241288" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553643374839" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />
@@ -350,7 +339,7 @@
       <workItem from="1533913540938" duration="88704000" />
       <workItem from="1535554340021" duration="13859000" />
       <workItem from="1536165665132" duration="88375000" />
-      <workItem from="1551377310067" duration="208320000" />
+      <workItem from="1551377310067" duration="211548000" />
     </task>
     <task id="LOCAL-00001" summary="Objects and transctions created.">
       <created>1533587451180</created>
@@ -587,7 +576,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="448906000" />
+    <option name="totallyTimeSpent" value="452134000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -600,8 +589,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1967" y="-4" width="1873" height="1204" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1713191" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1713191" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -612,7 +602,7 @@
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32969034" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49917898" visible="true" weight="0.47818014" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49917898" visible="true" weight="0.452182" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39925718" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -779,8 +769,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="2555" column="38" lean-forward="true" selection-start-line="2555" selection-start-column="38" selection-end-line="2555" selection-end-column="38" />
+        <state relative-caret-position="213">
+          <caret line="2606" column="46" lean-forward="true" selection-start-line="2606" selection-start-column="46" selection-end-line="2606" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#16134#16147#0" expanded="true" />
