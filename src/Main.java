@@ -2545,64 +2545,67 @@ public class Main {
         };
 
         if(bench.equals("bank")) {
-            process = new ProcessBuilder("./ref/tinySTM/test/bank/bank", "-n8", "-d20").start();
+            process = new ProcessBuilder("./ref/tinySTM/test/bank/bank", "-n"+thread_count, "-d20").start();
         }
         else if(bench.equals("hs")) {
-            process = new ProcessBuilder("./ref/tinySTM/test/intset/intset-hs", "-n8", "-d20").start();
+            process = new ProcessBuilder("./ref/tinySTM/test/intset/intset-hs", "-n"+thread_count, "-d20").start();
         }
         else if(bench.equals("ll")) {
-            process = new ProcessBuilder("./ref/tinySTM/test/intset/intset-ll", "-n8", "-d20").start();
+            process = new ProcessBuilder("./ref/tinySTM/test/intset/intset-ll", "-n"+thread_count, "-d20").start();
         }
         else if(bench.equals("rb")) {
-            process = new ProcessBuilder("./ref/tinySTM/test/intset/intset-rb", "-n8", "-d20").start();
+            process = new ProcessBuilder("./ref/tinySTM/test/intset/intset-rb", "-n"+thread_count, "-d20").start();
         }
         else if(bench.equals("sl")) {
-            process = new ProcessBuilder("./ref/tinySTM/test/intset/intset-sl", "-n8", "-d20").start();
+            process = new ProcessBuilder("./ref/tinySTM/test/intset/intset-sl", "-n"+thread_count, "-d20").start();
         }
         else if(bench.equals("bayes")) {
-            process = new ProcessBuilder("./ref/stamp/bayes/bayes", "-v32", "-r1024", "-n2", "-p20", "-s0", "-i2", "-e2", "-t8").start();
+            process = new ProcessBuilder("./ref/stamp/bayes/bayes", "-v32", "-r1024", "-n2", "-p20", "-s0", "-i2", "-e2", "-t"+thread_count).start();
         }
         else if(bench.equals("genome")) {
-            process = new ProcessBuilder("./ref/stamp/genome/genome", "-g256", "-s16", "-n16384", "-t8").start();
+            process = new ProcessBuilder("./ref/stamp/genome/genome", "-g256", "-s16", "-n16384", "-t"+thread_count).start();
         }
         else if(bench.equals("intruder")) {
-            process = new ProcessBuilder("./ref/stamp/intruder/intruder", "-a10", "-l4", "-n2038", "-s1", "-t8").start();
+            process = new ProcessBuilder("./ref/stamp/intruder/intruder", "-a10", "-l4", "-n2038", "-s1", "-t"+thread_count).start();
         }
         else if(bench.equals("kmeans")) {
-            process = new ProcessBuilder("./ref/stamp/kmeans/kmeans", "-m40", "-n40", "-t0.05", "-i inputs/random-n2048-d16-c16.txt", "-p8").start();
+            process = new ProcessBuilder("./ref/stamp/kmeans/kmeans", "-m40", "-n40", "-t0.05", "-i","ref/stamp/kmeans/inputs/random-n2048-d16-c16.txt", "-p"+thread_count).start();
         }
         else if(bench.equals("labyrinth")) {
-            process = new ProcessBuilder("./ref/stamp/labyrinth/labyrinth", "-i inputs/random-x32-y32-z3-n96.txt", "-t8").start();
+            process = new ProcessBuilder("./ref/stamp/labyrinth/labyrinth", "-iref/stamp/labyrinth/inputs/random-x32-y32-z3-n96.txt", "-t"+thread_count).start();
         }
         else if(bench.equals("ssca2")) {
-            process = new ProcessBuilder("./ref/stamp/ssca2/ssca2", "-s13", "-i1.0", "-u1.0", "-l3", "-p3", "-t8").start();
+            process = new ProcessBuilder("./ref/stamp/ssca2/ssca2", "-s13", "-i1.0", "-u1.0", "-l3", "-p3", "-t"+thread_count).start();
         }
         else if(bench.equals("vacation")) {
-            process = new ProcessBuilder("./ref/stamp/vacation/vacation", "-n2", "-q90", "-u98", "-r16384", "-t4096", "-c8").start();
+            process = new ProcessBuilder("./ref/stamp/vacation/vacation", "-n2", "-q90", "-u98", "-r16384", "-t4096", "-c"+thread_count).start();
         }
         else if(bench.equals("yada")) {
-            process = new ProcessBuilder("./ref/stamp/yada/yada", "-a20", "-i inputs/633.2", "-t8").start();
+            process = new ProcessBuilder("./ref/stamp/yada/yada", "-a20", "-iref/stamp/yada/inputs/633.2", "-t"+thread_count).start();
         }
         else{
             System.out.println("Error. Invalid benchmark "+bench);
             System.exit(0);
         }
-        InputStream is = process.getInputStream();
+        /*InputStream is = process.getInputStream();
         OutputStream os = process.getOutputStream();
 
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os));
-        BufferedReader readder = new BufferedReader(new InputStreamReader(is));
+        BufferedReader readder = new BufferedReader(new InputStreamReader(is));*/
 
         String op, op1="";
         BufferedReader input = new BufferedReader (new InputStreamReader(process.getInputStream()));
         while ((op = input.readLine()) != null) {
             if(op.contains("<<>>")) {
                 op1 = op.replaceAll("<<>>","");
-                System.out.println(op1);
+//                System.out.println(op1);
             }
-            System.out.println(op);
+//            System.out.println(op);
         }
         input.close();
+        /*if(!(new BufferedReader(new InputStreamReader(process.getErrorStream()))).readLine().equals(null)) {
+            System.out.println((new BufferedReader(new InputStreamReader(process.getErrorStream()))).readLine());
+        }*/
 
         final String[] split = op1.split(",");
         String txl = split[split.length-1].split("-")[1];
