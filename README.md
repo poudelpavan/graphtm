@@ -16,9 +16,9 @@
 
 **Example:**
 ```
-LINE 	  -->  -gline -n100 -bbank -t8
+LINE    -->  -gline -n100 -bbank -t8
 CLIQUE  -->  -gclique -n100 -brb -t8
-GRID 	  -->  -ggrid -n100 -k2 -bbayes -t8
-CLUSTER	-->  -gcluster -c10 -d10 -bgenome -t8
-STAR 	  -->  -gstar -r14 -s7 -bintruder -t8
+GRID    -->  -ggrid -n100 -k2 -bbayes -t8
+CLUSTER -->  -gcluster -c10 -d10 -bgenome -t8
+STAR    -->  -gstar -r14 -s7 -bintruder -t8
 ```
