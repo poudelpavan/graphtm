@@ -2,7 +2,8 @@
  * @author Pavan Poudel
  * Date - 2018/08/03
  */
-public class Objects {
+import java.util.ArrayList;
+public class Objects implements Cloneable{
     private int obj_id;
     private int obj_size;
     public int node;
@@ -38,5 +39,22 @@ public class Objects {
 
     public void setNode(int node) {
         this.node = node;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Objects clone = null;
+        try
+        {
+            clone = (Objects) super.clone();
+
+            //Copy new date object to cloned method
+            clone.setObj_id((int) this.getObj_id());
+        }
+        catch (CloneNotSupportedException e)
+        {
+            throw new RuntimeException(e);
+        }
+        return clone;
     }
 }
