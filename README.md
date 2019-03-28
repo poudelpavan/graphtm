@@ -16,7 +16,9 @@
 
 **Example:**
 ```
-GRID 	-->	-ggrid -n100 -k2 -bbank -t8
-CLUSTER -->	-gcluster -c10 -d10 -bhs -t8
-STAR    -->	-gstar -r14 -s7 -bgenome -t8
+LINE    -->  -g line -n100 -b bank -t8
+CLIQUE  -->  -g clique -n100 -b rb -t8
+GRID    -->  -g grid -n100 -k2 -b bayes -t8
+CLUSTER -->  -g cluster -c10 -d10 -b genome -t8
+STAR    -->  -g star -r14 -s7 -b intruder -t8
 ```
