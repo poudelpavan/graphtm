@@ -3406,7 +3406,7 @@ public class Main {
             }
             ArrayList<ArrayList<Transaction>> readylst = new ArrayList<>();
 
-            for(int z = 0; z < 2; z++) {
+            for(int z = 0; z < 3; z++) {
 
                 System.out.println("Tx\trw-set-size\tupdate-rate");
                 System.out.println("---------------------------------");
@@ -3480,7 +3480,7 @@ public class Main {
                 while (committed_txs.size() < total_txs) {
                     timestep++;
 //                while (txs_pool.size() > 0) {
-                    if(z == 0) {
+                    if(z < 2) {
                         if (txs_pool.size() > 0) {
                             //assign new transaction to the empty node dynamically
 //                int update_list [] = updateReadyList(ready_list);
@@ -3577,7 +3577,7 @@ public class Main {
 //                        System.out.println("Scheduled Independent Set:");
 //                        System.out.println(ind_sets);
                     }
-                    else if(z == 2) {
+                    else if(z == 1) {
                         for (int i = 0; i < ind_sets.size(); i++) {
                             ArrayList<Integer> sortedIS = new ArrayList<>();//based on comm cost
                             if(graph_type == 1){
@@ -3738,7 +3738,7 @@ public class Main {
                     tot_conflicts_online += committed_txs.get(i).getConflicts();
                 }
                 System.out.println("Total committed txs = " + committed_txs.size());
-                int test = new Scanner(System.in).nextInt();
+//                int test = new Scanner(System.in).nextInt();
                 cstlst.add(tot_wait_online);
                 cstlst.add(tot_conflicts_online);
                 costsArray.add(cstlst);
@@ -3796,9 +3796,9 @@ public class Main {
                 if(i == 0)
                     System.out.println("OFFLINE: \t\t\t\t "+costsArray.get(i).get(0)+"\t\t\t "+costsArray.get(i).get(1)+"  \t\t\t  "+costsArray.get(i).get(2) +"  \t\t  "+costsArray.get(i).get(3));
                 else if(i == 1)
-                    System.out.println("ONLINE (No Schedule): \t "+costsArray.get(i).get(0)+"\t\t\t "+costsArray.get(i).get(1)+"  \t\t\t  "+costsArray.get(i).get(2) +"  \t\t  "+costsArray.get(i).get(3));
+                    System.out.println("OFFLINE: \t\t\t\t "+costsArray.get(i).get(0)+"\t\t\t "+costsArray.get(i).get(1)+"  \t\t\t  "+costsArray.get(i).get(2) +"  \t\t  "+costsArray.get(i).get(3));
                 else
-                    System.out.println("ONLINE (Inner Schedule): "+costsArray.get(i).get(0)+"\t\t\t "+costsArray.get(i).get(1)+"  \t\t\t  "+costsArray.get(i).get(2) +"  \t\t  "+costsArray.get(i).get(3));
+                    System.out.println("ONLINE: \t\t\t\t "+costsArray.get(i).get(0)+"\t\t\t "+costsArray.get(i).get(1)+"  \t\t\t  "+costsArray.get(i).get(2) +"  \t\t  "+costsArray.get(i).get(3));
             }
 
             /*
