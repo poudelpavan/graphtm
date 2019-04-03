@@ -1,4 +1,5 @@
-## TraFex: Distributed Transactional Memory for Arbitrary Graphs
+## GraphTM
+**Overview**
 
 **Options:**
 ```
