@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/trafex.iml" filepath="$PROJECT_DIR$/trafex.iml" />
+      <module fileurl="file://$PROJECT_DIR$/graphtm.iml" filepath="$PROJECT_DIR$/graphtm.iml" />
     </modules>
   </component>
 </project>

@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d13a0c39-7323-440b-a662-c634ce697ae9" name="Default" comment="Algorithms updated.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/trafex/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/trafex/Main.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -82,8 +82,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Main.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="523">
-                  <caret line="1911" column="25" selection-start-line="1911" selection-start-column="25" selection-end-line="1911" selection-end-column="25" />
+                <state relative-caret-position="-26020">
+                  <caret line="1900" column="34" lean-forward="true" selection-start-line="1900" selection-start-column="34" selection-end-line="1900" selection-end-column="34" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#887#911#0" expanded="true" />
@@ -101,8 +101,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Main.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="49">
-                  <caret line="98" column="9" lean-forward="true" selection-start-line="98" selection-start-column="9" selection-end-line="98" selection-end-column="9" />
+                <state relative-caret-position="357">
+                  <caret line="3803" column="14" lean-forward="true" selection-start-line="3803" selection-start-column="14" selection-end-line="3803" selection-end-column="14" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#887#911#0" expanded="true" />
@@ -174,10 +174,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1967" />
-    <option name="y" value="-4" />
+    <option name="x" value="2457" />
+    <option name="y" value="373" />
     <option name="width" value="1873" />
-    <option name="height" value="1204" />
+    <option name="height" value="1148" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -225,7 +225,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554134322097" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554313224171" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />
@@ -294,7 +294,7 @@
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="trafex" />
+      <module name="graphtm" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
@@ -329,7 +329,7 @@
       <workItem from="1536165665132" duration="88375000" />
       <workItem from="1551377310067" duration="211548000" />
       <workItem from="1553654804905" duration="7264000" />
-      <workItem from="1553701471539" duration="54249000" />
+      <workItem from="1553701471539" duration="56787000" />
     </task>
     <task id="LOCAL-00001" summary="Objects and transctions created.">
       <created>1533587451180</created>
@@ -576,11 +576,18 @@
       <option name="project" value="LOCAL" />
       <updated>1553915405416</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Algorithms updated.">
+      <created>1554134444528</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1554134444528</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="513647000" />
+    <option name="totallyTimeSpent" value="516185000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -592,7 +599,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1967" y="-4" width="1873" height="1204" extended-state="6" />
+    <frame x="2457" y="373" width="1873" height="1148" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.08483853" />
@@ -606,7 +613,7 @@
       <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4679666" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4231146" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -740,8 +747,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="523">
-          <caret line="1911" column="25" selection-start-line="1911" selection-start-column="25" selection-end-line="1911" selection-end-column="25" />
+        <state relative-caret-position="-26020">
+          <caret line="1900" column="34" lean-forward="true" selection-start-line="1900" selection-start-column="34" selection-end-line="1900" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#887#911#0" expanded="true" />
