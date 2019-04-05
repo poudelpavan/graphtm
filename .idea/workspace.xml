@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d13a0c39-7323-440b-a662-c634ce697ae9" name="Default" comment="Algorithms updated.">
+    <list default="true" id="d13a0c39-7323-440b-a662-c634ce697ae9" name="Default" comment="Offline Algorithm updated.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/trafex/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/trafex/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,13 +24,13 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5047847">
+    <splitter split-orientation="horizontal" split-proportion="0.39078397">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Objects.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="278">
+                <state relative-caret-position="540">
                   <caret line="51" column="52" selection-start-line="51" selection-start-column="52" selection-end-line="51" selection-end-column="52" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
@@ -56,8 +56,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Graphs.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="316">
-                  <caret line="115" column="52" lean-forward="true" selection-start-line="115" selection-start-column="52" selection-end-line="115" selection-end-column="52" />
+                <state relative-caret-position="1485">
+                  <caret line="115" column="52" selection-start-line="115" selection-start-column="52" selection-end-line="115" selection-end-column="52" />
                   <folding>
                     <element signature="e#963#964#0" expanded="true" />
                     <element signature="e#991#992#0" expanded="true" />
@@ -69,8 +69,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Node.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1049">
-                  <caret line="167" column="9" lean-forward="true" selection-start-line="167" selection-start-column="9" selection-end-line="167" selection-end-column="9" />
+                <state relative-caret-position="2145">
+                  <caret line="167" column="9" selection-start-line="167" selection-start-column="9" selection-end-line="167" selection-end-column="9" />
                   <folding>
                     <element signature="e#616#617#0" expanded="true" />
                     <element signature="e#646#647#0" expanded="true" />
@@ -82,13 +82,10 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Main.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-26020">
-                  <caret line="1900" column="34" lean-forward="true" selection-start-line="1900" selection-start-column="34" selection-end-line="1900" selection-end-column="34" />
+                <state relative-caret-position="1209">
+                  <caret line="1996" column="25" lean-forward="true" selection-start-line="1996" selection-start-column="25" selection-end-line="1996" selection-end-column="25" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#887#911#0" expanded="true" />
-                    <element signature="e#21481#21490#0" expanded="true" />
-                    <element signature="e#105357#105374#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -97,19 +94,14 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Main.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="357">
-                  <caret line="3803" column="14" lean-forward="true" selection-start-line="3803" selection-start-column="14" selection-end-line="3803" selection-end-column="14" />
+                <state relative-caret-position="266">
+                  <caret line="3807" column="26" lean-forward="true" selection-start-line="3807" selection-start-column="26" selection-end-line="3807" selection-end-column="26" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#887#911#0" expanded="true" />
-                    <element signature="e#1139#1140#0" expanded="true" />
-                    <element signature="e#1215#1216#0" expanded="true" />
-                    <element signature="e#1539#1540#0" expanded="true" />
-                    <element signature="e#1588#1589#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -187,22 +179,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="trafex" type="b2602c69:ProjectViewProjectNode" />
-              <item name="trafex" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="trafex" type="b2602c69:ProjectViewProjectNode" />
-              <item name="trafex" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="Scope 'Production'; set:Production; class com.intellij.psi.search.scope.ProjectProductionScope">
           <expand>
@@ -220,6 +196,22 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="graphtm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graphtm" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graphtm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graphtm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -330,6 +322,7 @@
       <workItem from="1551377310067" duration="211548000" />
       <workItem from="1553654804905" duration="7264000" />
       <workItem from="1553701471539" duration="56787000" />
+      <workItem from="1554313340642" duration="8378000" />
     </task>
     <task id="LOCAL-00001" summary="Objects and transctions created.">
       <created>1533587451180</created>
@@ -583,11 +576,18 @@
       <option name="project" value="LOCAL" />
       <updated>1554134444528</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Offline Algorithm updated.">
+      <created>1554313380856</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1554313380856</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="516185000" />
+    <option name="totallyTimeSpent" value="524563000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -599,21 +599,18 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="2457" y="373" width="1873" height="1148" extended-state="0" />
-    <editor active="true" />
+    <frame x="1967" y="-4" width="1873" height="1204" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.08483853" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.08538588" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4231146" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.29990715" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -622,7 +619,8 @@
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32961932" />
-      <window_info anchor="right" id="Maven" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -632,6 +630,7 @@
       <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Maven Projects" order="8" />
+      <window_info anchor="right" id="Maven" order="9" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -664,7 +663,8 @@
     <MESSAGE value="Benchmarks added." />
     <MESSAGE value="STAMP Benchmarks added." />
     <MESSAGE value="Algorithms updated." />
-    <option name="LAST_COMMIT_MESSAGE" value="Algorithms updated." />
+    <MESSAGE value="Offline Algorithm updated." />
+    <option name="LAST_COMMIT_MESSAGE" value="Offline Algorithm updated." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/avc.java" />
@@ -701,6 +701,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Objects.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="51" column="52" selection-start-line="51" selection-start-column="52" selection-end-line="51" selection-end-column="52" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Transaction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -713,20 +723,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Objects.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="51" column="52" selection-start-line="51" selection-start-column="52" selection-end-line="51" selection-end-column="52" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Graphs.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="115" column="52" lean-forward="true" selection-start-line="115" selection-start-column="52" selection-end-line="115" selection-end-column="52" />
+        <state relative-caret-position="1485">
+          <caret line="115" column="52" selection-start-line="115" selection-start-column="52" selection-end-line="115" selection-end-column="52" />
           <folding>
             <element signature="e#963#964#0" expanded="true" />
             <element signature="e#991#992#0" expanded="true" />
@@ -736,8 +736,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1049">
-          <caret line="167" column="9" lean-forward="true" selection-start-line="167" selection-start-column="9" selection-end-line="167" selection-end-column="9" />
+        <state relative-caret-position="2145">
+          <caret line="167" column="9" selection-start-line="167" selection-start-column="9" selection-end-line="167" selection-end-column="9" />
           <folding>
             <element signature="e#616#617#0" expanded="true" />
             <element signature="e#646#647#0" expanded="true" />
@@ -747,13 +747,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-26020">
-          <caret line="1900" column="34" lean-forward="true" selection-start-line="1900" selection-start-column="34" selection-end-line="1900" selection-end-column="34" />
+        <state relative-caret-position="266">
+          <caret line="3807" column="26" lean-forward="true" selection-start-line="3807" selection-start-column="26" selection-end-line="3807" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#887#911#0" expanded="true" />
-            <element signature="e#21481#21490#0" expanded="true" />
-            <element signature="e#105357#105374#0" expanded="true" />
           </folding>
         </state>
       </provider>

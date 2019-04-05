@@ -3406,7 +3406,7 @@ public class Main {
             }
             ArrayList<ArrayList<Transaction>> readylst = new ArrayList<>();
 
-            for(int z = 0; z < 3; z++) {
+            for(int z = 0; z < 4; z++) {
 
                 System.out.println("Tx\trw-set-size\tupdate-rate");
                 System.out.println("---------------------------------");
@@ -3480,7 +3480,7 @@ public class Main {
                 while (committed_txs.size() < total_txs) {
                     timestep++;
 //                while (txs_pool.size() > 0) {
-                    if(z < 2) {
+                    if(z == 0 || z == 2) {
                         if (txs_pool.size() > 0) {
                             //assign new transaction to the empty node dynamically
 //                int update_list [] = updateReadyList(ready_list);
@@ -3500,6 +3500,33 @@ public class Main {
                                         ready_count[i] += 1;
                                         updateTxsList(txs, t);
 //                                    }
+                                }
+                                if (txs_pool.size() == 0) {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else if(z == 1) {
+                        if (txs_pool.size() > 0) {
+                            //assign new transaction to the empty node dynamically
+//                int update_list [] = updateReadyList(ready_list);
+                            for (int i = 0; i < ready_list.length; i++) {
+//                    if(ready_list[i] == 0 && update_list[i] == 1){
+                                if (ready_list[i] == 0) {
+                                    if(ready_count[i] < nodal_txs.get(i).size()) {
+//                                    Transaction t = getTx(txs, txs_pool.get(0).getTx_id());
+                                        Transaction t = getTx(txs, nodal_txs.get(i).get(ready_count[i]).getTx_id());
+                                    t.setArrived_at(timestep - 1);
+                                    t.setHome_node(i);
+                                    t.setConflicts(0);
+                                    t.setStatus("WAITING");
+                                    ready_txs.add(t);
+                                    txs_pool.remove(0);
+                                    ready_list[i] = 1;
+                                    ready_count[i] += 1;
+                                    updateTxsList(txs, t);
+                                    }
                                 }
                                 if (txs_pool.size() == 0) {
                                     break;
@@ -3560,7 +3587,7 @@ public class Main {
                     ArrayList<ArrayList<Integer>> components = generateComponentsOnline(ready_txs, ready_txs.size());
                     ArrayList<ArrayList<Integer>> ind_sets = generateIndependentSetOnline(components, ready_txs);
 
-                    if(z == 0) {
+                    if(z == 1) {
                         for (int i = 0; i < ind_sets.size(); i++) {
                             ArrayList<Integer> sortedIS = new ArrayList<>();  //based on priority queue
                             if(graph_type == 1){
@@ -3577,7 +3604,7 @@ public class Main {
 //                        System.out.println("Scheduled Independent Set:");
 //                        System.out.println(ind_sets);
                     }
-                    else if(z == 1) {
+                    else if(z == 2) {
                         for (int i = 0; i < ind_sets.size(); i++) {
                             ArrayList<Integer> sortedIS = new ArrayList<>();//based on comm cost
                             if(graph_type == 1){
@@ -3794,11 +3821,13 @@ public class Main {
 //            System.out.println("OFFLINE: \t\t\t\t "+totexectime +" \t\t\t  " + totcommcost + " \t\t\t  " + tot_waittime + " \t\t  " + tot_conflicts);
             for(int i = 0; i < costsArray.size(); i++){
                 if(i == 0)
-                    System.out.println("OFFLINE: \t\t\t\t "+costsArray.get(i).get(0)+"\t\t\t "+costsArray.get(i).get(1)+"  \t\t\t  "+costsArray.get(i).get(2) +"  \t\t  "+costsArray.get(i).get(3));
+                    System.out.println("OFFLINE (Priority): \t "+costsArray.get(i).get(0)+"\t\t\t "+costsArray.get(i).get(1)+"  \t\t\t  "+costsArray.get(i).get(2) +"  \t\t  "+costsArray.get(i).get(3));
                 else if(i == 1)
-                    System.out.println("OFFLINE: \t\t\t\t "+costsArray.get(i).get(0)+"\t\t\t "+costsArray.get(i).get(1)+"  \t\t\t  "+costsArray.get(i).get(2) +"  \t\t  "+costsArray.get(i).get(3));
+                    System.out.println("OFFLINE (Batch):    \t "+costsArray.get(i).get(0)+"\t\t\t "+costsArray.get(i).get(1)+"  \t\t\t  "+costsArray.get(i).get(2) +"  \t\t  "+costsArray.get(i).get(3));
+                else if(i == 2)
+                    System.out.println("OFFLINE (Greedy):   \t "+costsArray.get(i).get(0)+"\t\t\t "+costsArray.get(i).get(1)+"  \t\t\t  "+costsArray.get(i).get(2) +"  \t\t  "+costsArray.get(i).get(3));
                 else
-                    System.out.println("ONLINE: \t\t\t\t "+costsArray.get(i).get(0)+"\t\t\t "+costsArray.get(i).get(1)+"  \t\t\t  "+costsArray.get(i).get(2) +"  \t\t  "+costsArray.get(i).get(3));
+                    System.out.println("ONLINE:             \t "+costsArray.get(i).get(0)+"\t\t\t "+costsArray.get(i).get(1)+"  \t\t\t  "+costsArray.get(i).get(2) +"  \t\t  "+costsArray.get(i).get(3));
             }
 
             /*
