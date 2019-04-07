@@ -1120,6 +1120,39 @@ public class Main {
         return txs_list;
     }
 
+    /*
+     * Find position of an element in an array.
+     */
+    private static int getIndexOf(int[] list, int id){
+        int index = 0;
+        while(list[index] != id){
+            index++;
+        }
+        return index;
+    }
+
+    /*
+     * Rearrange transactions based on priority order - online.
+     */
+    private static ArrayList<Integer> reorderTxs(ArrayList<Integer> comp_list, ArrayList<Transaction> txs_list){
+        ArrayList<Integer> newList = new ArrayList<>();
+        int listSize = comp_list.size();
+        while(newList.size() < listSize) {
+            int tx_id = comp_list.get(0);
+            Transaction tx = getTx(txs_list, tx_id);
+            int currnode = tx.getHome_node();
+            int index = getIndexOf(priority_queue, currnode);
+            for (int i = 1; i < comp_list.size(); i++) {
+                Transaction tx1 = getTx(txs_list, comp_list.get(i));
+                if (getIndexOf(priority_queue, tx1.getHome_node()) < index) {
+                    tx_id = comp_list.get(i);
+                }
+            }
+            newList.add(new Integer(tx_id));
+            comp_list.remove(new Integer(tx_id));
+        }
+        return newList;
+    }
 
     /*
      * Find independent sets from components based on Read set and Write set - online.
@@ -1879,7 +1912,7 @@ public class Main {
      * Find optimal costs for transctions execution in different graphs.
      */
     private static int[] getOptimalCosts(ArrayList<ArrayList<Transaction>> txs_arr, int tot_nodes, Graphs g){
-        int opt_com = 0, opt_rt = 0, graph_type = 0;
+        int opt_com = 0, opt_rt = 0;
         String g_type = getGraphType(g);
         for(int i = 0; i < tot_nodes; i++){
             int exectime = 0;
@@ -1910,7 +1943,7 @@ public class Main {
      * Find optimal costs for transctions execution in different graphs.
      */
     private static int[] getOptimalCosts(ArrayList<ArrayList<Transaction>> txs_arr, int tot_nodes, Graphs g, int size){
-        int opt_com = 0, opt_rt = 0, graph_type = 0;
+        int opt_com = 0, opt_rt = 0;
         String g_type = getGraphType(g);
         for(int i = 0; i < tot_nodes; i++){
             int exectime = 0;
@@ -2672,7 +2705,7 @@ public class Main {
         };
 
         if(bench.equals("bank")) {
-            process = new ProcessBuilder("./ref/tinySTM/test/bank/bank", "-n"+thread_count, "-d10").start();
+            process = new ProcessBuilder("./ref/tinySTM/test/bank/bank", "-n"+thread_count, "-d100").start();
         }
         else if(bench.equals("hs")) {
             process = new ProcessBuilder("./ref/tinySTM/test/intset/intset-hs", "-n"+thread_count, "-d20").start();
@@ -2829,6 +2862,9 @@ public class Main {
             }
         }
 
+        if(tottxs > 10000){
+            tottxs = 10000;
+        }
         for(int i = 0; i < tottxs; i++){
             List<Objects> rs_obj = new ArrayList<>(), ws_obj = new ArrayList<>();
             int rwset_size = 0;
@@ -3408,7 +3444,7 @@ public class Main {
 
             for(int z = 0; z < 4; z++) {
 
-                System.out.println("Tx\trw-set-size\tupdate-rate");
+                /*System.out.println("Tx\trw-set-size\tupdate-rate");
                 System.out.println("---------------------------------");
                 for (int i = 0; i < txs.size(); i++) {
                     System.out.print("T" + txs.get(i).getTx_id() + "   \tRead Set(Objects) ==> (");
@@ -3427,7 +3463,7 @@ public class Main {
                         }
                     }
                     System.out.print(")\n");
-                }
+                }*/
 
 
 
@@ -3501,6 +3537,9 @@ public class Main {
                                         updateTxsList(txs, t);
 //                                    }
                                 }
+                                else if(ready_list[i] == -1){
+                                    ready_list[i] = 0;
+                                }
                                 if (txs_pool.size() == 0) {
                                     break;
                                 }
@@ -3528,6 +3567,9 @@ public class Main {
                                     updateTxsList(txs, t);
                                     }
                                 }
+                                else if(ready_list[i] == -1){
+                                    ready_list[i] = 0;
+                                }
                                 if (txs_pool.size() == 0) {
                                     break;
                                 }
@@ -3540,9 +3582,9 @@ public class Main {
 //                int update_list [] = updateReadyList(ready_list);
                             for (int i = 0; i < ready_list.length; i++) {
 //                    if(ready_list[i] == 0 && update_list[i] == 1){
-                                if (ready_list[i] == 0) {
+                                if (ready_list[i] == 0 || ready_list[i] == -1) {
                                     Random rand = new Random();
-                                    int update = rand.nextInt(1000) % 200;
+                                    int update = rand.nextInt(1000) % 50;
                                     if (update == 13) {
                                         Transaction t = getTx(txs, txs_pool.get(0).getTx_id());
                                         t.setArrived_at(timestep - 1);
@@ -3585,9 +3627,42 @@ public class Main {
 //                    System.out.println(ready_txs.size());
 //                    System.out.println(committed_txs.size() + " " + total_txs);
                     ArrayList<ArrayList<Integer>> components = generateComponentsOnline(ready_txs, ready_txs.size());
+                    if(z < 2) {
+                        for (int i = 0; i < components.size(); i++) {
+                            ArrayList<Integer> sortedComp = reorderTxs(components.get(i), ready_txs);
+                            components.set(i, sortedComp);
+                        }
+                    }
+                    else if(z == 2){
+                        for (int i = 0; i < components.size(); i++) {
+                            ArrayList<Integer> sortedComp = new ArrayList<>();//based on comm cost
+                            if(graph_type == 1){
+                                sortedComp = scheduleTxs(components.get(i), ready_txs, line, subgraph_line);  //based on comm cost
+//                                sortedIS = scheduleTxsExec(ind_sets.get(i), ready_txs, line, subgraph_line); //based on exec time
+                            }
+                            else if(graph_type == 2){
+                                sortedComp = scheduleTxs(components.get(i), ready_txs, clique, clique.getNumNodes());  //based on comm cost
+//                                sortedIS = scheduleTxsExec(ind_sets.get(i), ready_txs, clique, clique.getNumNodes()); //based on exec time
+                            }
+                            else if(graph_type == 3){
+                                sortedComp = scheduleTxs(components.get(i), ready_txs, grid, grid_size);  //based on comm cost
+//                                sortedIS = scheduleTxsExec(ind_sets.get(i), ready_txs, grid, grid_size); //based on exec time
+                            }
+                            else if(graph_type == 4){
+                                sortedComp = scheduleTxs(components.get(i), ready_txs, cluster, cluster_size);  //based on comm cost
+//                                sortedIS = scheduleTxsExec(ind_sets.get(i), ready_txs, cluster, cluster_size); //based on exec time
+                            }
+                            else if(graph_type == 5){
+                                sortedComp = scheduleTxs(components.get(i), ready_txs, star, ray_nodes);  //based on comm cost
+//                                sortedIS = scheduleTxsExec(ind_sets.get(i), ready_txs, star, ray_nodes); //based on exec time
+                            }
+                            components.set(i, sortedComp);
+                        }
+                    }
+
                     ArrayList<ArrayList<Integer>> ind_sets = generateIndependentSetOnline(components, ready_txs);
 
-                    if(z == 1) {
+                    if(z == 4) {
                         for (int i = 0; i < ind_sets.size(); i++) {
                             ArrayList<Integer> sortedIS = new ArrayList<>();  //based on priority queue
                             if(graph_type == 1){
@@ -3604,7 +3679,7 @@ public class Main {
 //                        System.out.println("Scheduled Independent Set:");
 //                        System.out.println(ind_sets);
                     }
-                    else if(z == 2) {
+                    else if(z == 5) {
                         for (int i = 0; i < ind_sets.size(); i++) {
                             ArrayList<Integer> sortedIS = new ArrayList<>();//based on comm cost
                             if(graph_type == 1){
@@ -3686,7 +3761,7 @@ public class Main {
 //                            System.out.println("T" + tx.getTx_id() + " commits: exec cost => " + timestep + "  comm cost => " + tx.getComm_cost());
                             curr_commit_list_size++;
                             tot_comm_cost += tx.getComm_cost();
-                            ready_list[tx.getHome_node()] = 0;
+                            ready_list[tx.getHome_node()] = -1;
 //                            prev_run_list.remove(new Integer(tx.getTx_id()));
 
                             List<Objects> ws = new ArrayList<>();
@@ -3706,7 +3781,7 @@ public class Main {
 //                            System.out.println("T" + tx.getTx_id() + " commits: exec cost => " + timestep + "  comm cost => " + tx.getComm_cost());
                             curr_commit_list_size++;
                             tot_comm_cost += tx.getComm_cost();
-                            ready_list[tx.getHome_node()] = 0;
+                            ready_list[tx.getHome_node()] = -1;
 //                            prev_run_list.remove(new Integer(tx.getTx_id()));
 
                             List<Objects> ws = new ArrayList<>();
