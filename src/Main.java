@@ -2754,15 +2754,44 @@ public class Main {
         BufferedReader readder = new BufferedReader(new InputStreamReader(is));*/
 
         String op, op1="";
-        BufferedReader input = new BufferedReader (new InputStreamReader(process.getInputStream()));
-        while ((op = input.readLine()) != null) {
-            if(op.contains("<<>>")) {
-                op1 = op.replaceAll("<<>>","");
-//                System.out.println(op1);
-            }
-//            System.out.println(op);
+        String fileName = "temp.txt";
+        BufferedReader fileinput = new BufferedReader (new FileReader(fileName));
+        if((op1 = fileinput.readLine()).length() > 1){
+//            op1 = fileinput.readLine();
+            System.out.println("Read saved transactions.");
         }
-        input.close();
+        else {
+            BufferedReader input = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            while ((op = input.readLine()) != null) {
+                if (op.contains("<<>>")) {
+                    op1 = op.replaceAll("<<>>", "");
+//                System.out.println(op1);
+
+                    try {
+                        // Assume default encoding.
+                        FileWriter fileWriter = new FileWriter(fileName);
+
+                        // Always wrap FileWriter in BufferedWriter.
+                        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+                        // Note that write() does not automatically
+                        // append a newline character.
+                        bufferedWriter.write(op1);
+                        // Always close files.
+                        bufferedWriter.close();
+                    } catch (IOException ex) {
+                        System.out.println(
+                                "Error writing to file '"
+                                        + fileName + "'");
+                        // Or we could just do this:
+                        // ex.printStackTrace();
+                    }
+                }
+//            System.out.println(op);
+            }
+            input.close();
+        }
+
         /*if(!(new BufferedReader(new InputStreamReader(process.getErrorStream()))).readLine().equals(null)) {
             System.out.println((new BufferedReader(new InputStreamReader(process.getErrorStream()))).readLine());
         }*/
@@ -3442,7 +3471,7 @@ public class Main {
             }
             ArrayList<ArrayList<Transaction>> readylst = new ArrayList<>();
 
-            for(int z = 0; z < 4; z++) {
+            for(int z = 0; z < 3; z++) {
 
                 /*System.out.println("Tx\trw-set-size\tupdate-rate");
                 System.out.println("---------------------------------");
@@ -3516,7 +3545,7 @@ public class Main {
                 while (committed_txs.size() < total_txs) {
                     timestep++;
 //                while (txs_pool.size() > 0) {
-                    if(z == 0 || z == 2) {
+                    if(z == 0 ) {
                         if (txs_pool.size() > 0) {
                             //assign new transaction to the empty node dynamically
 //                int update_list [] = updateReadyList(ready_list);
@@ -3633,7 +3662,7 @@ public class Main {
                             components.set(i, sortedComp);
                         }
                     }
-                    else if(z == 2){
+                    else if(z == 3){
                         for (int i = 0; i < components.size(); i++) {
                             ArrayList<Integer> sortedComp = new ArrayList<>();//based on comm cost
                             if(graph_type == 1){
@@ -3899,8 +3928,8 @@ public class Main {
                     System.out.println("OFFLINE (Priority): \t "+costsArray.get(i).get(0)+"\t\t\t "+costsArray.get(i).get(1)+"  \t\t\t  "+costsArray.get(i).get(2) +"  \t\t  "+costsArray.get(i).get(3));
                 else if(i == 1)
                     System.out.println("OFFLINE (Batch):    \t "+costsArray.get(i).get(0)+"\t\t\t "+costsArray.get(i).get(1)+"  \t\t\t  "+costsArray.get(i).get(2) +"  \t\t  "+costsArray.get(i).get(3));
-                else if(i == 2)
-                    System.out.println("OFFLINE (Greedy):   \t "+costsArray.get(i).get(0)+"\t\t\t "+costsArray.get(i).get(1)+"  \t\t\t  "+costsArray.get(i).get(2) +"  \t\t  "+costsArray.get(i).get(3));
+//                else if(i == 2)
+//                    System.out.println("OFFLINE (Greedy):   \t "+costsArray.get(i).get(0)+"\t\t\t "+costsArray.get(i).get(1)+"  \t\t\t  "+costsArray.get(i).get(2) +"  \t\t  "+costsArray.get(i).get(3));
                 else
                     System.out.println("ONLINE:             \t "+costsArray.get(i).get(0)+"\t\t\t "+costsArray.get(i).get(1)+"  \t\t\t  "+costsArray.get(i).get(2) +"  \t\t  "+costsArray.get(i).get(3));
             }
