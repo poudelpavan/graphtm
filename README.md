@@ -1,6 +1,10 @@
 ## GraphTM
 **Overview**
 
+GraphTM is a simulation framework for efficiently processing transactions in distributed environment. The framework consists of implementation for 5 different types of communication graphs namely line, clique, gird, cluster, and star representing the distributed environment.
+
+GraphTM can be evaluated with the micro-benchmarks and STAMP benchmarks as below:
+
 **Options:**
 ```
 -g	 graph type, default grid [line, clique, grid, cluster, star]
